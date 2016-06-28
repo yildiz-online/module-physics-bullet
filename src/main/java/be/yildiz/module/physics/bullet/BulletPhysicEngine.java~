@@ -1,0 +1,45 @@
+package be.yildiz.module.physics.bullet;
+
+import be.yildiz.common.log.Logger;
+import be.yildiz.common.nativeresources.NativeResourceLoader;
+import be.yildiz.module.physics.PhysicEngine;
+
+/**
+ * Bullet implementation for the physic engine.
+ * 
+ * @author Van den Borre Grégory
+ */
+public final class BulletPhysicEngine extends PhysicEngine {
+
+    /**
+     * Simple constructor, load the native lib.
+     * 
+     * @param debug
+     *            Debug mode activated.
+     */
+    public BulletPhysicEngine(final boolean debug) {
+        super();
+        Logger.info("Initializing Bullet physic engine...");
+        NativeResourceLoader.loadBaseLibrary("libwinpthread-1", "libgcc_s_dw2-1", "libstdc++-6");
+        NativeResourceLoader.loadLibrary("libbullet");
+        Logger.info("Bullet physic engine initialized.");
+    }
+    
+    /**
+     * Simple constructor, load the native lib.
+     */
+    public BulletPhysicEngine() {
+        super();
+        Logger.info("Initializing Bullet physic engine...");
+        NativeResourceLoader.loadBaseLibrary("libwinpthread-1", "libgcc_s_dw2-1", "libstdc++-6");
+        NativeResourceLoader.loadLibrary("libbullet");
+        Logger.info("Bullet physic engine initialized.");
+    }
+
+    @Override
+    public BulletWorld createPhysicWorld() {
+        BulletWorld w = new BulletWorld();
+        this.setWorld(w);
+        return w;
+    }
+}
