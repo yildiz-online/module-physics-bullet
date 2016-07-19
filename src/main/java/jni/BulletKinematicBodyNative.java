@@ -26,7 +26,7 @@
 package jni;
 
 /**
- * Native interface for thr btbody.
+ * Native interface for the btbody with kinematic behavior.
  *
  * @author Grégory Van den Borre
  */
@@ -36,11 +36,11 @@ public class BulletKinematicBodyNative {
      * Set the position in native code.
      *
      * @param pointerAddress Pointer address for the btbody.
-     * @param posX           Position X value.
-     * @param posY           Position Y value.
-     * @param posZ           Position Z value.
+     * @param x              Position X value.
+     * @param y              Position Y value.
+     * @param z              Position Z value.
      */
-    public native void setPosition(final long pointerAddress, final float posX, final float posY, final float posZ);
+    public native void setPosition(final long pointerAddress, final float x, final float y, final float z);
 
     /**
      * Set the direction in native code.
@@ -50,18 +50,18 @@ public class BulletKinematicBodyNative {
      * @param dirY           Direction Y value.
      * @param dirZ           Direction Z value.
      */
-    public native void setDirection(final long pointerAddress, final float dirX, final float dirY, final float dirZ);
+    public native void setDirection(final long pointerAddress, final float x, final float y, final float z);
 
     /**
      * Make a rotation in native code.
      *
      * @param pointerAddress Pointer address for the btbody.
+     * @param w              Rotation W value.
      * @param x              Rotation X value.
      * @param y              Rotation Y value.
      * @param z              Rotation Z value.
-     * @param w              Rotation W value.
      */
-    public native void rotate(final long pointerAddress, final float x, final float y, final float z, final float w);
+    public native void rotate(final long pointerAddress, final float w, final float x, final float y, final float z);
 
 
 }

@@ -69,7 +69,7 @@ JNIEXPORT void JNICALL Java_jni_BulletWorldNative_removeBody
 /**
  * Build a box shape.
  * @param env
- *           Pointer to the java environement.
+ *           Pointer to the java environment.
  * @param o
  *           Associated object.
  * @param width
@@ -87,7 +87,7 @@ JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_createBoxShape(JNIEnv*,
 /**
  * Build a sphere shape.
  * @param env
- *           Pointer to the java environement.
+ *           Pointer to the java environment.
  * @param o
  *           Associated object.
  * @param radius
@@ -101,7 +101,7 @@ JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_createSphereShape(JNIEnv*,
 /**
  * Build a static physic body.
  * @param env
- *           Pointer to the java environement.
+ *           Pointer to the java environment.
  * @param o
  *           Associated object.
  * @param worldPointer
@@ -125,7 +125,7 @@ JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_createStaticBody(JNIEnv* env,
 /**
  * Build a kinematic physic body.
  * @param env
- *           Pointer to the java environement.
+ *           Pointer to the java environment.
  * @param o
  *           Associated object.
  * @param worldPointer
@@ -148,7 +148,7 @@ JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_createKinematicBody(
 /**
  * Build a ghost object.
  * @param env
- *           Pointer to the java environement.
+ *           Pointer to the java environment.
  * @param o
  *           Associated object.
  * @param worldPointer

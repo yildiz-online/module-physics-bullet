@@ -39,7 +39,7 @@ extern "C" {
 	/**
 	* Get the ghost object current position.
 	* @param env
-	*           Pointer to the java environement.
+	*           Pointer to the java environment.
 	* @param o
 	*           Associated object.
 	* @param pointer

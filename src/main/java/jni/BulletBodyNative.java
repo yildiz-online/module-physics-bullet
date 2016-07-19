@@ -37,25 +37,25 @@ public class BulletBodyNative {
      * Set active or not the native object on physic simulation.
      *
      * @param pointerAddress Native btbody pointer address.
-     * @param b              <code>true</code> to activate it, <code>false</code> to deactivate it.
+     * @param activate       <code>true</code> to activate it, <code>false</code> to deactivate it.
      */
-    public native void setActivate(final long pointerAddress, final boolean b);
+    public native void setActivate(final long pointerAddress, final boolean activate);
 
     /**
      * Delete the object in native code and remove it from the world.
      *
      * @param pointerAddress Native btbody pointer address.
-     * @param worldPointer   Native btdiscreetworld containing the body pointer address.
+     * @param worldPointer   Native pointer address of the btdiscreetworld containing the body.
      */
     public native void delete(final long pointerAddress, final long worldPointer);
 
     /**
      * Scale the physic body.
      *
-     * @param address Native btbody pointer address.
-     * @param x       X scale factor.
-     * @param y       Y scale factor.
-     * @param z       Z scale factor.
+     * @param pointerAddress Native btbody pointer address.
+     * @param x              X scale factor.
+     * @param y              Y scale factor.
+     * @param z              Z scale factor.
      */
-    public native void scale(long address, float x, float y, float z);
+    public native void scale(long pointerAddress, float x, float y, float z);
 }

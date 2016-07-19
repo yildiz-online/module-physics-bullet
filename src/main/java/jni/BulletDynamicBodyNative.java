@@ -26,6 +26,8 @@
 package jni;
 
 /**
+ * Native interface for the btbody with dynamic behavior.
+ *
  * @author Grégory Van den Borre
  */
 public class BulletDynamicBodyNative {
@@ -34,11 +36,11 @@ public class BulletDynamicBodyNative {
      * Set the btbody position in native code.
      *
      * @param pointerAddress Native btbody pointer address.
-     * @param posX           Position X value to set to the btbody.
-     * @param posY           Position Y value to set to the btbody.
-     * @param posZ           Position Z value to set to the btbody.
+     * @param x              Position X value to set to the btbody.
+     * @param y              Position Y value to set to the btbody.
+     * @param z              Position Z value to set to the btbody.
      */
-    public native void setPosition(final long pointerAddress, final float posX, final float posY, final float posZ);
+    public native void setPosition(final long pointerAddress, final float x, final float y, final float z);
 
     /**
      * Retrieve the current position in native code.
@@ -70,11 +72,21 @@ public class BulletDynamicBodyNative {
      * Set the orientation in native code.
      *
      * @param pointerAddress Native btbody pointer address.
-     * @param quatW          Orientation quaternion W value.
-     * @param quatX          Orientation quaternion X value.
-     * @param quatY          Orientation quaternion Y value.
-     * @param quatZ          Orientation quaternion Z value.
+     * @param w              Orientation quaternion W value.
+     * @param x              Orientation quaternion X value.
+     * @param y              Orientation quaternion Y value.
+     * @param z              Orientation quaternion Z value.
      */
-    public native void setOrientation(final long pointerAddress, final float quatW, final float quatX, final float quatY, final float quatZ);
+    public native void setOrientation(final long pointerAddress, final float w, final float x, final float y, final float z);
+
+    /**
+     * Apply a force to the body.
+     *
+     * @param pointerAddress Native btbody pointer address.
+     * @param x              Direction X value.
+     * @param y              Direction Y value.
+     * @param z              Direction Z value.
+     */
+    public native void applyForce(final long pointerAddress, final float x, final float y, final float z)
 
 }

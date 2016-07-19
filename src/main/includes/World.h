@@ -112,15 +112,10 @@ public:
         this->world->setDebugDrawer(drawer);
     }
 
-    btGhostObject* createGhostObject(
-        btCollisionShape* shape,
-        const long id,
-        const float x,
-        const float y,
-        const float z);
+    btGhostObject* createGhostObject(btCollisionShape* shape, const long id, const float x, const float y, const float z);
 
     /**
-     * @return The list of collisions occured with ghost objects during the
+     * @return The list of collisions occurred with ghost objects during the
      * last world update.
      */
     inline std::vector<jlong> getGhostCollisionResult() const {
@@ -129,6 +124,7 @@ public:
 
     inline long getIdFromObject(const btCollisionObject* object) {
         long id = this->ids[object];
+        //FIXME URGENT what if entity id is 0???
         return id == 0 ? -1L : id;
     }
 
