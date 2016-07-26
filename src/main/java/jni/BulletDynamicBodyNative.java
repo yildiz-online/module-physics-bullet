@@ -87,6 +87,6 @@ public class BulletDynamicBodyNative {
      * @param y              Direction Y value.
      * @param z              Direction Z value.
      */
-    public native void applyForce(final long pointerAddress, final float x, final float y, final float z)
+    public native void applyForce(final long pointerAddress, final float x, final float y, final float z);
 
 }
