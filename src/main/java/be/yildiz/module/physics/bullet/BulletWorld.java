@@ -109,6 +109,9 @@ public final class BulletWorld implements PhysicWorld, Native {
         this.update();
     }
 
+    /**
+     * Update the world and compute all collision.
+     */
     public void update() {
         final List<CollisionResult> newCollisions = this.getCollisionList();
         final List<CollisionResult> oldCollisions = this.collisions;
