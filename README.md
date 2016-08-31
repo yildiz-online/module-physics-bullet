@@ -5,7 +5,7 @@ The bullet module is an implementation of the module-physics, it is based on the
 
 ## Features
 
-* Trimesh files loading.
+* Tri-mesh files loading.
 * ...
 
 ## Requirements
@@ -37,7 +37,7 @@ Go to your root directory, where you POM file is located.
 
 for windows:
 
-	mvn clean install -Denv=win64
+	mvn clean install -Denv=win32
 	
 for linux:
 
@@ -47,11 +47,6 @@ This will compile the source code, then run the unit tests, and finally build a 
 
 ## Usage
 
-To use the snapshot versions, please add the following repository
-https://oss.sonatype.org/content/repositories/snapshots/
-
-Released version are retrieved from maven central.
-
 In your maven project, add the dependency
 
 for windows:
@@ -60,8 +55,8 @@ for windows:
 <dependency>
     <groupId>be.yildiz-games</groupId>
     <artifactId>module-physics-bullet</artifactId>
-    <version>1.0.0-0-SNAPSHOT</version>
-	<classifier>win64</classifier>
+    <version>1.0.0</version>
+	<classifier>win32</classifier>
 </dependency>
 ```
 
@@ -71,7 +66,7 @@ for linux:
 <dependency>
     <groupId>be.yildiz-games</groupId>
     <artifactId>module-physics-bullet</artifactId>
-    <version>1.0.0-0-SNAPSHOT</version>
+    <version>1.0.0</version>
 	<classifier>linux64</classifier>
 </dependency>
 ```
