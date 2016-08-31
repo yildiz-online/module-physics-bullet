@@ -65,6 +65,8 @@ public class BulletBody implements Native {
      */
     private boolean sleeping;
 
+    private boolean deleted;
+
     /**
      * Full constructor.
      *
@@ -78,12 +80,14 @@ public class BulletBody implements Native {
         this.world = worldPointer;
         this.sleeping = false;
         this.id = id;
+        this.deleted = false;
     }
 
     /**
      * Delete the bullet object.
      */
     public final void delete() {
+        this.deleted = true;
         this.nativeBody.delete(this.pointer.address, this.world.address);
     }
 
@@ -93,7 +97,8 @@ public class BulletBody implements Native {
      * @param b If <code>true</code> the object will no longer be active in physic simulation, <code>false</code> will set it active.
      */
     public final void sleep(final boolean b) {
-        if (!this.sleeping == b) {
+        this.checkDeleted();
+        if (this.sleeping != b) {
             this.nativeBody.setActivate(this.pointer.address, !b);
             this.sleeping = b;
         }
@@ -107,6 +112,14 @@ public class BulletBody implements Native {
      * @param z Z scale factor.
      */
     public final void scale(final float x, final float y, final float z) {
+        this.checkDeleted();
         this.nativeBody.scale(this.pointer.address, x, y, z);
+
+    }
+
+    protected final void checkDeleted() {
+        if(this.deleted) {
+            throw new IllegalArgumentException("Trying to access native pointer after it has been deleted.");
+        }
     }
 }

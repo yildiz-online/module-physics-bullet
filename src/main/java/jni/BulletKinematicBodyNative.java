@@ -46,9 +46,9 @@ public class BulletKinematicBodyNative {
      * Set the direction in native code.
      *
      * @param pointerAddress Pointer address for the btbody.
-     * @param dirX           Direction X value.
-     * @param dirY           Direction Y value.
-     * @param dirZ           Direction Z value.
+     * @param x              Direction X value.
+     * @param y              Direction Y value.
+     * @param z              Direction Z value.
      */
     public native void setDirection(final long pointerAddress, final float x, final float y, final float z);
 

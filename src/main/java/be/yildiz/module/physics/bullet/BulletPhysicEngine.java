@@ -43,8 +43,8 @@ public final class BulletPhysicEngine extends AbstractPhysicEngine {
     public BulletPhysicEngine() {
         super();
         Logger.info("Initializing Bullet physic engine...");
-        NativeResourceLoader.loadBaseLibrary("libwinpthread-1", "libgcc_s_seh-1", "libstdc++-6");
-        NativeResourceLoader.loadLibrary("libbullet");
+        NativeResourceLoader.loadBaseLibrary("libgcc_s_sjlj-1", "libstdc++-6");
+        NativeResourceLoader.loadLibrary("libLinearMath","libBulletCollision", "libBulletDynamics", "libyildizbullet");
         Logger.info("Bullet physic engine initialized.");
     }
 
