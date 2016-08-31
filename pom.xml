@@ -4,9 +4,8 @@
   <name>Yildiz Module Physics Bullet</name>
   <description>Bullet implementation for the physics module.</description>
 
-  <groupId>be.yildiz-games</groupId>
   <artifactId>module-physics-bullet</artifactId>
-  <version>1.0.0-0-SNAPSHOT</version>
+  <version>1.0.1-SNAPSHOT</version>
 
   <packaging>jar</packaging>
   <inceptionYear>2014</inceptionYear>
@@ -18,13 +17,12 @@
   <parent>
     <groupId>be.yildiz-games</groupId>
     <artifactId>parent</artifactId>
-    <version>1.0.0-0-SNAPSHOT</version>
+    <version>1.0.4</version>
   </parent>
 
   <properties>
-    <version.bom-junit>1.0.0-0-SNAPSHOT</version.bom-junit>
-    <version.module-physics>1.0.0-0-SNAPSHOT</version.module-physics>
-    <version.module-physics-bullet-native>1.0.0-0-SNAPSHOT</version.module-physics-bullet-native>
+    <version.bom-junit>1.0.0</version.bom-junit>
+    <version.module-physics>1.0.0</version.module-physics>
     <nativeEnv>none</nativeEnv>
   </properties>
 
@@ -104,22 +102,22 @@
       </build>
     </profile>
     <profile>
-      <id>win64</id>
+      <id>win32</id>
       <activation>
         <property>
           <name>env</name>
-          <value>win64</value>
+          <value>win32</value>
         </property>
       </activation>
       <properties>
-        <nativeEnv>win64</nativeEnv>
+        <nativeEnv>win32</nativeEnv>
       </properties>
       <build>
         <plugins>
           <plugin>
             <artifactId>maven-jar-plugin</artifactId>
             <configuration>
-              <classifier>win64</classifier>
+              <classifier>win32</classifier>
             </configuration>
           </plugin>
         </plugins>
@@ -134,16 +132,6 @@
             <groupId>org.codehaus.mojo</groupId>
             <executions>
               <execution>
-                <id>Build Bullet 2 library for ${nativeEnv}</id>
-                <phase>compile</phase>
-                <goals>
-                  <goal>exec</goal>
-                </goals>
-                <configuration>
-                  <executable>${basedir}/src/main/scripts/${nativeEnv}/build_bullet2.sh</executable>
-                </configuration>
-              </execution>
-              <execution>
                 <id>Build Yildiz-Bullet 2 binding library for ${nativeEnv}</id>
                 <phase>compile</phase>
                 <goals>
@@ -151,6 +139,7 @@
                 </goals>
                 <configuration>
                   <executable>${basedir}/src/main/scripts/${nativeEnv}/build_yildiz-bullet2.sh</executable>
+                  <workingDirectory>${basedir}/src/main/scripts/${nativeEnv}</workingDirectory>
                 </configuration>
               </execution>
             </executions>
@@ -159,13 +148,5 @@
       </build>
     </profile>
   </profiles>
-  
-  <repositories>
-    <repository>
-      <id>ossrh</id>
-      <name>OSS repository snapshot</name>
-      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-    </repository>
-  </repositories>
 
 </project>
