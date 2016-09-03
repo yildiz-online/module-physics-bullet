@@ -25,35 +25,38 @@
 
 package be.yildiz.module.physics.bullet;
 
-import be.yildiz.common.id.EntityId;
 import be.yildiz.common.nativeresources.NativePointer;
-import be.yildiz.common.vector.Point3D;
-import be.yildiz.module.physics.StaticBody;
-import lombok.Getter;
+import be.yildiz.common.shape.Box;
+import be.yildiz.common.shape.Sphere;
+import be.yildiz.module.physics.PhysicMesh;
 
 /**
- * A static body is intended to stay at its original position and will never move, it has a mass of 0 and is not affected by physic forces.
- *
  * @author Grégory Van den Borre
  */
-final class BulletStaticBody extends BulletBody implements StaticBody {
-
-    @Getter
-    private final Point3D position;
-
-    @Getter
-    private final Point3D direction;
+public interface BulletShapeProvider {
 
     /**
-     * Full constructor.
+     * Get the pointer to the btshape associated with this box.
      *
-     * @param pointerAddress Pointer to the native object.
-     * @param worldPointer   World pointer address.
-     * @param id             Associated id.
+     * @param box Shape representation.
+     * @return The pointer to the physique shape matching the Box.
      */
-    BulletStaticBody(final NativePointer pointerAddress, final NativePointer worldPointer, final Point3D position, final Point3D direction, final EntityId id) {
-        super(pointerAddress, worldPointer, id);
-        this.position = position;
-        this.direction = direction;
-    }
+    NativePointer getShape(Box box);
+
+    /**
+     * Get the pointer to the btshape associated with this sphere.
+     *
+     * @param sphere Shape representation.
+     * @return The pointer to the physique shape matching the Sphere.
+     */
+    NativePointer getShape(Sphere sphere);
+
+    /**
+     * Get the pointer to the btshape associated with this mesh.
+     *
+     * @param mesh Shape representation.
+     * @return The pointer to the physique shape matching the PhysicMesh.
+     */
+    NativePointer getShape(PhysicMesh mesh);
+
 }

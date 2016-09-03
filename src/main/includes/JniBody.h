@@ -54,7 +54,9 @@ JNIEXPORT void JNICALL Java_jni_BulletDynamicBodyNative_setPosition(JNIEnv* env,
  *
  * @return An array of floats with the position coordinates(0 is X, 1 is Y, 2 is Z).
  */
-JNIEXPORT jfloatArray JNICALL Java_jni_BulletDynamicBody_getPosition(JNIEnv* env, jobject o, jlong pointer);
+JNIEXPORT jfloatArray JNICALL Java_jni_BulletBody_getPosition(JNIEnv* env, jobject o, jlong pointer);
+
+JNIEXPORT jfloatArray JNICALL Java_jni_BulletBodyNative_getDirection(JNIEnv* env, jobject o, jlong pointer);
 
 JNIEXPORT void JNICALL Java_jni_BulletDynamicBodyNative_setDirection(JNIEnv*, jobject, jlong pointer, jfloat w, jfloat x, jfloat y, jfloat z);
 

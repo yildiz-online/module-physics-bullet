@@ -33,7 +33,7 @@
 * @author Grégory Van den Borre
 */
 
-JNIEXPORT jfloatArray JNICALL Java_jni_BulletDynamicBodyNative_getPosition(
+JNIEXPORT jfloatArray JNICALL Java_jni_BulletBodyNative_getPosition(
     JNIEnv* env,
     jobject,
     jlong pointer) {
@@ -53,6 +53,20 @@ JNIEXPORT jfloatArray JNICALL Java_jni_BulletDynamicBodyNative_getPosition(
     }
     return env->NewFloatArray(1);
 }
+
+JNIEXPORT jfloatArray JNICALL Java_jni_BulletBodyNative_getDirection(
+    JNIEnv* env,
+    jobject,
+    jlong pointer) {
+        jfloatArray result = env->NewFloatArray(3);
+        jfloat buf[3];
+        //FIXME implement
+        buf[0] = 0;
+        buf[1] = 0;
+        buf[2] = -1;
+        env->SetFloatArrayRegion(result, 0, 3, buf);
+        return result;
+    }
 
 JNIEXPORT void JNICALL Java_jni_BulletBodyNative_setActivate
 (JNIEnv*, jobject, jlong pointer, jboolean activate) {

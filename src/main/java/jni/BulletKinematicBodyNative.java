@@ -62,6 +62,4 @@ public class BulletKinematicBodyNative {
      * @param z              Rotation Z value.
      */
     public native void rotate(final long pointerAddress, final float w, final float x, final float y, final float z);
-
-
 }

@@ -58,6 +58,7 @@ final class BulletGhostObject extends AbstractMovableObject implements GhostObje
 
     @Getter
     private final EntityId id;
+
     private boolean deleted;
 
     /**

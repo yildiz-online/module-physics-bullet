@@ -43,22 +43,6 @@ public class BulletDynamicBodyNative {
     public native void setPosition(final long pointerAddress, final float x, final float y, final float z);
 
     /**
-     * Retrieve the current position in native code.
-     *
-     * @param pointerAddress Native btbody pointer address.
-     * @return An Array with X, Y, Z position coordinates.
-     */
-    public native float[] getPosition(final long pointerAddress);
-
-    /**
-     * Retrieve the current direction in native code.
-     *
-     * @param pointerAddress Native btbody pointer address.
-     * @return An Array with X, Y, Z direction coordinates.
-     */
-    public native float[] getDirection(final long pointerAddress);
-
-    /**
      * Set the body direction.
      *
      * @param pointerAddress Native btbody pointer address.

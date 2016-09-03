@@ -58,4 +58,20 @@ public class BulletBodyNative {
      * @param z              Z scale factor.
      */
     public native void scale(long pointerAddress, float x, float y, float z);
+
+    /**
+     * Retrieve the current position in native code.
+     *
+     * @param pointerAddress Native btbody pointer address.
+     * @return An Array with X, Y, Z position coordinates.
+     */
+    public native float[] getPosition(final long pointerAddress);
+
+    /**
+     * Retrieve the current direction in native code.
+     *
+     * @param pointerAddress Native btbody pointer address.
+     * @return An Array with X, Y, Z direction coordinates.
+     */
+    public native float[] getDirection(final long pointerAddress);
 }

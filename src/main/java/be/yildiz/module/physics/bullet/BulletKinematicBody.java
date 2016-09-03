@@ -27,7 +27,10 @@ package be.yildiz.module.physics.bullet;
 
 import be.yildiz.common.id.EntityId;
 import be.yildiz.common.nativeresources.NativePointer;
+import be.yildiz.common.vector.Point3D;
+import be.yildiz.common.vector.Quaternion;
 import be.yildiz.module.physics.KinematicBody;
+import jni.BulletBodyNative;
 import jni.BulletKinematicBodyNative;
 
 /**
@@ -35,7 +38,7 @@ import jni.BulletKinematicBodyNative;
  *
  * @author Grégory Van den Borre
  */
-public final class BulletKinematicBody extends BulletBody implements KinematicBody {
+final class BulletKinematicBody extends BulletBody implements KinematicBody {
 
     /**
      * Pointer to the native object (btbody).
@@ -46,6 +49,8 @@ public final class BulletKinematicBody extends BulletBody implements KinematicBo
      * Contains the native calls.
      */
     private final BulletKinematicBodyNative bodyNative = new BulletKinematicBodyNative();
+
+    private final BulletBodyNative bulletBodyNative = new BulletBodyNative();
 
     /**
      * Full constructor.
@@ -61,16 +66,44 @@ public final class BulletKinematicBody extends BulletBody implements KinematicBo
 
     @Override
     public void setDirection(final float dirX, final float dirY, final float dirZ) {
+        this.checkDeleted();
         this.bodyNative.setDirection(this.pointer.address, dirX, dirY, dirZ);
     }
 
     @Override
     public void setPosition(final float posX, final float posY, final float posZ) {
+        this.checkDeleted();
         this.bodyNative.setPosition(this.pointer.address, posX, posY, posZ);
     }
 
     @Override
-    public void rotate(final float x, final float y, final float z, final float w) {
-        this.bodyNative.rotate(this.pointer.address, x, y, z, w);
+    public void setOrientation(final float x, final float y, final float z, final float w) {
+        this.checkDeleted();
+        this.bodyNative.rotate(this.pointer.address, w, x, y, z);
+    }
+
+    @Override
+    public void setOrientation(final Quaternion q) {
+        this.checkDeleted();
+        this.bodyNative.rotate(this.pointer.address, q.w, q.x, q.y, q.z);
+    }
+
+
+    /**
+     * @return The current position.
+     */
+    @Override
+    public Point3D getPosition() {
+        this.checkDeleted();
+        return Point3D.xyz(this.bulletBodyNative.getPosition(this.pointer.address));
+    }
+
+    /**
+     * @return The current direction.
+     */
+    @Override
+    public Point3D getDirection() {
+        this.checkDeleted();
+        return Point3D.xyz(this.bulletBodyNative.getDirection(this.pointer.address));
     }
 }

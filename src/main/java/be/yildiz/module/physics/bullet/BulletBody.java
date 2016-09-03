@@ -28,6 +28,7 @@ package be.yildiz.module.physics.bullet;
 import be.yildiz.common.id.EntityId;
 import be.yildiz.common.nativeresources.Native;
 import be.yildiz.common.nativeresources.NativePointer;
+import be.yildiz.module.physics.BaseBody;
 import jni.BulletBodyNative;
 import lombok.Getter;
 
@@ -36,7 +37,7 @@ import lombok.Getter;
  *
  * @author Gregory Van den Borre
  */
-public class BulletBody implements Native {
+abstract class BulletBody implements Native, BaseBody {
 
     /**
      * Associated id.
@@ -65,6 +66,9 @@ public class BulletBody implements Native {
      */
     private boolean sleeping;
 
+    /**
+     * Flag to check if the native object has been deleted or not.
+     */
     private boolean deleted;
 
     /**
@@ -86,6 +90,7 @@ public class BulletBody implements Native {
     /**
      * Delete the bullet object.
      */
+    @Override
     public final void delete() {
         this.deleted = true;
         this.nativeBody.delete(this.pointer.address, this.world.address);
@@ -96,6 +101,7 @@ public class BulletBody implements Native {
      *
      * @param b If <code>true</code> the object will no longer be active in physic simulation, <code>false</code> will set it active.
      */
+    @Override
     public final void sleep(final boolean b) {
         this.checkDeleted();
         if (this.sleeping != b) {
@@ -111,12 +117,16 @@ public class BulletBody implements Native {
      * @param y Y scale factor.
      * @param z Z scale factor.
      */
+    @Override
     public final void scale(final float x, final float y, final float z) {
         this.checkDeleted();
         this.nativeBody.scale(this.pointer.address, x, y, z);
 
     }
 
+    /**
+     * @throws IllegalArgumentException if the object has already been deleted.
+     */
     protected final void checkDeleted() {
         if(this.deleted) {
             throw new IllegalArgumentException("Trying to access native pointer after it has been deleted.");

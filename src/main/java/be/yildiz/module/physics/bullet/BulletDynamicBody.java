@@ -30,6 +30,7 @@ import be.yildiz.common.nativeresources.NativePointer;
 import be.yildiz.common.vector.Point3D;
 import be.yildiz.common.vector.Quaternion;
 import be.yildiz.module.physics.DynamicBody;
+import jni.BulletBodyNative;
 import jni.BulletDynamicBodyNative;
 
 /**
@@ -37,7 +38,7 @@ import jni.BulletDynamicBodyNative;
  *
  * @author Grégory Van den Borre
  */
-public final class BulletDynamicBody extends BulletBody implements DynamicBody {
+final class BulletDynamicBody extends BulletBody implements DynamicBody {
 
     /**
      * Native pointer for the btbody.
@@ -49,10 +50,12 @@ public final class BulletDynamicBody extends BulletBody implements DynamicBody {
      */
     private final BulletDynamicBodyNative bodyNative = new BulletDynamicBodyNative();
 
+    private final BulletBodyNative bulletBodyNative = new BulletBodyNative();
+
     /**
      * Body current mass.
      */
-    private float mass;
+    private final float mass;
 
     /**
      * Full constructor.
@@ -61,7 +64,7 @@ public final class BulletDynamicBody extends BulletBody implements DynamicBody {
      * @param worldPointer Pointer of the associated btdiscreetworld object containing the body.
      * @param id           Body unique identifier.
      */
-    public BulletDynamicBody(final NativePointer bodyPointer, final NativePointer worldPointer, final EntityId id, final float mass) {
+    BulletDynamicBody(final NativePointer bodyPointer, final NativePointer worldPointer, final EntityId id, final float mass) {
         super(bodyPointer, worldPointer, id);
         this.pointer = bodyPointer;
         this.mass = mass;
@@ -70,7 +73,7 @@ public final class BulletDynamicBody extends BulletBody implements DynamicBody {
     @Override
     public Point3D getPosition() {
         this.checkDeleted();
-        return Point3D.xyz(this.bodyNative.getPosition(this.pointer.address));
+        return Point3D.xyz(this.bulletBodyNative.getPosition(this.pointer.address));
     }
 
     @Override
@@ -82,7 +85,7 @@ public final class BulletDynamicBody extends BulletBody implements DynamicBody {
     @Override
     public Point3D getDirection() {
         this.checkDeleted();
-        return Point3D.xyz(this.bodyNative.getDirection(this.pointer.address));
+        return Point3D.xyz(this.bulletBodyNative.getDirection(this.pointer.address));
     }
 
     @Override
@@ -95,5 +98,11 @@ public final class BulletDynamicBody extends BulletBody implements DynamicBody {
     public void setOrientation(final Quaternion q) {
         this.checkDeleted();
         this.bodyNative.setOrientation(this.pointer.address, q.w, q.x, q.y, q.z);
+    }
+
+    @Override
+    public void setOrientation(final float x, final float y, final float z, final float w) {
+        this.checkDeleted();
+        this.bodyNative.setOrientation(this.pointer.address, w, x, y, z);
     }
 }

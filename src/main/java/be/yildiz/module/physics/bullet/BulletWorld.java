@@ -52,7 +52,7 @@ import java.util.Map;
  *
  * @author Grégory Van den Borre
  */
-public final class BulletWorld implements PhysicWorld, Native {
+final class BulletWorld implements PhysicWorld, Native, BulletShapeProvider {
 
     /**
      * Contains all listeners to notify when a collision occurs or is lost.
@@ -215,36 +215,18 @@ public final class BulletWorld implements PhysicWorld, Native {
         return this.throwSimpleRay(origin, end);
     }
 
-    /**
-     * Get the pointer to the btshape associated with this box.
-     *
-     * @param box Shape representation.
-     * @return The pointer to the physique shape matching the Box.
-     */
+    @Override
     public NativePointer getShape(@NonNull final Box box) {
-        return this.boxList.computeIfAbsent(box, b -> {
-            return NativePointer.create(this.worldNative.createBoxShape(b.width, b.height, b.depth));
-        });
+        return this.boxList.computeIfAbsent(box, b ->
+            NativePointer.create(this.worldNative.createBoxShape(b.width, b.height, b.depth)));
     }
 
-    /**
-     * Get the pointer to the btshape associated with this sphere.
-     *
-     * @param sphere Shape representation.
-     * @return The pointer to the physique shape matching the Sphere.
-     */
+    @Override
     public NativePointer getShape(@NonNull final Sphere sphere) {
-        return this.sphereList.computeIfAbsent(sphere, s -> {
-            return NativePointer.create(this.worldNative.createSphereShape(s.radius));
-        });
+        return this.sphereList.computeIfAbsent(sphere, s -> NativePointer.create(this.worldNative.createSphereShape(s.radius)));
     }
 
-    /**
-     * Get the pointer to the btshape associated with this mesh.
-     *
-     * @param mesh Shape representation.
-     * @return The pointer to the physique shape matching the PhysicMesh.
-     */
+    @Override
     public NativePointer getShape(final PhysicMesh mesh) {
         assert Checker.notNull(mesh);
         NativePointer shapePointer = this.shapeList.get(mesh.file);
@@ -260,119 +242,14 @@ public final class BulletWorld implements PhysicWorld, Native {
         return shapePointer;
     }
 
-    /**
-     * Create a body non movable, not affected by forces with a 0 mass.
-     *
-     * @param shape     Body shape.
-     * @param position  Initial and immutable position.
-     * @param direction Initial and immutable direction.
-     * @param id        Associated id.
-     * @return The built object.
-     */
-    private BulletStaticBody createStaticBody(final NativePointer shape, final EntityId id, final Point3D position, final Point3D direction) {
-        final long bodyAddress = this.worldNative.createStaticBody(this.pointer.address, shape.address, id.value, position.x, position.y, position.z, direction.x, direction.y, direction.z);
-        return new BulletStaticBody(NativePointer.create(bodyAddress), this.pointer, id);
-
-    }
-
-    /**
-     * Create a physic movable body, affected by forces.
-     *
-     * @param shape    Body shape.
-     * @param id       Associated id.
-     * @param position Body initial position.
-     * @param mass     Object mass.
-     * @return The built object.
-     */
-    private BulletDynamicBody createDynamicBody(final NativePointer shape, final EntityId id, final Point3D position, final float mass) {
-        final long bodyAddress = this.worldNative.createDynamicBody(this.pointer.address, shape.address, id.value, position.x, position.y, position.z, mass);
-        return new BulletDynamicBody(NativePointer.create(bodyAddress), this.pointer, id, mass);
-    }
-
-    /**
-     * Create a manually movable body, not affected by forces with a 0 mass.
-     *
-     * @param shape    Body shape.
-     * @param id       Associated id.
-     * @param position Body initial position.
-     * @return The built object.
-     */
-    private BulletKinematicBody createKinematicBody(final NativePointer shape, final EntityId id, final Point3D position) {
-        final long bodyAddress = this.worldNative.createKinematicBody(this.pointer.address, shape.address, id.value, position.x, position.y, position.z);
-        return new BulletKinematicBody(NativePointer.create(bodyAddress), this.pointer, id);
-    }
-
-    /**
-     * Create a ghost object.
-     *
-     * @param shape    Shape to build the object.
-     * @param id       Id associated to that ghost, will be return when collision occurs.
-     * @param position Ghost object initial position.
-     * @return The newly created object.
-     */
-    private BulletGhostObject createGhostObject(final NativePointer shape, final EntityId id, final Point3D position) {
-        final long ghostAddress = this.worldNative.createGhostObject(this.pointer.address, shape.address, id.value, position.x, position.y, position.z);
-        return new BulletGhostObject(id, NativePointer.create(ghostAddress), this.pointer, position);
-    }
-
     @Override
-    public GhostObject createGhostObject(final EntityId id, final Box box, final Point3D position) {
-        return this.createGhostObject(this.getShape(box), id, position);
-    }
-
-    @Override
-    public GhostObject createGhostObject(final EntityId id, final Sphere sphere, final Point3D position) {
-        return this.createGhostObject(this.getShape(sphere), id, position);
+    public BulletPhysicObjectBuilder createBuilder() {
+        return new BulletPhysicObjectBuilder(this, this.pointer);
     }
 
     @Override
     public void delete() {
         this.worldNative.delete(this.pointer.address);
-    }
-
-    @Override
-    public BulletStaticBody createStaticBody(final EntityId id, final Box box, final Point3D position, final Point3D direction) {
-        return this.createStaticBody(this.getShape(box), id, position, direction);
-    }
-
-    @Override
-    public BulletStaticBody createStaticBody(final EntityId id, final Sphere sphere, final Point3D position, final Point3D direction) {
-        return this.createStaticBody(this.getShape(sphere), id, position, direction);
-    }
-
-    @Override
-    public BulletStaticBody createStaticBody(final EntityId id, final PhysicMesh mesh, final Point3D position, final Point3D direction) {
-        return this.createStaticBody(this.getShape(mesh), id, position, direction);
-    }
-
-    @Override
-    public BulletKinematicBody createKinematicBody(final EntityId id, final Box box, final Point3D position) {
-        return this.createKinematicBody(this.getShape(box), id, position);
-    }
-
-    @Override
-    public BulletKinematicBody createKinematicBody(final EntityId id, final Sphere sphere, final Point3D position) {
-        return this.createKinematicBody(this.getShape(sphere), id, position);
-    }
-
-    @Override
-    public BulletKinematicBody createKinematicBody(final EntityId id, final PhysicMesh mesh, final Point3D position) {
-        return this.createKinematicBody(this.getShape(mesh), id, position);
-    }
-
-    @Override
-    public DynamicBody createDynamicBody(EntityId id, Box box, Point3D position, float mass) {
-        return this.createDynamicBody(this.getShape(box), id, position, mass);
-    }
-
-    @Override
-    public DynamicBody createDynamicBody(EntityId id, Sphere sphere, Point3D position, float mass) {
-        return this.createDynamicBody(this.getShape(sphere), id, position, mass);
-    }
-
-    @Override
-    public DynamicBody createDynamicBody(EntityId id, PhysicMesh mesh, Point3D position, float mass) {
-        return this.createDynamicBody(this.getShape(mesh), id, position, mass);
     }
 
     @Override
