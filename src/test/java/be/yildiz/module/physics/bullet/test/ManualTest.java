@@ -25,7 +25,6 @@
 
 package be.yildiz.module.physics.bullet.test;
 
-import be.yildiz.common.id.EntityId;
 import be.yildiz.common.shape.Box;
 import be.yildiz.common.vector.Point3D;
 import be.yildiz.module.physics.AbstractPhysicEngine;
@@ -45,8 +44,17 @@ public class ManualTest {
         PhysicWorld world = engine.createPhysicWorld();
 
         world.addCollisionListener(objects -> System.out.println("objects:" + objects.object1 + ", " + objects.object2));
-        KinematicBody body = world.createKinematicBody(EntityId.get(1L), new Box(5), Point3D.xyz(10));
-        KinematicBody body2 = world.createKinematicBody(EntityId.get(2L), new Box(5), Point3D.xyz(500));
+        world.createBuilder()
+                .atPosition(Point3D.xyz(10))
+                .withId(1L)
+                .withShape(new Box(5))
+                .buildKinematic();
+        KinematicBody body2 = world.createBuilder()
+                .atPosition(Point3D.xyz(500))
+                .withShape(new Box(5))
+                .withId(2L)
+                .buildKinematic();
+
         engine.update();
         Thread.sleep(50);
         engine.update();
@@ -57,7 +65,11 @@ public class ManualTest {
 
 
         world.addGhostCollisionListener(objects -> System.out.println("ghost:" + objects.object1 + ", " + objects.object2));
-        GhostObject g = world.createGhostObject(EntityId.get(5l), new Box(5), Point3D.xyz(100));
+        GhostObject g = world.createBuilder()
+                .withId(5L)
+                .withShape(new Box(5))
+                .atPosition(Point3D.xyz(100))
+                .buildGhost();
         engine.update();
         Thread.sleep(50);
         engine.update();

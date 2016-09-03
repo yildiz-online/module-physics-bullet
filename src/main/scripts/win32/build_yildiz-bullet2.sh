@@ -9,6 +9,11 @@ cp bullet/bin/libLinearMath.dll ../../../../target/classes/win32/libLinearMath.d
 cp libstdc++-6.dll ../../../../target/classes/win32/libstdc++-6.dll
 cp libgcc_s_sjlj-1.dll ../../../../target/classes/win32/libgcc_s_sjlj-1.dll
 
+rm -R CMakeFiles
+rm CMakeCache.txt
+rm cmake_install.cmake
+rm Makefile
+
 
 
 
