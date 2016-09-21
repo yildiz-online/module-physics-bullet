@@ -35,11 +35,11 @@
 extern "C" {
 #endif
 
-JNIEXPORT void JNICALL Java_jni_BulletBodyNative_delete(JNIEnv*, jobject, jlong pointer, jlong worldPointer);
+JNIEXPORT void JNICALL Java_jni_BulletBodyNative_delete(JNIEnv* env, jobject o, jlong pointer, jlong worldPointer);
 
-JNIEXPORT void JNICALL Java_jni_BulletBodyNative_setActivate(JNIEnv*, jobject, jlong pointer, jboolean activate);
+JNIEXPORT void JNICALL Java_jni_BulletBodyNative_setActivate(JNIEnv* env, jobject o, jlong pointer, jboolean activate);
 
-JNIEXPORT void JNICALL Java_jni_BulletBodyNative_scale(JNIEnv*, jobject, jfloat x, jfloat y, jfloat z);
+JNIEXPORT void JNICALL Java_jni_BulletBodyNative_scale(JNIEnv* env, jobject o, jfloat x, jfloat y, jfloat z);
 
 JNIEXPORT void JNICALL Java_jni_BulletDynamicBodyNative_setPosition(JNIEnv* env, jobject o, jlong pointer, jfloat x, jfloat y, jfloat z);
 
@@ -58,24 +58,20 @@ JNIEXPORT jfloatArray JNICALL Java_jni_BulletBody_getPosition(JNIEnv* env, jobje
 
 JNIEXPORT jfloatArray JNICALL Java_jni_BulletBodyNative_getDirection(JNIEnv* env, jobject o, jlong pointer);
 
-JNIEXPORT void JNICALL Java_jni_BulletDynamicBodyNative_setDirection(JNIEnv*, jobject, jlong pointer, jfloat w, jfloat x, jfloat y, jfloat z);
+JNIEXPORT void JNICALL Java_jni_BulletDynamicBodyNative_setDirection(JNIEnv* env, jobject o, jlong pointer, jfloat w, jfloat x, jfloat y, jfloat z);
 
 JNIEXPORT jfloatArray JNICALL Java_jni_BulletDynamicBody_getDirection(JNIEnv* env, jobject o, jlong pointer);
 
-JNIEXPORT void JNICALL Java_jni_BulletDynamicBodyNative_setOrientation
-(JNIEnv*, jobject, jlong pointer, jfloat w, jfloat x, jfloat y, jfloat z);
+JNIEXPORT void JNICALL Java_jni_BulletDynamicBodyNative_setOrientation(JNIEnv* env, jobject o, jlong pointer, jfloat w, jfloat x, jfloat y, jfloat z);
 
-JNIEXPORT void JNICALL Java_jni_BulletKinematicBodyNative_setPosition
-(JNIEnv* env, jobject o, jlong pointer, jfloat x, jfloat y, jfloat z);
+JNIEXPORT void JNICALL Java_jni_BulletKinematicBodyNative_setPosition(JNIEnv* env, jobject o, jlong pointer, jfloat x, jfloat y, jfloat z);
 
-JNIEXPORT void JNICALL Java_jni_BulletKinematicBodyNative_setDirection
-(JNIEnv*, jobject, jlong pointer, jfloat w, jfloat x, jfloat y, jfloat z);
-
+JNIEXPORT void JNICALL Java_jni_BulletKinematicBodyNative_setDirection(JNIEnv* env, jobject o, jlong pointer, jfloat w, jfloat x, jfloat y, jfloat z);
 
 /**
  * Apply a force on a body.
  * @param env
- *           Pointer to the java environement.
+ *           Pointer to the java environment.
  * @param o
  *           Associated object.
  * @param pointer

@@ -106,19 +106,13 @@ btRigidBody* YZ::World::createKinematicBody(
     return body;
 }
 
-btGhostObject* YZ::World::createGhostObject(
-    btCollisionShape* shape,
-    const long id,
-    const float x,
-    const float y,
+btGhostObject* YZ::World::createGhostObject(btCollisionShape* shape, const long id, const float x, const float y,
     const float z) {
     btGhostObject* ghostObject = new btGhostObject();
     ghostObject->setCollisionShape(shape);
-    ghostObject->setWorldTransform(
-            btTransform(btQuaternion(0, 0, 0, 1), btVector3(x, y, z)));
-    this->world->addCollisionObject(ghostObject,
-            btCollisionObject::CO_GHOST_OBJECT,
-            btCollisionObject::CF_KINEMATIC_OBJECT);
+    ghostObject->setWorldTransform(btTransform(btQuaternion(0, 0, 0, 1), btVector3(x, y, z)));
+    this->world->addCollisionObject(ghostObject, btCollisionObject::CO_GHOST_OBJECT,
+        btCollisionObject::CF_KINEMATIC_OBJECT);
     this->ghostIds[ghostObject] = id;
     return ghostObject;
 }
@@ -129,7 +123,7 @@ void YZ::World::removeGhost(btGhostObject* ghost) {
     long id = this->ghostIds[ghost];
     this->ghostCollisionResult.erase(
             std::remove(this->ghostCollisionResult.begin(),
-                    this->ghostCollisionResult.end(), id),
+            this->ghostCollisionResult.end(), id),
             this->ghostCollisionResult.end());
     this->ghostIds.erase(ghost);
     delete ghost;
@@ -139,8 +133,7 @@ std::vector<jlong> YZ::World::update(const long time) {
     this->world->stepSimulation(time / 1000.0f, 7);
     this->ghostCollisionResult.clear();
 
-    btCollisionObjectArray& collisionObjects =
-            this->world->getCollisionObjectArray();
+    btCollisionObjectArray& collisionObjects = this->world->getCollisionObjectArray();
     for (int i = 0; i < this->world->getNumCollisionObjects(); i++) {
         btGhostObject* ghost = btGhostObject::upcast(collisionObjects.at(i));
         if (ghost) {
@@ -168,14 +161,11 @@ std::vector<jlong> YZ::World::update(const long time) {
     std::vector<jlong> collisionList;
 
     for (int i = 0; i < numManifolds; i++) {
-        btPersistentManifold* contactManifold =
-                this->world->getDispatcher()->getManifoldByIndexInternal(i);
+        btPersistentManifold* contactManifold = this->world->getDispatcher()->getManifoldByIndexInternal(i);
         int numContacts = contactManifold->getNumContacts();
         if (numContacts > 0) {
-            const btCollisionObject* firstCo =
-                    static_cast<const btCollisionObject*>(contactManifold->getBody0());
-            const btCollisionObject* secondCo =
-                    static_cast<const btCollisionObject*>(contactManifold->getBody1());
+            const btCollisionObject* firstCo = static_cast<const btCollisionObject*>(contactManifold->getBody0());
+            const btCollisionObject* secondCo = static_cast<const btCollisionObject*>(contactManifold->getBody1());
             if (btRigidBody::upcast(firstCo) && btRigidBody::upcast(secondCo)) {
                 jlong firstId = this->ids[firstCo];
                 jlong secondId = this->ids[secondCo];
