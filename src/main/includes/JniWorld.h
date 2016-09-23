@@ -36,35 +36,25 @@
 extern "C" {
 #endif
 
-JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_constructor(JNIEnv*, jobject);
+JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_constructor(JNIEnv* env, jobject o);
 
-JNIEXPORT void JNICALL Java_jni_BulletWorldNative_delete(
-		JNIEnv* env,
-		jobject,
-		jlong pointer);
+JNIEXPORT void JNICALL Java_jni_BulletWorldNative_delete(JNIEnv* env, jobject, jlong pointer);
 
-JNIEXPORT void JNICALL Java_jni_BulletWorldNative_setGravity
-(JNIEnv* env, jobject o, jlong pointer, jfloat x, jfloat y, jfloat z);
+JNIEXPORT void JNICALL Java_jni_BulletWorldNative_setGravity(JNIEnv* env, jobject o, jlong pointer, jfloat x, jfloat y, jfloat z);
 
-JNIEXPORT jlongArray JNICALL Java_jni_BulletWorldNative_update(JNIEnv* env,
-		jobject o, jlong pointer, jlong time);
+JNIEXPORT jlongArray JNICALL Java_jni_BulletWorldNative_update(JNIEnv* env, jobject o, jlong pointer, jlong time);
 
-JNIEXPORT jlongArray JNICALL Java_jni_BulletWorldNative_getGhostCollisionResult(
-		JNIEnv* env, jobject, jlong pointer);
+JNIEXPORT jlongArray JNICALL Java_jni_BulletWorldNative_getGhostCollisionResult(JNIEnv* env, jobject o, jlong pointer);
 
-JNIEXPORT jlongArray JNICALL Java_jni_BulletWorldNative_raycast(JNIEnv* env,
-		jobject o, jlong pointer, jfloat startX, jfloat startY, jfloat startZ,
-		jfloat endX, jfloat endY, jfloat endZ);
+JNIEXPORT jlongArray JNICALL Java_jni_BulletWorldNative_raycast(JNIEnv* env, jobject o, jlong pointer, jfloat startX,
+    jfloat startY, jfloat startZ, jfloat endX, jfloat endY, jfloat endZ);
 
-JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_simpleRaycast(JNIEnv* env,
-		jobject o, jlong pointer, jfloat startX, jfloat startY, jfloat startZ,
-		jfloat endX, jfloat endY, jfloat endZ);
+JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_simpleRaycast(JNIEnv* env, jobject o, jlong pointer, jfloat startX,
+    jfloat startY, jfloat startZ, jfloat endX, jfloat endY, jfloat endZ);
 
-JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_deserializeMesh(JNIEnv* env,
-		jobject o, jlong pointer, jstring jfile);
+JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_deserializeMesh(JNIEnv* env, jobject o, jlong pointer, jstring jfile);
 
-JNIEXPORT void JNICALL Java_jni_BulletWorldNative_removeBody
-(JNIEnv* env, jobject o, jlong pointer, jlong bodyPointer);
+JNIEXPORT void JNICALL Java_jni_BulletWorldNative_removeBody(JNIEnv* env, jobject o, jlong pointer, jlong bodyPointer);
 
 /**
  * Build a box shape.
@@ -81,8 +71,7 @@ JNIEXPORT void JNICALL Java_jni_BulletWorldNative_removeBody
  *
  * @return A pointer of the newly build shape(type is btCollisionShape).
  */
-JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_createBoxShape(JNIEnv*,
-		jobject, jfloat width, jfloat height, jfloat depth);
+JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_createBoxShape(JNIEnv* env, jobject o, jfloat width, jfloat height, jfloat depth);
 
 /**
  * Build a sphere shape.
@@ -95,8 +84,7 @@ JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_createBoxShape(JNIEnv*,
  *
  * @return A pointer of the newly build shape(type is btCollisionShape).
  */
-JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_createSphereShape(JNIEnv*,
-		jobject, jfloat radius);
+JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_createSphereShape(JNIEnv* env, jobject o, jfloat radius);
 
 /**
  * Build a static physic body.
@@ -117,10 +105,8 @@ JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_createSphereShape(JNIEnv*,
  *
  * @return A pointer of the newly build object(type is btRigidBody).
  */
-JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_createStaticBody(JNIEnv* env,
-		jobject o, jlong worldPointer, jlong shapePointer, jlong id,
-		jfloat posX, jfloat posY, jfloat posZ, jfloat dirX, jfloat dirY,
-		jfloat dirZ);
+JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_createStaticBody(JNIEnv* env, jobject o, jlong worldPointer,
+    jlong shapePointer, jlong id, jfloat posX, jfloat posY, jfloat posZ, jfloat dirX, jfloat dirY, jfloat dirZ);
 
 /**
  * Build a kinematic physic body.
@@ -141,9 +127,8 @@ JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_createStaticBody(JNIEnv* env,
  *
  * @return A pointer of the newly build object(type is btRigidBody).
  */
-JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_createKinematicBody(
-		JNIEnv* env, jobject o, jlong worldPointer, jlong shapePointer,
-		jlong id, jfloat x, jfloat y, jfloat z);
+JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_createKinematicBody( JNIEnv* env, jobject o, jlong worldPointer,
+    jlong shapePointer, jlong id, jfloat x, jfloat y, jfloat z);
 
 /**
  * Build a ghost object.
@@ -164,9 +149,8 @@ JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_createKinematicBody(
  *
  * @return A pointer of the newly build object(type is btGhostObject).
  */
-JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_createGhostObject(
-		JNIEnv* env, jobject o, jlong pointer, jlong shapePointer, jlong id,
-		jfloat x, jfloat y, jfloat z);
+JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_createGhostObject(JNIEnv* env, jobject o, jlong pointer,
+    jlong shapePointer, jlong id, jfloat x, jfloat y, jfloat z);
 
 #ifdef __cplusplus
 }
