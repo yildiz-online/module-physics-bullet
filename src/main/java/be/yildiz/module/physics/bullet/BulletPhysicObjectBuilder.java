@@ -48,25 +48,25 @@ public class BulletPhysicObjectBuilder extends PhysicObjectBuilder {
 
     @Override
     public BulletStaticBody buildStatic() {
-        final long bodyAddress = this.worldNative.createStaticBody(this.worldPointer.address, this.getShapePointer().address, id.value, position.x, position.y, position.z, direction.x, direction.y, direction.z);
+        final long bodyAddress = this.worldNative.createStaticBody(this.worldPointer.getPointerAddress(), this.getShapePointer().getPointerAddress(), id.value, position.x, position.y, position.z, direction.x, direction.y, direction.z);
         return new BulletStaticBody(NativePointer.create(bodyAddress), this.worldPointer, position, direction, id);
     }
 
     @Override
     public BulletKinematicBody buildKinematic() {
-        final long bodyAddress = this.worldNative.createKinematicBody(this.worldPointer.address, this.getShapePointer().address, id.value, position.x, position.y, position.z);
+        final long bodyAddress = this.worldNative.createKinematicBody(this.worldPointer.getPointerAddress(), this.getShapePointer().getPointerAddress(), id.value, position.x, position.y, position.z);
         return new BulletKinematicBody(NativePointer.create(bodyAddress), this.worldPointer, id);
     }
 
     @Override
     public BulletDynamicBody buildDynamic() {
-        final long bodyAddress = this.worldNative.createDynamicBody(this.worldPointer.address, this.getShapePointer().address, id.value, position.x, position.y, position.z, mass);
+        final long bodyAddress = this.worldNative.createDynamicBody(this.worldPointer.getPointerAddress(), this.getShapePointer().getPointerAddress(), id.value, position.x, position.y, position.z, mass);
         return new BulletDynamicBody(NativePointer.create(bodyAddress), this.worldPointer, id, mass);
     }
 
     @Override
     public GhostObject buildGhost() {
-        final long ghostAddress = this.worldNative.createGhostObject(this.worldPointer.address, this.getShapePointer().address, id.value, position.x, position.y, position.z);
+        final long ghostAddress = this.worldNative.createGhostObject(this.worldPointer.getPointerAddress(), this.getShapePointer().getPointerAddress(), id.value, position.x, position.y, position.z);
         return new BulletGhostObject(id, NativePointer.create(ghostAddress), this.worldPointer, position);
     }
 

@@ -147,7 +147,7 @@ final class BulletWorld implements PhysicWorld, Native, BulletShapeProvider {
     }
 
     private List<CollisionResult> getCollisionList() {
-        final long[] result = this.worldNative.update(this.pointer.address, this.timer.getActionTime());
+        final long[] result = this.worldNative.update(this.pointer.getPointerAddress(), this.timer.getActionTime());
         final List<CollisionResult> collisions = Lists.newList(result.length);
         for (int i = 0; i < result.length; i += 2) {
             long first = result[i];
@@ -164,7 +164,7 @@ final class BulletWorld implements PhysicWorld, Native, BulletShapeProvider {
     }
 
     private List<CollisionResult> getGhostCollisionList() {
-        final long[] result = this.worldNative.getGhostCollisionResult(this.pointer.address);
+        final long[] result = this.worldNative.getGhostCollisionResult(this.pointer.getPointerAddress());
         final List<CollisionResult> collisions = Lists.newList();
         for (int i = 0; i < result.length; i += 2) {
             if (result[i] != 0 && result[i + 1] != 0) {
@@ -193,7 +193,7 @@ final class BulletWorld implements PhysicWorld, Native, BulletShapeProvider {
         final int raycastX = 1;
         final int raycastY = 2;
         final int raycastZ = 3;
-        final long[] values = this.worldNative.raycast(this.pointer.address, origin.x, origin.y, origin.z, destination.x, destination.y, destination.z);
+        final long[] values = this.worldNative.raycast(this.pointer.getPointerAddress(), origin.x, origin.y, origin.z, destination.x, destination.y, destination.z);
         return new RaycastResult(values[raycastX], values[raycastY], values[raycastZ], values[raycastId]);
     }
 
@@ -201,7 +201,7 @@ final class BulletWorld implements PhysicWorld, Native, BulletShapeProvider {
     public EntityId throwSimpleRay(final Point3D origin, final Point3D destination) {
         assert Checker.notNull(origin);
         assert Checker.notNull(destination);
-        return EntityId.get(this.worldNative.simpleRaycast(this.pointer.address, origin.x, origin.y, origin.z, destination.x, destination.y, destination.z));
+        return EntityId.get(this.worldNative.simpleRaycast(this.pointer.getPointerAddress(), origin.x, origin.y, origin.z, destination.x, destination.y, destination.z));
     }
 
     @Override
@@ -233,7 +233,7 @@ final class BulletWorld implements PhysicWorld, Native, BulletShapeProvider {
             if (!file.exists()) {
                 throw new ResourceMissingException("No physic trimesh for " + file.getAbsolutePath());
             }
-            final long address = this.worldNative.deserializeMesh(this.pointer.address, file.getAbsolutePath());
+            final long address = this.worldNative.deserializeMesh(this.pointer.getPointerAddress(), file.getAbsolutePath());
             shapePointer = NativePointer.create(address);
             this.shapeList.put(mesh.file, shapePointer);
         }
@@ -247,7 +247,8 @@ final class BulletWorld implements PhysicWorld, Native, BulletShapeProvider {
 
     @Override
     public void delete() {
-        this.worldNative.delete(this.pointer.address);
+        this.worldNative.delete(this.pointer.getPointerAddress());
+        this.pointer.delete();
     }
 
     @Override
@@ -258,7 +259,7 @@ final class BulletWorld implements PhysicWorld, Native, BulletShapeProvider {
     @Override
     public void setGravity(final float gravityX, final float gravityY, final float gravityZ) {
         this.gravity = Point3D.xyz(gravityX, gravityY, gravityZ);
-        this.worldNative.setGravity(this.pointer.address, gravityX, -gravityY, gravityZ);
+        this.worldNative.setGravity(this.pointer.getPointerAddress(), gravityX, -gravityY, gravityZ);
     }
 
     @Override

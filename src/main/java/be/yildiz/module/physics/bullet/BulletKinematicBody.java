@@ -66,26 +66,22 @@ final class BulletKinematicBody extends BulletBody implements KinematicBody {
 
     @Override
     public void setDirection(final float dirX, final float dirY, final float dirZ) {
-        this.checkDeleted();
-        this.bodyNative.setDirection(this.pointer.address, dirX, dirY, dirZ);
+        this.bodyNative.setDirection(this.pointer.getPointerAddress(), dirX, dirY, dirZ);
     }
 
     @Override
     public void setPosition(final float posX, final float posY, final float posZ) {
-        this.checkDeleted();
-        this.bodyNative.setPosition(this.pointer.address, posX, posY, posZ);
+        this.bodyNative.setPosition(this.pointer.getPointerAddress(), posX, posY, posZ);
     }
 
     @Override
     public void setOrientation(final float x, final float y, final float z, final float w) {
-        this.checkDeleted();
-        this.bodyNative.rotate(this.pointer.address, w, x, y, z);
+        this.bodyNative.rotate(this.pointer.getPointerAddress(), w, x, y, z);
     }
 
     @Override
     public void setOrientation(final Quaternion q) {
-        this.checkDeleted();
-        this.bodyNative.rotate(this.pointer.address, q.w, q.x, q.y, q.z);
+        this.bodyNative.rotate(this.pointer.getPointerAddress(), q.w, q.x, q.y, q.z);
     }
 
 
@@ -94,8 +90,7 @@ final class BulletKinematicBody extends BulletBody implements KinematicBody {
      */
     @Override
     public Point3D getPosition() {
-        this.checkDeleted();
-        return Point3D.xyz(this.bulletBodyNative.getPosition(this.pointer.address));
+        return Point3D.xyz(this.bulletBodyNative.getPosition(this.pointer.getPointerAddress()));
     }
 
     /**
@@ -103,7 +98,6 @@ final class BulletKinematicBody extends BulletBody implements KinematicBody {
      */
     @Override
     public Point3D getDirection() {
-        this.checkDeleted();
-        return Point3D.xyz(this.bulletBodyNative.getDirection(this.pointer.address));
+        return Point3D.xyz(this.bulletBodyNative.getDirection(this.pointer.getPointerAddress()));
     }
 }

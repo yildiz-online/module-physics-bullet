@@ -67,11 +67,6 @@ abstract class BulletBody implements Native, BaseBody {
     private boolean sleeping;
 
     /**
-     * Flag to check if the native object has been deleted or not.
-     */
-    private boolean deleted;
-
-    /**
      * Full constructor.
      *
      * @param pointerAddress Pointer to the native object.
@@ -84,7 +79,6 @@ abstract class BulletBody implements Native, BaseBody {
         this.world = worldPointer;
         this.sleeping = false;
         this.id = id;
-        this.deleted = false;
     }
 
     /**
@@ -92,8 +86,8 @@ abstract class BulletBody implements Native, BaseBody {
      */
     @Override
     public final void delete() {
-        this.deleted = true;
-        this.nativeBody.delete(this.pointer.address, this.world.address);
+        this.nativeBody.delete(this.pointer.getPointerAddress(), this.world.getPointerAddress());
+        this.pointer.delete();
     }
 
     /**
@@ -103,9 +97,8 @@ abstract class BulletBody implements Native, BaseBody {
      */
     @Override
     public final void sleep(final boolean b) {
-        this.checkDeleted();
         if (this.sleeping != b) {
-            this.nativeBody.setActivate(this.pointer.address, !b);
+            this.nativeBody.setActivate(this.pointer.getPointerAddress(), !b);
             this.sleeping = b;
         }
     }
@@ -119,17 +112,7 @@ abstract class BulletBody implements Native, BaseBody {
      */
     @Override
     public final void scale(final float x, final float y, final float z) {
-        this.checkDeleted();
-        this.nativeBody.scale(this.pointer.address, x, y, z);
+        this.nativeBody.scale(this.pointer.getPointerAddress(), x, y, z);
 
-    }
-
-    /**
-     * @throws IllegalArgumentException if the object has already been deleted.
-     */
-    protected final void checkDeleted() {
-        if(this.deleted) {
-            throw new IllegalArgumentException("Trying to access native pointer after it has been deleted.");
-        }
     }
 }

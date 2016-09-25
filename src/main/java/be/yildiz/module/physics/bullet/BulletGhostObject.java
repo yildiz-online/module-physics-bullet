@@ -59,8 +59,6 @@ final class BulletGhostObject extends AbstractMovableObject implements GhostObje
     @Getter
     private final EntityId id;
 
-    private boolean deleted;
-
     /**
      * Create a new instance.
      *
@@ -78,25 +76,17 @@ final class BulletGhostObject extends AbstractMovableObject implements GhostObje
 
     @Override
     public NativePointer getPointer() {
-        this.checkDeleted();
         return this.pointer;
     }
 
     @Override
     public void delete() {
-        this.deleted = true;
-        this.ghostNative.delete(this.pointer.address, this.worldPointer.address);
+        this.ghostNative.delete(this.pointer.getPointerAddress(), this.worldPointer.getPointerAddress());
+        this.pointer.delete();
     }
 
     @Override
     protected void setPositionImpl(final Point3D pos) {
-        this.checkDeleted();
-        this.ghostNative.setPosition(this.pointer.address, pos.x, pos.y, pos.z);
-    }
-
-    protected final void checkDeleted() {
-        if(this.deleted) {
-            throw new IllegalArgumentException("Trying to access native pointer after it has been deleted.");
-        }
+        this.ghostNative.setPosition(this.pointer.getPointerAddress(), pos.x, pos.y, pos.z);
     }
 }
