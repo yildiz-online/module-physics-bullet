@@ -55,7 +55,7 @@ for windows:
 <dependency>
     <groupId>be.yildiz-games</groupId>
     <artifactId>module-physics-bullet</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.3</version>
 	<classifier>win32</classifier>
 </dependency>
 ```
@@ -66,7 +66,7 @@ for linux:
 <dependency>
     <groupId>be.yildiz-games</groupId>
     <artifactId>module-physics-bullet</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.3</version>
 	<classifier>linux64</classifier>
 </dependency>
 ```
