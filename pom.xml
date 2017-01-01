@@ -26,6 +26,7 @@
   <modelVersion>4.0.0</modelVersion>
   <name>Yildiz Module Physics Bullet</name>
   <description>Bullet implementation for the physics module.</description>
+  <url>https://bitbucket.org/yildiz-engine-team/module-physics-bullet</url>
 
   <artifactId>module-physics-bullet</artifactId>
   <version>1.0.4-SNAPSHOT</version>
@@ -44,8 +45,6 @@
   </parent>
 
   <properties>
-    <version.bom-junit>1.0.4-SNAPSHOT</version.bom-junit>
-    <version.module-physics>1.0.3-SNAPSHOT</version.module-physics>
     <nativeEnv>none</nativeEnv>
   </properties>
 
@@ -65,7 +64,6 @@
     <dependency>
       <groupId>be.yildiz-games</groupId>
       <artifactId>module-physics</artifactId>
-      <version>${version.module-physics}</version>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
