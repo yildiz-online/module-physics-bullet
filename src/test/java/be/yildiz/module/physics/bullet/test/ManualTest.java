@@ -23,6 +23,10 @@
 
 package be.yildiz.module.physics.bullet.test;
 
+import be.yildiz.common.nativeresources.NativeOperatingSystem;
+import be.yildiz.common.nativeresources.NativeResourceLoader;
+import be.yildiz.common.nativeresources.SystemLinux64;
+import be.yildiz.common.nativeresources.SystemWin32;
 import be.yildiz.common.shape.Box;
 import be.yildiz.common.vector.Point3D;
 import be.yildiz.module.physics.AbstractPhysicEngine;
@@ -37,7 +41,11 @@ import be.yildiz.module.physics.bullet.BulletPhysicEngine;
 public class ManualTest {
 
     public static void main(String[] s) throws InterruptedException {
-        AbstractPhysicEngine engine = new BulletPhysicEngine();
+        NativeOperatingSystem[] systems = {
+                new SystemLinux64(),
+                new SystemWin32()
+        };
+        AbstractPhysicEngine engine = new BulletPhysicEngine(new NativeResourceLoader(systems));
 
         PhysicWorld world = engine.createPhysicWorld();
 
