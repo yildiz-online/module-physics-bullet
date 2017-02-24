@@ -27,8 +27,8 @@
 * @author Grégory Van den Borre
 */
 
-#ifndef _JNI_UTIL_H_INCLUDED_
-#define _JNI_UTIL_H_INCLUDED_
+#ifndef JNI_UTIL_H_INCLUDED
+#define JNI_UTIL_H_INCLUDED
 
 
     inline void throwException(JNIEnv* env, const char* message) {

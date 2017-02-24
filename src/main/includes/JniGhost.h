@@ -23,8 +23,8 @@
 
 #include "stdafx.h"
 
-#ifndef _JNI_GHOST_OBJECT_H_
-#define _JNI_GHOST_OBJECT_H_
+#ifndef JNI_GHOST_OBJECT_H
+#define JNI_GHOST_OBJECT_H
 
 /**
 * @author Grégory Van den Borre

@@ -21,8 +21,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE  SOFTWARE.
  */
 
-#ifndef _BULLET_WORLD_H_
-#define _BULLET_WORLD_H_
+#ifndef BULLET_WORLD_H
+#define BULLET_WORLD_H
 
 #include "stdafx.h"
 #include "KinematicMotionState.h"

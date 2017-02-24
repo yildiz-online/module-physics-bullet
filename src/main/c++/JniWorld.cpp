@@ -266,7 +266,7 @@ JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_createBoxShape(
     LOG_FUNCTION
     try {
         btCollisionShape* shape = new btBoxShape(
-                btVector3(width * 0.5f, height * 0.5f, depth * 0.5f));
+                btVector3(width * 0.5F, height * 0.5F, depth * 0.5F));
         return reinterpret_cast<jlong>(shape);
     } catch (std::exception& e) {
         throwException(env, e.what());

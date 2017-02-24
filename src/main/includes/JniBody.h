@@ -23,8 +23,8 @@
 
 #include "stdafx.h"
 
-#ifndef _JNI_BULLETBODY_H_
-#define _JNI_BULLETBODY_H_
+#ifndef JNI_BULLETBODY_H
+#define JNI_BULLETBODY_H
 
 /**
 * @author Grégory Van den Borre
