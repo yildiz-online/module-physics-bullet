@@ -27,7 +27,7 @@
 #include "stdafx.h"
 #include "KinematicMotionState.h"
 
-namespace YZ {
+namespace yz {
 
 /**
  * Wrap a btdiscreetworld, provide linking between collision object and their id.

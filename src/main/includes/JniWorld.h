@@ -91,7 +91,7 @@ JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_createSphereShape(JNIEnv* env
  * @param o
  *           Associated object.
  * @param worldPointer
- *           Pointer of the world to use(type must be YZ::World).
+ *           Pointer of the world to use(type must be yz::World).
  * @param shapePointer
  *           Pointer of the shape to use(type must be btCollisionShape).
  * @param x
@@ -113,7 +113,7 @@ JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_createStaticBody(JNIEnv* env,
  * @param o
  *           Associated object.
  * @param worldPointer
- *           Pointer of the world to use(type must be YZ::World).
+ *           Pointer of the world to use(type must be yz::World).
  * @param shapePointer
  *           Pointer of the shape to use(type must be btCollisionShape).
  * @param x
@@ -135,7 +135,7 @@ JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_createKinematicBody( JNIEnv* 
  * @param o
  *           Associated object.
  * @param worldPointer
- *           Pointer of the world to use(type must be YZ::World).
+ *           Pointer of the world to use(type must be yz::World).
  * @param shapePointer
  *           Pointer of the shape to use(type must be btCollisionShape).
  * @param x

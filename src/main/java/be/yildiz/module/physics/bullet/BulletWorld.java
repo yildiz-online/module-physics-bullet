@@ -77,7 +77,7 @@ final class BulletWorld implements PhysicWorld, Native, BulletShapeProvider {
      */
     private final BulletWorldNative worldNative = new BulletWorldNative();
     /**
-     * Pointer address to the native associated YZ::World.
+     * Pointer address to the native associated yz::World.
      */
     @Getter
     private final NativePointer pointer = NativePointer.create(this.worldNative.constructor());

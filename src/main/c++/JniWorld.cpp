@@ -35,7 +35,7 @@ JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_constructor(
     jobject) {
     LOG_FUNCTION
     try {
-        return reinterpret_cast<jlong>(new YZ::World());
+        return reinterpret_cast<jlong>(new yz::World());
     } catch (std::exception& e) {
         throwException(env, e.what());
     }
@@ -48,7 +48,7 @@ JNIEXPORT void JNICALL Java_jni_BulletWorldNative_delete(
     jlong pointer) {
     LOG_FUNCTION
     try {
-        YZ::World* world = reinterpret_cast<YZ::World*>(pointer);
+        yz::World* world = reinterpret_cast<yz::World*>(pointer);
         delete world;
     } catch (std::exception& e) {
         throwException(env, e.what());
@@ -69,7 +69,7 @@ JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_createStaticBody(
     jfloat dirZ) {
     LOG_FUNCTION
     try {
-        YZ::World* world = reinterpret_cast<YZ::World*>(worldPointer);
+        yz::World* world = reinterpret_cast<yz::World*>(worldPointer);
         btCollisionShape* shape =
                 reinterpret_cast<btCollisionShape*>(shapePointer);
         btRigidBody* body = world->createStaticBody(shape,
@@ -92,7 +92,7 @@ JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_createKinematicBody(
     jfloat z) {
     LOG_FUNCTION
     try {
-        YZ::World* world = reinterpret_cast<YZ::World*>(worldPointer);
+        yz::World* world = reinterpret_cast<yz::World*>(worldPointer);
         btCollisionShape* shape =
                 reinterpret_cast<btCollisionShape*>(shapePointer);
         return reinterpret_cast<jlong>(world->createKinematicBody(shape, id, x,
@@ -112,7 +112,7 @@ JNIEXPORT void JNICALL Java_jni_BulletWorldNative_setGravity(
     jfloat z) {
     LOG_FUNCTION
     try {
-        YZ::World* world = reinterpret_cast<YZ::World*>(pointer);
+        yz::World* world = reinterpret_cast<yz::World*>(pointer);
         world->setGravity(x, y, z);
     } catch (std::exception& e) {
         throwException(env, e.what());
@@ -126,7 +126,7 @@ JNIEXPORT jlongArray JNICALL Java_jni_BulletWorldNative_update(
     jlong time) {
     LOG_FUNCTION
     try {
-        YZ::World* world = reinterpret_cast<YZ::World*>(pointer);
+        yz::World* world = reinterpret_cast<yz::World*>(pointer);
         std::vector<jlong> list = world->update(time);
 
         if (list.empty()) {
@@ -151,7 +151,7 @@ JNIEXPORT jlongArray JNICALL Java_jni_BulletWorldNative_getGhostCollisionResult(
     jlong pointer) {
     LOG_FUNCTION
     try {
-        YZ::World* world = reinterpret_cast<YZ::World*>(pointer);
+        yz::World* world = reinterpret_cast<yz::World*>(pointer);
         std::vector<jlong> list = world->getGhostCollisionResult();
 
         if (list.empty()) {
@@ -177,7 +177,7 @@ JNIEXPORT void JNICALL Java_jni_BulletWorldNative_removeBody(
     jlong bodyPointer) {
     LOG_FUNCTION
     try {
-        YZ::World* world = reinterpret_cast<YZ::World*>(pointer);
+        yz::World* world = reinterpret_cast<yz::World*>(pointer);
         btRigidBody* body = reinterpret_cast<btRigidBody*>(bodyPointer);
         world->removeBody(body);
     } catch (std::exception& e) {
@@ -197,7 +197,7 @@ JNIEXPORT jlongArray JNICALL Java_jni_BulletWorldNative_raycast(
     jfloat endZ) {
     LOG_FUNCTION
     try {
-        YZ::World* world = reinterpret_cast<YZ::World*>(pointer);
+        yz::World* world = reinterpret_cast<yz::World*>(pointer);
         btVector3 start = btVector3(startX, startY, startZ);
         btVector3 end = btVector3(endX, endY, endZ);
         float collision[4];
@@ -228,7 +228,7 @@ JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_simpleRaycast(
     jfloat endZ) {
     LOG_FUNCTION
     try {
-        YZ::World* world = reinterpret_cast<YZ::World*>(pointer);
+        yz::World* world = reinterpret_cast<yz::World*>(pointer);
         btVector3 start = btVector3(startX, startY, startZ);
         btVector3 end = btVector3(endX, endY, endZ);
         return world->rayCast(start, end);
@@ -245,7 +245,7 @@ JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_deserializeMesh(
     jstring jfile) {
     LOG_FUNCTION
    /** try {
-        YZ::World* world = reinterpret_cast<YZ::World*>(pointer);
+        yz::World* world = reinterpret_cast<yz::World*>(pointer);
         const char* file = env->GetStringUTFChars(jfile, 0);
         btCollisionShape* shape = world->deserializeShape(file);
         env->ReleaseStringUTFChars(jfile, file);
@@ -300,7 +300,7 @@ JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_createGhostObject(
     jfloat z) {
     LOG_FUNCTION
     try {
-        YZ::World* world = reinterpret_cast<YZ::World*>(pointer);
+        yz::World* world = reinterpret_cast<yz::World*>(pointer);
         btCollisionShape* shape =
                 reinterpret_cast<btCollisionShape*>(shapePointer);
         return reinterpret_cast<jlong>(world->createGhostObject(shape, id, x, y,

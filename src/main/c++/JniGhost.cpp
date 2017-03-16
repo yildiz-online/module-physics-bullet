@@ -97,7 +97,7 @@ JNIEXPORT void JNICALL Java_jni_BulletGhostObjectNative_delete(
     LOG_FUNCTION
     try {
         btGhostObject* ghost = reinterpret_cast<btGhostObject*>(pointer);
-        YZ::World* world = reinterpret_cast<YZ::World*>(worldPointer);
+        yz::World* world = reinterpret_cast<yz::World*>(worldPointer);
         world->removeGhost(ghost);
     } catch (std::exception& e) {
         throwException(env, e.what());

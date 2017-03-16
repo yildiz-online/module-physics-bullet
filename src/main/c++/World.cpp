@@ -30,7 +30,7 @@
 * @author Grégory Van den Borre
 */
 
-YZ::World::World() {
+yz::World::World() {
     this->ghostPairCallback = new btGhostPairCallback();
     this->broadphase = new btDbvtBroadphase();
     this->broadphase->getOverlappingPairCache()->setInternalGhostPairCallback(
@@ -42,7 +42,7 @@ YZ::World::World() {
             this->broadphase, this->solver, this->collisionConfiguration);
 }
 
-YZ::World::~World() {
+yz::World::~World() {
     for (int i = this->world->getNumCollisionObjects() - 1; i >= 0; i--) {
         btCollisionObject* obj = this->world->getCollisionObjectArray()[i];
         btRigidBody* body = btRigidBody::upcast(obj);
@@ -60,7 +60,7 @@ YZ::World::~World() {
     delete this->ghostPairCallback;
 }
 
-btRigidBody* YZ::World::createStaticBody(
+btRigidBody* yz::World::createStaticBody(
     btCollisionShape* shape,
     const btVector3& position,
     const btVector3& direction,
@@ -81,7 +81,7 @@ btRigidBody* YZ::World::createStaticBody(
     return body;
 }
 
-btRigidBody* YZ::World::createKinematicBody(
+btRigidBody* yz::World::createKinematicBody(
     btCollisionShape* shape,
     const long id,
     const float x,
@@ -104,7 +104,7 @@ btRigidBody* YZ::World::createKinematicBody(
     return body;
 }
 
-btGhostObject* YZ::World::createGhostObject(btCollisionShape* shape, const long id, const float x, const float y,
+btGhostObject* yz::World::createGhostObject(btCollisionShape* shape, const long id, const float x, const float y,
     const float z) {
     btGhostObject* ghostObject = new btGhostObject();
     ghostObject->setCollisionShape(shape);
@@ -115,7 +115,7 @@ btGhostObject* YZ::World::createGhostObject(btCollisionShape* shape, const long 
     return ghostObject;
 }
 
-void YZ::World::removeGhost(btGhostObject* ghost) {
+void yz::World::removeGhost(btGhostObject* ghost) {
     ghost->activate(false);
     this->world->removeCollisionObject(ghost);
     long id = this->ghostIds[ghost];
@@ -127,7 +127,7 @@ void YZ::World::removeGhost(btGhostObject* ghost) {
     delete ghost;
 }
 
-std::vector<jlong> YZ::World::update(const long time) {
+std::vector<jlong> yz::World::update(const long time) {
     this->world->stepSimulation(time / 1000.0f, 7);
     this->ghostCollisionResult.clear();
 
@@ -177,14 +177,14 @@ std::vector<jlong> YZ::World::update(const long time) {
     return collisionList;
 }
 
-long YZ::World::rayCast(const btVector3& origin, const btVector3& end) const {
+long yz::World::rayCast(const btVector3& origin, const btVector3& end) const {
     btCollisionWorld::ClosestRayResultCallback result(origin, end);
     this->world->getCollisionWorld()->rayTest(origin, end, result);
     long id = this->ids.at(result.m_collisionObject);
     return id == 0 ? -1L : id;
 }
 
-long YZ::World::rayCast(
+long yz::World::rayCast(
     const btVector3& origin,
     const btVector3& end,
     btCollisionWorld::ClosestRayResultCallback& result) const {
@@ -193,7 +193,7 @@ long YZ::World::rayCast(
     return id == 0 ? -1L : id;
 }
 
-void YZ::World::rayCastPoint(
+void yz::World::rayCastPoint(
     const btVector3& origin,
     const btVector3& end,
     float* resultArray) const {

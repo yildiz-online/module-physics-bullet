@@ -29,7 +29,7 @@ package jni;
 public class BulletWorldNative {
 
     /**
-     * Create a new YZ::World in native code.
+     * Create a new yz::World in native code.
      *
      * @return The pointer value of the created object.
      */
@@ -38,7 +38,7 @@ public class BulletWorldNative {
     /**
      * Throw a ray and retrieve its collision point and collided object.
      *
-     * @param pointerAddress Pointer address of this associated YZ::World.
+     * @param pointerAddress Pointer address of this associated yz::World.
      * @param beginX         Ray origin X value.
      * @param beginY         Ray origin Y value.
      * @param beginZ         Ray origin Z value.
@@ -52,7 +52,7 @@ public class BulletWorldNative {
     /**
      * Throw a ray and retrieve its collided object, faster than raycast.
      *
-     * @param pointerAddress Pointer address of this associated YZ::World.
+     * @param pointerAddress Pointer address of this associated yz::World.
      * @param beginX         Ray origin X value.
      * @param beginY         Ray origin Y value.
      * @param beginZ         Ray origin Z value.
@@ -66,7 +66,7 @@ public class BulletWorldNative {
     /**
      * Create a btshape from a serialized file.
      *
-     * @param pointerAddress Pointer address of this associated YZ::World.
+     * @param pointerAddress Pointer address of this associated yz::World.
      * @param file           File to deserialize.
      * @return A pointer to the btshape retrieved from the serialized file.
      */
@@ -75,7 +75,7 @@ public class BulletWorldNative {
     /**
      * Set the gravity in native code.
      *
-     * @param pointerAddress Pointer address of this associated YZ::World.
+     * @param pointerAddress Pointer address of this associated yz::World.
      * @param gravityX       Gravity X value.
      * @param gravityY       Gravity Y value.
      * @param gravityZ       Gravity Z value.
@@ -146,7 +146,7 @@ public class BulletWorldNative {
     /**
      * Update the world in native code.
      *
-     * @param pointerAddress Pointer address to the associated YZ::World.
+     * @param pointerAddress Pointer address to the associated yz::World.
      * @param time           Time since the last call.
      * @return An array containing all the collision occurred during the execution.
      */
@@ -155,7 +155,7 @@ public class BulletWorldNative {
     /**
      * Remove the body from the world but does not delete it.
      *
-     * @param pointerAddress Pointer address of this associated YZ::World.
+     * @param pointerAddress Pointer address of this associated yz::World.
      * @param bodyPointer    Pointer address of btbody to remove from the world.
      */
     // FIXME check if unused, delete here and in native code.
@@ -164,7 +164,7 @@ public class BulletWorldNative {
     /**
      * Create a ghost object in native code.
      *
-     * @param pointerAddress Pointer address of this associated YZ::World.
+     * @param pointerAddress Pointer address of this associated yz::World.
      * @param shape          btshape pointer to build the ghost.
      * @param id             Id to associate with the ghost.
      * @param x              Initial X position.
@@ -185,7 +185,7 @@ public class BulletWorldNative {
     /**
      * Delete this world in native code.
      *
-     * @param pointerAddress Pointer address of this associated YZ::World.
+     * @param pointerAddress Pointer address of this associated yz::World.
      */
     public native void delete(final long pointerAddress);
 

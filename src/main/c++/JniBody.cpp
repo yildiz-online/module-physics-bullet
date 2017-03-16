@@ -175,7 +175,7 @@ JNIEXPORT void JNICALL Java_jni_BulletBodyNative_delete(
     LOG_FUNCTION
     try {
         btRigidBody* body = reinterpret_cast<btRigidBody*>(pointer);
-        YZ::World* world = reinterpret_cast<YZ::World*>(worldPointer);
+        yz::World* world = reinterpret_cast<yz::World*>(worldPointer);
         body->activate(false);
         world->removeBody(body);
     } catch (std::exception& e) {
