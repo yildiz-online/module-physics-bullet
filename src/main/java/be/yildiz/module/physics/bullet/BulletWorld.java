@@ -208,7 +208,7 @@ final class BulletWorld implements PhysicWorld, Native, BulletShapeProvider {
     }
 
     @Override
-    public NativePointer getShape(@final Box box) {
+    public NativePointer getShape(final Box box) {
         assert box != null;
         return this.boxList.computeIfAbsent(box, b ->
             NativePointer.create(this.worldNative.createBoxShape(b.width, b.height, b.depth)));
