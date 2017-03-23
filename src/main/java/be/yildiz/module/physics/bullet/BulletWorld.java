@@ -38,7 +38,6 @@ import be.yildiz.common.util.Timer;
 import be.yildiz.common.vector.Point3D;
 import be.yildiz.module.physics.*;
 import jni.BulletWorldNative;
-import lombok.Getter;
 import lombok.NonNull;
 
 import java.io.File;
@@ -79,7 +78,6 @@ final class BulletWorld implements PhysicWorld, Native, BulletShapeProvider {
     /**
      * Pointer address to the native associated yz::World.
      */
-    @Getter
     private final NativePointer pointer = NativePointer.create(this.worldNative.constructor());
     /**
      * Timer to compute time between 2 updates.
@@ -96,7 +94,6 @@ final class BulletWorld implements PhysicWorld, Native, BulletShapeProvider {
     /**
      * Current gravity applied on this world.
      */
-    @Getter
     private Point3D gravity = Point3D.ZERO;
 
     /**
@@ -268,5 +265,15 @@ final class BulletWorld implements PhysicWorld, Native, BulletShapeProvider {
     @Override
     public final void addGhostCollisionListener(@NonNull final CollisionListener listener) {
         this.ghostCollisionListeners.add(listener);
+    }
+
+    @Override
+    public NativePointer getPointer() {
+        return pointer;
+    }
+
+    @Override
+    public Point3D getGravity() {
+        return gravity;
     }
 }

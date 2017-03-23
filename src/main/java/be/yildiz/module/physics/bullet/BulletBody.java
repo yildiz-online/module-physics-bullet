@@ -28,7 +28,6 @@ import be.yildiz.common.nativeresources.Native;
 import be.yildiz.common.nativeresources.NativePointer;
 import be.yildiz.module.physics.BaseBody;
 import jni.BulletBodyNative;
-import lombok.Getter;
 
 /**
  * Common class for kinematic, static and dynamic bodies.
@@ -40,7 +39,6 @@ abstract class BulletBody implements Native, BaseBody {
     /**
      * Associated id.
      */
-    @Getter
     private final EntityId id;
 
     /**
@@ -51,7 +49,6 @@ abstract class BulletBody implements Native, BaseBody {
     /**
      * Pointer to the native object (btbody).
      */
-    @Getter
     private final NativePointer pointer;
 
     /**
@@ -111,6 +108,15 @@ abstract class BulletBody implements Native, BaseBody {
     @Override
     public final void scale(final float x, final float y, final float z) {
         this.nativeBody.scale(this.pointer.getPointerAddress(), x, y, z);
+    }
 
+    @Override
+    public EntityId getId() {
+        return id;
+    }
+
+    @Override
+    public NativePointer getPointer() {
+        return pointer;
     }
 }

@@ -30,7 +30,6 @@ import be.yildiz.common.vector.Point3D;
 import be.yildiz.module.physics.AbstractMovableObject;
 import be.yildiz.module.physics.GhostObject;
 import jni.BulletGhostObjectNative;
-import lombok.Getter;
 
 /**
  * A ghost object is meant only to be aware of objects colliding it, it is useful as trigger for example.
@@ -54,7 +53,6 @@ final class BulletGhostObject extends AbstractMovableObject implements GhostObje
      */
     private final BulletGhostObjectNative ghostNative = new BulletGhostObjectNative();
 
-    @Getter
     private final EntityId id;
 
     /**
@@ -86,5 +84,10 @@ final class BulletGhostObject extends AbstractMovableObject implements GhostObje
     @Override
     protected void setPositionImpl(final Point3D pos) {
         this.ghostNative.setPosition(this.pointer.getPointerAddress(), pos.x, pos.y, pos.z);
+    }
+
+    @Override
+    public EntityId getId() {
+        return id;
     }
 }

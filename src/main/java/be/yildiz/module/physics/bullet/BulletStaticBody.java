@@ -27,7 +27,6 @@ import be.yildiz.common.id.EntityId;
 import be.yildiz.common.nativeresources.NativePointer;
 import be.yildiz.common.vector.Point3D;
 import be.yildiz.module.physics.StaticBody;
-import lombok.Getter;
 
 /**
  * A static body is intended to stay at its original position and will never move, it has a mass of 0 and is not affected by physic forces.
@@ -36,10 +35,8 @@ import lombok.Getter;
  */
 final class BulletStaticBody extends BulletBody implements StaticBody {
 
-    @Getter
     private final Point3D position;
 
-    @Getter
     private final Point3D direction;
 
     /**
@@ -53,5 +50,15 @@ final class BulletStaticBody extends BulletBody implements StaticBody {
         super(pointerAddress, worldPointer, id);
         this.position = position;
         this.direction = direction;
+    }
+
+    @Override
+    public Point3D getPosition() {
+        return position;
+    }
+
+    @Override
+    public Point3D getDirection() {
+        return direction;
     }
 }
