@@ -38,7 +38,6 @@ import be.yildiz.common.util.Timer;
 import be.yildiz.common.vector.Point3D;
 import be.yildiz.module.physics.*;
 import jni.BulletWorldNative;
-import lombok.NonNull;
 
 import java.io.File;
 import java.util.List;
@@ -209,13 +208,15 @@ final class BulletWorld implements PhysicWorld, Native, BulletShapeProvider {
     }
 
     @Override
-    public NativePointer getShape(@NonNull final Box box) {
+    public NativePointer getShape(@final Box box) {
+        assert box != null;
         return this.boxList.computeIfAbsent(box, b ->
             NativePointer.create(this.worldNative.createBoxShape(b.width, b.height, b.depth)));
     }
 
     @Override
-    public NativePointer getShape(@NonNull final Sphere sphere) {
+    public NativePointer getShape(final Sphere sphere) {
+        assert sphere != null;
         return this.sphereList.computeIfAbsent(sphere, s -> NativePointer.create(this.worldNative.createSphereShape(s.radius)));
     }
 
@@ -258,12 +259,14 @@ final class BulletWorld implements PhysicWorld, Native, BulletShapeProvider {
     }
 
     @Override
-    public final void addCollisionListener(@NonNull final CollisionListener listener) {
+    public final void addCollisionListener(final CollisionListener listener) {
+        assert listener != null;
         this.collisionListeners.add(listener);
     }
 
     @Override
-    public final void addGhostCollisionListener(@NonNull final CollisionListener listener) {
+    public final void addGhostCollisionListener(final CollisionListener listener) {
+        assert listener != null;
         this.ghostCollisionListeners.add(listener);
     }
 
