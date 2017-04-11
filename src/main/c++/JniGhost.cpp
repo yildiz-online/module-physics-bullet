@@ -32,7 +32,7 @@
 
 JNIEXPORT jfloatArray JNICALL Java_jni_BulletGhostObjectNative_getPosition(
     JNIEnv* env,
-    jobject,
+    jobject o,
     jlong pointer) {
     LOG_FUNCTION
     try {
@@ -54,7 +54,7 @@ JNIEXPORT jfloatArray JNICALL Java_jni_BulletGhostObjectNative_getPosition(
 
 JNIEXPORT void JNICALL Java_jni_BulletGhostObjectNative_setPosition(
     JNIEnv* env,
-    jobject,
+    jobject o,
     jlong pointer,
     jfloat x,
     jfloat y,
@@ -72,7 +72,7 @@ JNIEXPORT void JNICALL Java_jni_BulletGhostObjectNative_setPosition(
 
 JNIEXPORT void JNICALL Java_jni_BulletGhostObjectNative_setOrientation(
     JNIEnv* env,
-    jobject,
+    jobject o,
     jlong pointer,
     jfloat w,
     jfloat x,
@@ -91,7 +91,7 @@ JNIEXPORT void JNICALL Java_jni_BulletGhostObjectNative_setOrientation(
 
 JNIEXPORT void JNICALL Java_jni_BulletGhostObjectNative_delete(
     JNIEnv* env,
-    jobject,
+    jobject o,
     jlong pointer,
     jlong worldPointer) {
     LOG_FUNCTION

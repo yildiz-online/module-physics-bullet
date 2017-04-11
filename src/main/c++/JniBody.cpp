@@ -32,7 +32,7 @@
 
 JNIEXPORT jfloatArray JNICALL Java_jni_BulletBodyNative_getPosition(
     JNIEnv* env,
-    jobject,
+    jobject o,
     jlong pointer) {
     LOG_FUNCTION
     try {
@@ -53,7 +53,7 @@ JNIEXPORT jfloatArray JNICALL Java_jni_BulletBodyNative_getPosition(
 
 JNIEXPORT jfloatArray JNICALL Java_jni_BulletBodyNative_getDirection(
     JNIEnv* env,
-    jobject,
+    jobject o,
     jlong pointer) {
         jfloatArray result = env->NewFloatArray(3);
         jfloat buf[3];
@@ -66,14 +66,14 @@ JNIEXPORT jfloatArray JNICALL Java_jni_BulletBodyNative_getDirection(
     }
 
 JNIEXPORT void JNICALL Java_jni_BulletBodyNative_setActivate
-(JNIEnv*, jobject, jlong pointer, jboolean activate) {
+(JNIEnv* env, jobject o, jlong pointer, jboolean activate) {
     btRigidBody* body = reinterpret_cast<btRigidBody*>(pointer);
     body->activate(activate);
 }
 
 JNIEXPORT void JNICALL Java_jni_BulletDynamicBodyNative_setPosition(
     JNIEnv* env,
-    jobject,
+    jobject o,
     jlong pointer,
     jfloat x,
     jfloat y,
@@ -91,7 +91,7 @@ JNIEXPORT void JNICALL Java_jni_BulletDynamicBodyNative_setPosition(
 
 JNIEXPORT void JNICALL Java_jni_BulletDynamicBodyNative_setOrientation(
     JNIEnv* env,
-    jobject,
+    jobject o,
     jlong pointer,
     jfloat w,
     jfloat x,
@@ -110,7 +110,7 @@ JNIEXPORT void JNICALL Java_jni_BulletDynamicBodyNative_setOrientation(
 
 JNIEXPORT void JNICALL Java_jni_BulletKinematicBodyNative_setPosition(
     JNIEnv* env,
-    jobject,
+    jobject o,
     jlong pointer,
     jfloat x,
     jfloat y,
@@ -131,7 +131,7 @@ JNIEXPORT void JNICALL Java_jni_BulletKinematicBodyNative_setPosition(
 
 JNIEXPORT void JNICALL Java_jni_BulletKinematicBodyNative_setDirection(
     JNIEnv* env,
-    jobject,
+    jobject o,
     jlong pointer,
     jfloat w,
     jfloat x,
@@ -152,7 +152,7 @@ JNIEXPORT void JNICALL Java_jni_BulletKinematicBodyNative_setDirection(
 
 JNIEXPORT void JNICALL Java_jni_BulletDynamicBodyNative_applyForce(
     JNIEnv* env,
-    jobject,
+    jobject o,
     jlong pointer,
     jfloat x,
     jfloat y,
@@ -168,7 +168,7 @@ JNIEXPORT void JNICALL Java_jni_BulletDynamicBodyNative_applyForce(
 
 JNIEXPORT void JNICALL Java_jni_BulletBodyNative_delete(
     JNIEnv* env,
-    jobject,
+    jobject o,
     jlong pointer,
     jlong worldPointer) {
     LOG_FUNCTION

@@ -32,7 +32,7 @@
 
 JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_constructor(
     JNIEnv* env,
-    jobject) {
+    jobject o) {
     LOG_FUNCTION
     try {
         return reinterpret_cast<jlong>(new yz::World());
@@ -44,7 +44,7 @@ JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_constructor(
 
 JNIEXPORT void JNICALL Java_jni_BulletWorldNative_delete(
     JNIEnv* env,
-    jobject,
+    jobject o,
     jlong pointer) {
     LOG_FUNCTION
     try {
@@ -57,7 +57,7 @@ JNIEXPORT void JNICALL Java_jni_BulletWorldNative_delete(
 
 JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_createStaticBody(
     JNIEnv* env,
-    jobject,
+    jobject o,
     jlong worldPointer,
     jlong shapePointer,
     jlong id,
@@ -83,7 +83,7 @@ JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_createStaticBody(
 
 JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_createKinematicBody(
     JNIEnv* env,
-    jobject,
+    jobject o,
     jlong worldPointer,
     jlong shapePointer,
     jlong id,
@@ -105,7 +105,7 @@ JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_createKinematicBody(
 
 JNIEXPORT void JNICALL Java_jni_BulletWorldNative_setGravity(
     JNIEnv* env,
-    jobject,
+    jobject o,
     jlong pointer,
     jfloat x,
     jfloat y,
@@ -121,7 +121,7 @@ JNIEXPORT void JNICALL Java_jni_BulletWorldNative_setGravity(
 
 JNIEXPORT jlongArray JNICALL Java_jni_BulletWorldNative_update(
     JNIEnv* env,
-    jobject,
+    jobject o,
     jlong pointer,
     jlong time) {
     LOG_FUNCTION
@@ -147,7 +147,7 @@ JNIEXPORT jlongArray JNICALL Java_jni_BulletWorldNative_update(
 
 JNIEXPORT jlongArray JNICALL Java_jni_BulletWorldNative_getGhostCollisionResult(
     JNIEnv* env,
-    jobject,
+    jobject o,
     jlong pointer) {
     LOG_FUNCTION
     try {
@@ -172,7 +172,7 @@ JNIEXPORT jlongArray JNICALL Java_jni_BulletWorldNative_getGhostCollisionResult(
 
 JNIEXPORT void JNICALL Java_jni_BulletWorldNative_removeBody(
     JNIEnv* env,
-    jobject,
+    jobject o,
     jlong pointer,
     jlong bodyPointer) {
     LOG_FUNCTION
@@ -187,7 +187,7 @@ JNIEXPORT void JNICALL Java_jni_BulletWorldNative_removeBody(
 
 JNIEXPORT jlongArray JNICALL Java_jni_BulletWorldNative_raycast(
     JNIEnv* env,
-    jobject,
+    jobject o,
     jlong pointer,
     jfloat startX,
     jfloat startY,
@@ -218,7 +218,7 @@ JNIEXPORT jlongArray JNICALL Java_jni_BulletWorldNative_raycast(
 
 JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_simpleRaycast(
     JNIEnv* env,
-    jobject,
+    jobject o,
     jlong pointer,
     jfloat startX,
     jfloat startY,
@@ -240,7 +240,7 @@ JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_simpleRaycast(
 
 JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_deserializeMesh(
     JNIEnv* env,
-    jobject,
+    jobject o,
     jlong pointer,
     jstring jfile) {
     LOG_FUNCTION
@@ -259,7 +259,7 @@ JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_deserializeMesh(
 
 JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_createBoxShape(
     JNIEnv* env,
-    jobject,
+    jobject o,
     jfloat width,
     jfloat height,
     jfloat depth) {
@@ -276,7 +276,7 @@ JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_createBoxShape(
 
 JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_createSphereShape(
     JNIEnv* env,
-    jobject,
+    jobject o,
     jfloat radius) {
     LOG_FUNCTION
     try {
@@ -291,7 +291,7 @@ JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_createSphereShape(
 
 JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_createGhostObject(
     JNIEnv* env,
-    jobject,
+    jobject o,
     jlong pointer,
     jlong shapePointer,
     jlong id,
