@@ -21,10 +21,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE  SOFTWARE.
  */
 
-#include "../includes/stdafx.h"
-#include "../includes/JniGhost.h"
-#include "../includes/World.h"
-#include "../includes/JniUtil.h"
+#include "stdafx.h"
+#include "JniGhost.h"
+#include "World.h"
+#include "JniUtil.h"
 
 /**
 * @author Grégory Van den Borre
