@@ -21,9 +21,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE  SOFTWARE.
  */
 
-#include "../includes/stdafx.h"
-#include "../includes/World.h"
-#include <iostream>
+#include "stdafx.h"
+#include "World.h"
 #include <algorithm>
 
 /**
@@ -137,8 +136,8 @@ std::vector<jlong> yz::World::update(const long time) {
         if (ghost) {
             btAlignedObjectArray<btCollisionObject*> objsInsidePairCachingGhostObject;
             objsInsidePairCachingGhostObject.resize(0);
-            for (int i = 0; i < ghost->getNumOverlappingObjects(); i++) {
-                btCollisionObject* co = ghost->getOverlappingObject(i);
+            for (int j = 0; j < ghost->getNumOverlappingObjects(); j++) {
+                btCollisionObject* co = ghost->getOverlappingObject(j);
                 if (co) {
                     btRigidBody *pRigidBody = btRigidBody::upcast(co);
                     if (pRigidBody) {
@@ -162,8 +161,8 @@ std::vector<jlong> yz::World::update(const long time) {
         btPersistentManifold* contactManifold = this->world->getDispatcher()->getManifoldByIndexInternal(i);
         int numContacts = contactManifold->getNumContacts();
         if (numContacts > 0) {
-            const btCollisionObject* firstCo = static_cast<const btCollisionObject*>(contactManifold->getBody0());
-            const btCollisionObject* secondCo = static_cast<const btCollisionObject*>(contactManifold->getBody1());
+            const btCollisionObject* firstCo = contactManifold->getBody0();
+            const btCollisionObject* secondCo = contactManifold->getBody1();
             if (btRigidBody::upcast(firstCo) && btRigidBody::upcast(secondCo)) {
                 jlong firstId = this->ids[firstCo];
                 jlong secondId = this->ids[secondCo];
