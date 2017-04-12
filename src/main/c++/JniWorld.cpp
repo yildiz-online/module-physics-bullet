@@ -301,10 +301,8 @@ JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_createGhostObject(
     LOG_FUNCTION
     try {
         yz::World* world = reinterpret_cast<yz::World*>(pointer);
-        btCollisionShape* shape =
-                reinterpret_cast<btCollisionShape*>(shapePointer);
-        return reinterpret_cast<jlong>(world->createGhostObject(shape, id, x, y,
-                z));
+        btCollisionShape* shape = reinterpret_cast<btCollisionShape*>(shapePointer);
+        return reinterpret_cast<jlong>(world->createGhostObject(shape, id, x, y, z));
     } catch (std::exception& e) {
         throwException(env, e.what());
     }
