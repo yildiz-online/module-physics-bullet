@@ -1,7 +1,7 @@
 cmake_minimum_required (VERSION 2.8.6)
 project (yildiz_native_bullet)
 
-set(CMAKE_CXX_FLAGS "-O2")
+set(CMAKE_CXX_FLAGS "-O2 -std=gnu++11")
 
 include_directories(bullet/include)
 include_directories("java/include")
