@@ -2,7 +2,7 @@ cmake_minimum_required (VERSION 3.0.0)
 
 project (yildiz_native_bullet)
 
-set(CMAKE_CXX_FLAGS "-O2 -fPIC -std=gnu++14")
+set(CMAKE_CXX_FLAGS "-O2 -fPIC -std=gnu++11")
 
 find_package(Bullet REQUIRED)
 find_package(Java REQUIRED)
