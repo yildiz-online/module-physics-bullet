@@ -37,6 +37,7 @@ public final class BulletPhysicEngine extends AbstractPhysicEngine {
 
     /**
      * Simple constructor, load the native lib.
+     * @param nativeResourceLoader Loader to be used to load natives.
      */
     public BulletPhysicEngine(NativeResourceLoader nativeResourceLoader) {
         super();
