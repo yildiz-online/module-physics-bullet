@@ -70,7 +70,8 @@ final class BulletDynamicBody extends BulletBody implements DynamicBody {
 
     @Override
     public Point3D getPosition() {
-        return Point3D.xyz(this.bulletBodyNative.getPosition(this.pointer.getPointerAddress()));
+        float[] v = this.bulletBodyNative.getPosition(this.pointer.getPointerAddress());
+        return Point3D.valueOf(v[0], v[1], v[2]);
     }
 
     @Override
@@ -80,7 +81,8 @@ final class BulletDynamicBody extends BulletBody implements DynamicBody {
 
     @Override
     public Point3D getDirection() {
-        return Point3D.xyz(this.bulletBodyNative.getDirection(this.pointer.getPointerAddress()));
+        float[] v = this.bulletBodyNative.getDirection(this.pointer.getPointerAddress());
+        return Point3D.valueOf(v[0], v[1], v[2]);
     }
 
     @Override
@@ -96,5 +98,9 @@ final class BulletDynamicBody extends BulletBody implements DynamicBody {
     @Override
     public void setOrientation(final float x, final float y, final float z, final float w) {
         this.bodyNative.setOrientation(this.pointer.getPointerAddress(), w, x, y, z);
+    }
+
+    public float getMass() {
+        return this.mass;
     }
 }

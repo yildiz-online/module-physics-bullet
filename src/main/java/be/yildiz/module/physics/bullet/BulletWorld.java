@@ -142,35 +142,35 @@ final class BulletWorld implements PhysicWorld, Native, BulletShapeProvider {
 
     private List<CollisionResult> getCollisionList() {
         final long[] result = this.worldNative.update(this.pointer.getPointerAddress(), this.timer.getActionTime());
-        final List<CollisionResult> collisions = Lists.newList(result.length);
+        final List<CollisionResult> foundCollisions = Lists.newList(result.length);
         for (int i = 0; i < result.length; i += 2) {
             long first = result[i];
             long second = result[i + 1];
             if (first != 0L && second != 0L) {
-                EntityId e1 = EntityId.get(first);
-                EntityId e2 = EntityId.get(second);
+                EntityId e1 = EntityId.valueOf(first);
+                EntityId e2 = EntityId.valueOf(second);
                 if (!e1.equals(e2)) {
-                    collisions.add(new CollisionResult(e1, e2));
+                    foundCollisions.add(new CollisionResult(e1, e2));
                 }
             }
         }
-        return collisions;
+        return foundCollisions;
     }
 
     private List<CollisionResult> getGhostCollisionList() {
         final long[] result = this.worldNative.getGhostCollisionResult(this.pointer.getPointerAddress());
-        final List<CollisionResult> collisions = Lists.newList();
+        final List<CollisionResult> foundCollisions = Lists.newList();
         for (int i = 0; i < result.length; i += 2) {
             if (result[i] != 0 && result[i + 1] != 0) {
                 try {
-                    EntityId e1 = EntityId.get(result[i]);
-                    EntityId e2 = EntityId.get(result[i + 1]);
+                    EntityId e1 = EntityId.valueOf(result[i]);
+                    EntityId e2 = EntityId.valueOf(result[i + 1]);
                     // FIXME in native code, do not return already existing
                     // collision, use event instead(collision event will
                     // populate a list, clean it once retrieved, collision lost
                     // will populate another list, clean it once retrieved)
                     if (!e1.equals(e2)) {
-                        collisions.add(new CollisionResult(e1, e2));
+                        foundCollisions.add(new CollisionResult(e1, e2));
                     }
                 } catch (InvalidIdException e) {
                     Logger.error(e);
@@ -178,7 +178,7 @@ final class BulletWorld implements PhysicWorld, Native, BulletShapeProvider {
                 }
             }
         }
-        return collisions;
+        return foundCollisions;
     }
 
     @Override
@@ -195,7 +195,7 @@ final class BulletWorld implements PhysicWorld, Native, BulletShapeProvider {
     public EntityId throwSimpleRay(final Point3D origin, final Point3D destination) {
         assert Checker.notNull(origin);
         assert Checker.notNull(destination);
-        return EntityId.get(this.worldNative.simpleRaycast(this.pointer.getPointerAddress(), origin.x, origin.y, origin.z, destination.x, destination.y, destination.z));
+        return EntityId.valueOf(this.worldNative.simpleRaycast(this.pointer.getPointerAddress(), origin.x, origin.y, origin.z, destination.x, destination.y, destination.z));
     }
 
     @Override
@@ -254,7 +254,7 @@ final class BulletWorld implements PhysicWorld, Native, BulletShapeProvider {
 
     @Override
     public void setGravity(final float gravityX, final float gravityY, final float gravityZ) {
-        this.gravity = Point3D.xyz(gravityX, gravityY, gravityZ);
+        this.gravity = Point3D.valueOf(gravityX, gravityY, gravityZ);
         this.worldNative.setGravity(this.pointer.getPointerAddress(), gravityX, -gravityY, gravityZ);
     }
 

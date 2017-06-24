@@ -88,7 +88,8 @@ final class BulletKinematicBody extends BulletBody implements KinematicBody {
      */
     @Override
     public Point3D getPosition() {
-        return Point3D.xyz(this.bulletBodyNative.getPosition(this.pointer.getPointerAddress()));
+        float[] v = this.bulletBodyNative.getPosition(this.pointer.getPointerAddress());
+        return Point3D.valueOf(v[0], v[1], v[2]);
     }
 
     /**
@@ -96,6 +97,7 @@ final class BulletKinematicBody extends BulletBody implements KinematicBody {
      */
     @Override
     public Point3D getDirection() {
-        return Point3D.xyz(this.bulletBodyNative.getDirection(this.pointer.getPointerAddress()));
+        float[] v = this.bulletBodyNative.getDirection(this.pointer.getPointerAddress());
+        return Point3D.valueOf(v[0], v[1], v[2]);
     }
 }

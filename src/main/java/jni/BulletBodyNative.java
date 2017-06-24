@@ -61,7 +61,7 @@ public class BulletBodyNative {
      * Retrieve the current position in native code.
      *
      * @param pointerAddress Native btbody pointer address.
-     * @return An Array with X, Y, Z position coordinates.
+     * @return An Array with X, Y, Z position coordinates [ensure result.size == 3].
      */
     public native float[] getPosition(final long pointerAddress);
 
@@ -69,7 +69,7 @@ public class BulletBodyNative {
      * Retrieve the current direction in native code.
      *
      * @param pointerAddress Native btbody pointer address.
-     * @return An Array with X, Y, Z direction coordinates.
+     * @return An Array with X, Y, Z direction coordinates [ensure result.size == 3].
      */
     public native float[] getDirection(final long pointerAddress);
 }
