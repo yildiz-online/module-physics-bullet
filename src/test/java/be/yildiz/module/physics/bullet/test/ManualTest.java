@@ -51,12 +51,12 @@ public class ManualTest {
 
         world.addCollisionListener(objects -> System.out.println("objects:" + objects.object1 + ", " + objects.object2));
         world.createBuilder()
-                .atPosition(Point3D.xyz(10))
+                .atPosition(Point3D.valueOf(10))
                 .withId(1L)
                 .withShape(new Box(5))
                 .buildKinematic();
         KinematicBody body2 = world.createBuilder()
-                .atPosition(Point3D.xyz(500))
+                .atPosition(Point3D.valueOf(500))
                 .withShape(new Box(5))
                 .withId(2L)
                 .buildKinematic();
@@ -74,7 +74,7 @@ public class ManualTest {
         GhostObject g = world.createBuilder()
                 .withId(5L)
                 .withShape(new Box(5))
-                .atPosition(Point3D.xyz(100))
+                .atPosition(Point3D.valueOf(100))
                 .buildGhost();
         engine.update();
         Thread.sleep(50);

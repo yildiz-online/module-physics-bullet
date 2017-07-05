@@ -193,15 +193,15 @@ final class BulletWorld implements PhysicWorld, Native, BulletShapeProvider {
 
     @Override
     public EntityId throwSimpleRay(final Point3D origin, final Point3D destination) {
-        assert Checker.notNull(origin);
-        assert Checker.notNull(destination);
+        assert origin != null;
+        assert destination != null;
         return EntityId.valueOf(this.worldNative.simpleRaycast(this.pointer.getPointerAddress(), origin.x, origin.y, origin.z, destination.x, destination.y, destination.z));
     }
 
     @Override
     public EntityId throwSimpleRay(final Point3D origin, final Point3D direction, final float distance) {
-        assert Checker.notNull(origin);
-        assert Checker.notNull(direction);
+        assert origin != null;
+        assert direction != null;
         assert Checker.isPositive(distance);
         Point3D end = Point3D.normalizeAndMultiply(direction, distance);
         return this.throwSimpleRay(origin, end);
@@ -222,7 +222,7 @@ final class BulletWorld implements PhysicWorld, Native, BulletShapeProvider {
 
     @Override
     public NativePointer getShape(final PhysicMesh mesh) {
-        assert Checker.notNull(mesh);
+        assert mesh != null;
         NativePointer shapePointer = this.shapeList.get(mesh.file);
         if (shapePointer == null) {
             final File file = new File(mesh.file);
