@@ -1,6 +1,22 @@
+env:
+  global:
+   - secure: "n3rRoxt0EeezDgsii84qYsmsTf/35PqBQQTM8XArylC2f9m6rmpBl6EgdmLTzdXYaPawLUrYISl2UG8PsUKwy/8AFgCyacXEbm58TOK2EfE0ye2M1TEFch2MNPFjY7GtMC1WMaipzWc4ExbBYsDzCoLoU9Kx4Sa7+F/VBQX9wMMzaNGG7yQA8rYGxiwrRoRaI+OamzFNJf0KVHaHsrmoJNY6+dRBZTlyu3jLKjSzhSfNL5+6PxC1DyLVELohpa/rC2ub5viJxKyctIc19yBoVn8X3V18sVSY3na+9FZF4Disc1dcXCKcTYDJcmi6S2zmHwj14mxMqnf3M2wXcsnRH4c1f4hcvFebFFYNqynNc217jQP0IzzNI2t5YaP6nl6cMr5EOLjK8VTGEWWnDbo3/RK45XtxfMjaPS7w0G31A+QfacF9/W1xQH6f8uAkV7y9svUFn+vNCMYHe9oksdwuLw6U/Xui+Z39Is7NCQCTOZARszbOXtHS5KxykuAh66kP0Ku7JhU7JIKDaH51TxAj3vIOAWpNKzFrKujba0yl0+vBbFS1RdCudLkrkB7rO+Yp8anJZ1NJqf1VvnuEfsiqHfu50JdE5UvWMqeO8iZ/oWp3cqXEdVB0iL5L+IbrcHOGt/WQUtuALdTTM6ejlCDHftyX68aJWUUU8FRGGlZEUWI="
+
 language: java
 jdk:
   - oraclejdk8
+
+addons:
+  coverity_scan:
+    project:
+      name: "yildiz-online/module-physics-bullet"
+      description: "Build submitted via Travis CI"
+    notification_email: vandenborre.gregory@hotmail.fr
+    build_command_prepend: "mvn clean"
+    build_command:   "mvn -DskipTests=true compile -s settings.xml"
+    branch_pattern: master
+  srcclr: true
+
 script:
   - mvn -V -B -s settings.xml test -Denv=linux64
 install:
