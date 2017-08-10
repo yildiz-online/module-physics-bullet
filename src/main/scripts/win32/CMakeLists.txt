@@ -5,6 +5,7 @@ set(CMAKE_CXX_FLAGS "-O2 -std=gnu++11")
 
 include_directories(bullet/include)
 include_directories("java/include")
+include_directories(${CMAKE_SOURCE_DIR}/../common-native/include)
 include_directories("java/include/win32")
     
 set(CMAKE_SHARED_LINKER_FLAGS "-Xlinker --add-stdcall-alias")

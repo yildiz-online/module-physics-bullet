@@ -10,6 +10,7 @@ find_package(JNI REQUIRED)
 
 include_directories(${BULLET_INCLUDE_DIRS})
 include_directories(${JNI_INCLUDE_DIRS})
+include_directories(${CMAKE_SOURCE_DIR}/../common-native/include)
 include_directories(${JNI_INCLUDE_DIRS}/linux)
 
 file(
