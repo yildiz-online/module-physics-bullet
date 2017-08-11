@@ -103,6 +103,27 @@ JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_createKinematicBody(
     return -1L;
 }
 
+JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_createDynamicBody(
+    JNIEnv* env,
+    jobject o,
+    jlong worldPointer,
+    jlong shapePointer,
+    jlong id,
+    jfloat x,
+    jfloat y,
+    jfloat z,
+    jfloat mass) {
+    LOG_FUNCTION
+    try {
+        yz::World* world = reinterpret_cast<yz::World*>(worldPointer);
+        btCollisionShape* shape = reinterpret_cast<btCollisionShape*>(shapePointer);
+        return reinterpret_cast<jlong>(world->createDynamicBody(shape, id, x, y, z, mass));
+    } catch (std::exception& e) {
+        throwException(env, e.what());
+    }
+    return -1L;
+}
+
 JNIEXPORT void JNICALL Java_jni_BulletWorldNative_setGravity(
     JNIEnv* env,
     jobject o,

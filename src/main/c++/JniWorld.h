@@ -128,6 +128,9 @@ JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_createStaticBody(JNIEnv* env,
 JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_createKinematicBody( JNIEnv* env, jobject o, jlong worldPointer,
     jlong shapePointer, jlong id, jfloat x, jfloat y, jfloat z);
 
+JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_createDynamicBody( JNIEnv* env, jobject o, jlong worldPointer,
+    jlong shapePointer, jlong id, jfloat x, jfloat y, jfloat z, jfloat mass);
+
 /**
  * Build a ghost object.
  * @param env

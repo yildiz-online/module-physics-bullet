@@ -103,6 +103,23 @@ btRigidBody* yz::World::createKinematicBody(
     return body;
 }
 
+btRigidBody* yz::World::createDynamicBody(
+    btCollisionShape* shape,
+    const long id,
+    const float x,
+    const float y,
+    const float z,
+    const float mass) {
+    btVector3 inertia(0, 0, 0);
+    shape->calculateLocalInertia(mass, inertia);
+    btTransform transform;
+    transform.setOrigin(btVector3(x, y, z));
+    btRigidBody* body = new btRigidBody(mass, new DynamicMotionState(transform), shape, inertia);
+    world->addRigidBody(body);
+    this->ids[body] = id;
+    return body;
+}
+
 btGhostObject* yz::World::createGhostObject(btCollisionShape* shape, const long id, const float x, const float y,
     const float z) {
     btGhostObject* ghostObject = new btGhostObject();

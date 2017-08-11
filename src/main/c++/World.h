@@ -68,6 +68,14 @@ public:
         const float y,
         const float z);
 
+    btRigidBody* createDynamicBody(
+        btCollisionShape* shape,
+        const long id,
+        const float x,
+        const float y,
+        const float z,
+        const float mass);
+
     std::vector<jlong> update(const long time);
 
     long rayCast(const btVector3& origin, const btVector3& end) const;
