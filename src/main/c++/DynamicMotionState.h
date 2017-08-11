@@ -62,8 +62,8 @@ public:
         worldTrans = this->transform;
     }
 
-    virtual void setWorldTransform(const btTransform&) {
-        this->transform = btTransform;
+    virtual void setWorldTransform(const btTransform& t) {
+        this->transform = t;
     }
 
 private:

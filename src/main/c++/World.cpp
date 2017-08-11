@@ -23,6 +23,7 @@
 
 #include "stdafx.h"
 #include "World.h"
+#include "DynamicMotionState.h"
 #include <algorithm>
 
 /**
