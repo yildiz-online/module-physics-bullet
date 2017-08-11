@@ -72,7 +72,7 @@ JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_createStaticBody(
         yz::World* world = reinterpret_cast<yz::World*>(worldPointer);
         btCollisionShape* shape =
                 reinterpret_cast<btCollisionShape*>(shapePointer);
-        btRigidBody* body = world->createStaticBody(shape,
+        yz::RigidBody* body = world->createStaticBody(shape,
                 btVector3(posX, posY, posZ), btVector3(dirX, dirY, dirZ), id);
         return reinterpret_cast<jlong>(body);
     } catch (std::exception& e) {
@@ -199,7 +199,7 @@ JNIEXPORT void JNICALL Java_jni_BulletWorldNative_removeBody(
     LOG_FUNCTION
     try {
         yz::World* world = reinterpret_cast<yz::World*>(pointer);
-        btRigidBody* body = reinterpret_cast<btRigidBody*>(bodyPointer);
+        yz::RigidBody* body = reinterpret_cast<yz::RigidBody*>(bodyPointer);
         world->removeBody(body);
     } catch (std::exception& e) {
         throwException(env, e.what());

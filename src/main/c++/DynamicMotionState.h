@@ -25,6 +25,9 @@
 #define DYNAMIC_MOTION_STATE_H
 
 #include "stdafx.h"
+#include "NativeMovable.hpp"
+
+namespace yz {
 
 /**
 * This motion state is intended to be used with dynamic bodies.
@@ -39,7 +42,8 @@ public:
     * @param initial
     *           Initial position and rotation values.
     */
-    DynamicMotionState(const btTransform& initial = btTransform::getIdentity()) : transform(initial) {
+    DynamicMotionState(const btTransform& initial = btTransform::getIdentity()) :
+    transform(initial) {
 
     }
 
@@ -55,6 +59,7 @@ public:
 
     /**
     * Set a btTransform reference pointing to the one wrapped in this motion state.
+    * Only read once, at the initialisation of the simulation.
     * @param worldTrans
     *           Reference to set to the wrapped btTransform.
     */
@@ -64,6 +69,14 @@ public:
 
     virtual void setWorldTransform(const btTransform& t) {
         this->transform = t;
+        btVector3 p = t.getOrigin();
+        btQuaternion r = t.getRotation();
+        movable->setPosition(p.getX(), p.getY(), p.getZ());
+        movable->setOrientation(r.getX(), r.getY(), r.getZ(), r.getW());
+    }
+
+    NativeMovable* getMovable() const {
+        return this->movable;
     }
 
 private:
@@ -73,6 +86,9 @@ private:
     */
     btTransform transform;
 
+    NativeMovable* movable = new NativeMovable();
 };
+
+}
 
 #endif

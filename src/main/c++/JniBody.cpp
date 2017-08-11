@@ -25,6 +25,7 @@
 #include "JniBody.h"
 #include "World.h"
 #include "JniUtil.h"
+#include "DynamicMotionState.h"
 
 /**
 * @author Grégory Van den Borre
@@ -36,7 +37,7 @@ JNIEXPORT jfloatArray JNICALL Java_jni_BulletBodyNative_getPosition(
     jlong pointer) {
     LOG_FUNCTION
     try {
-        btRigidBody* body = reinterpret_cast<btRigidBody*>(pointer);
+        yz::RigidBody* body = reinterpret_cast<yz::RigidBody*>(pointer);
         btVector3 pos = body->getCenterOfMassPosition();
         jfloat buf[3];
         buf[0] = pos.getX();
@@ -67,7 +68,7 @@ JNIEXPORT jfloatArray JNICALL Java_jni_BulletBodyNative_getDirection(
 
 JNIEXPORT void JNICALL Java_jni_BulletBodyNative_setActivate
 (JNIEnv* env, jobject o, jlong pointer, jboolean activate) {
-    btRigidBody* body = reinterpret_cast<btRigidBody*>(pointer);
+    yz::RigidBody* body = reinterpret_cast<yz::RigidBody*>(pointer);
     body->activate(activate);
 }
 
@@ -80,7 +81,7 @@ JNIEXPORT void JNICALL Java_jni_BulletDynamicBodyNative_setPosition(
     jfloat z) {
     LOG_FUNCTION
     try {
-        btRigidBody* body = reinterpret_cast<btRigidBody*>(pointer);
+        yz::RigidBody* body = reinterpret_cast<yz::RigidBody*>(pointer);
         btTransform transform = body->getCenterOfMassTransform();
         transform.setOrigin(btVector3(x, y, z));
         body->setCenterOfMassTransform(transform);
@@ -99,7 +100,7 @@ JNIEXPORT void JNICALL Java_jni_BulletDynamicBodyNative_setOrientation(
     jfloat z) {
     LOG_FUNCTION
     try {
-        btRigidBody* body = reinterpret_cast<btRigidBody*>(pointer);
+        yz::RigidBody* body = reinterpret_cast<yz::RigidBody*>(pointer);
         btTransform transform = body->getCenterOfMassTransform();
         transform.setRotation(btQuaternion(x, y, z, w));
         body->setCenterOfMassTransform(transform);
@@ -117,7 +118,7 @@ JNIEXPORT void JNICALL Java_jni_BulletKinematicBodyNative_setPosition(
     jfloat z) {
     LOG_FUNCTION
     try {
-        btRigidBody* body = reinterpret_cast<btRigidBody*>(pointer);
+        yz::RigidBody* body = reinterpret_cast<yz::RigidBody*>(pointer);
         KinematicMotionState* state =
                 static_cast<KinematicMotionState*>(body->getMotionState());
         btTransform trans;
@@ -139,7 +140,7 @@ JNIEXPORT void JNICALL Java_jni_BulletKinematicBodyNative_setDirection(
     jfloat z) {
     LOG_FUNCTION
     try {
-        btRigidBody* body = reinterpret_cast<btRigidBody*>(pointer);
+        yz::RigidBody* body = reinterpret_cast<yz::RigidBody*>(pointer);
         KinematicMotionState* state =
                 static_cast<KinematicMotionState*>(body->getMotionState());
         btTransform trans;
@@ -159,12 +160,24 @@ JNIEXPORT void JNICALL Java_jni_BulletDynamicBodyNative_applyForce(
     jfloat z) {
     LOG_FUNCTION
     try {
-        btRigidBody* body = reinterpret_cast<btRigidBody*>(pointer);
+        yz::RigidBody* body = reinterpret_cast<yz::RigidBody*>(pointer);
         body->applyCentralForce(btVector3(x, y, z));
     } catch (std::exception& e) {
         throwException(env, e.what());
     }
 }
+
+JNIEXPORT void JNICALL Java_jni_BulletDynamicBodyNative_attachNative(
+    JNIEnv* env, jobject o, jlong pointer, jlong other) {
+    LOG_FUNCTION
+        try {
+            yz::RigidBody* body = reinterpret_cast<yz::RigidBody*>(pointer);
+            yz::NativeMovableComponent* element = reinterpret_cast<yz::NativeMovableComponent*>(other);
+            body->attachMovable(element);
+        } catch (std::exception& e) {
+            throwException(env, e.what());
+        }
+    }
 
 JNIEXPORT void JNICALL Java_jni_BulletBodyNative_delete(
     JNIEnv* env,
@@ -173,7 +186,7 @@ JNIEXPORT void JNICALL Java_jni_BulletBodyNative_delete(
     jlong worldPointer) {
     LOG_FUNCTION
     try {
-        btRigidBody* body = reinterpret_cast<btRigidBody*>(pointer);
+        yz::RigidBody* body = reinterpret_cast<yz::RigidBody*>(pointer);
         yz::World* world = reinterpret_cast<yz::World*>(worldPointer);
         body->activate(false);
         world->removeBody(body);

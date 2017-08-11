@@ -26,6 +26,7 @@
 
 #include "stdafx.h"
 #include "KinematicMotionState.h"
+#include "RigidBody.h"
 
 namespace yz {
 
@@ -49,7 +50,7 @@ public:
      * @param id Id to assign to this body.
      * @return The created static rigid body.
      */
-    btRigidBody* createStaticBody(
+    yz::RigidBody* createStaticBody(
         btCollisionShape* shape,
         const btVector3& position,
         const btVector3& direction,
@@ -61,14 +62,14 @@ public:
      * @param id Id to assign to this body.
      * @return The created kinematic rigid body.
      */
-    btRigidBody* createKinematicBody(
+    yz::RigidBody* createKinematicBody(
         btCollisionShape* shape,
         const long id,
         const float x,
         const float y,
         const float z);
 
-    btRigidBody* createDynamicBody(
+    yz::RigidBody* createDynamicBody(
         btCollisionShape* shape,
         const long id,
         const float x,

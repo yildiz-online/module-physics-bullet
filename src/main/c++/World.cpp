@@ -21,8 +21,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE  SOFTWARE.
  */
 
-#include "stdafx.h"
 #include "World.h"
+#include "KinematicMotionState.h"
 #include "DynamicMotionState.h"
 #include <algorithm>
 
@@ -60,7 +60,7 @@ yz::World::~World() {
     delete this->ghostPairCallback;
 }
 
-btRigidBody* yz::World::createStaticBody(
+yz::RigidBody* yz::World::createStaticBody(
     btCollisionShape* shape,
     const btVector3& position,
     const btVector3& direction,
@@ -71,8 +71,8 @@ btRigidBody* yz::World::createStaticBody(
     btTransform trans;
     trans.setIdentity();
     trans.setOrigin(position);
-    btRigidBody* body = new btRigidBody(mass, new btDefaultMotionState(trans),
-            shape, inertia);
+    yz::RigidBody* body = new yz::RigidBody(mass, new btDefaultMotionState(trans),
+            shape, inertia, new yz::NativeMovable());
     body->setCollisionFlags(
             body->getCollisionFlags() | btCollisionObject::CF_STATIC_OBJECT);
     body->setActivationState(ISLAND_SLEEPING);
@@ -81,7 +81,7 @@ btRigidBody* yz::World::createStaticBody(
     return body;
 }
 
-btRigidBody* yz::World::createKinematicBody(
+yz::RigidBody* yz::World::createKinematicBody(
     btCollisionShape* shape,
     const long id,
     const float x,
@@ -91,10 +91,9 @@ btRigidBody* yz::World::createKinematicBody(
     btVector3 inertia(0, 0, 0);
     btTransform transform;
     transform.setOrigin(btVector3(x, y, z));
-    btRigidBody* body = new btRigidBody(mass,
-            new KinematicMotionState(transform), shape, inertia);
-    body->setCollisionFlags(
-            body->getCollisionFlags() | btCollisionObject::CF_KINEMATIC_OBJECT);
+    yz::RigidBody* body = new yz::RigidBody(mass, new KinematicMotionState(transform), shape, inertia,
+        new yz::NativeMovable());
+    body->setCollisionFlags(body->getCollisionFlags() | btCollisionObject::CF_KINEMATIC_OBJECT);
     body->setActivationState(DISABLE_DEACTIVATION);
     world->addRigidBody(body,
             body->getCollisionFlags() | btCollisionObject::CF_KINEMATIC_OBJECT,
@@ -104,7 +103,7 @@ btRigidBody* yz::World::createKinematicBody(
     return body;
 }
 
-btRigidBody* yz::World::createDynamicBody(
+yz::RigidBody* yz::World::createDynamicBody(
     btCollisionShape* shape,
     const long id,
     const float x,
@@ -115,7 +114,8 @@ btRigidBody* yz::World::createDynamicBody(
     shape->calculateLocalInertia(mass, inertia);
     btTransform transform;
     transform.setOrigin(btVector3(x, y, z));
-    btRigidBody* body = new btRigidBody(mass, new DynamicMotionState(transform), shape, inertia);
+    yz::DynamicMotionState* s = new yz::DynamicMotionState(transform);
+    yz::RigidBody* body = new yz::RigidBody(mass, s, shape, inertia, s->getMovable());
     world->addRigidBody(body);
     this->ids[body] = id;
     return body;
