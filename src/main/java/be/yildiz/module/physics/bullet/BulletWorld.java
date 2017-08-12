@@ -237,7 +237,7 @@ final class BulletWorld implements PhysicWorld, Native, BulletShapeProvider {
     }
 
     @Override
-    public BulletPhysicObjectBuilder createBuilder() {
+    public BulletPhysicObjectBuilder createObject() {
         return new BulletPhysicObjectBuilder(this, this.pointer);
     }
 
