@@ -29,7 +29,7 @@ import be.yildiz.common.nativeresources.SystemLinux64;
 import be.yildiz.common.nativeresources.SystemWin32;
 import be.yildiz.common.shape.Box;
 import be.yildiz.common.vector.Point3D;
-import be.yildiz.module.physics.AbstractPhysicEngine;
+import be.yildiz.module.physics.PhysicEngine;
 import be.yildiz.module.physics.GhostObject;
 import be.yildiz.module.physics.KinematicBody;
 import be.yildiz.module.physics.PhysicWorld;
@@ -45,9 +45,9 @@ public class ManualTest {
                 new SystemLinux64(),
                 new SystemWin32()
         };
-        AbstractPhysicEngine engine = new BulletPhysicEngine(NativeResourceLoader.inJar(systems));
+        PhysicEngine engine = new BulletPhysicEngine(NativeResourceLoader.inJar(systems));
 
-        PhysicWorld world = engine.createPhysicWorld();
+        PhysicWorld world = engine.createWorld();
 
         world.addCollisionListener(objects -> System.out.println("objects:" + objects.object1 + ", " + objects.object2));
         world.createBuilder()

@@ -25,7 +25,7 @@ package be.yildiz.module.physics.bullet;
 
 import be.yildiz.common.log.Logger;
 import be.yildiz.common.nativeresources.NativeResourceLoader;
-import be.yildiz.module.physics.AbstractPhysicEngine;
+import be.yildiz.module.physics.PhysicEngine;
 import be.yildiz.module.physics.PhysicWorld;
 
 /**
@@ -33,7 +33,7 @@ import be.yildiz.module.physics.PhysicWorld;
  *
  * @author Van den Borre Grégory
  */
-public final class BulletPhysicEngine extends AbstractPhysicEngine {
+public final class BulletPhysicEngine extends PhysicEngine {
 
     /**
      * Simple constructor, load the native lib.
