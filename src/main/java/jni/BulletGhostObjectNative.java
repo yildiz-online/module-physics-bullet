@@ -23,6 +23,8 @@
 
 package jni;
 
+import be.yildiz.common.vector.Point3D;
+
 /**
  * Native interface for the btghost.
  *
@@ -48,4 +50,5 @@ public class BulletGhostObjectNative {
      */
     public native void setPosition(final long pointerAddress, final float x, final float y, final float z);
 
+    public native float[] getPosition(long pointerAddress);
 }

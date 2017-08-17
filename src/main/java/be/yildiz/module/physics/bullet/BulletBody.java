@@ -26,6 +26,8 @@ package be.yildiz.module.physics.bullet;
 import be.yildiz.common.id.EntityId;
 import be.yildiz.common.nativeresources.Native;
 import be.yildiz.common.nativeresources.NativePointer;
+import be.yildiz.common.vector.Point3D;
+import be.yildiz.module.physics.AbstractMovableObject;
 import be.yildiz.module.physics.BaseBody;
 import jni.BulletBodyNative;
 
@@ -34,7 +36,7 @@ import jni.BulletBodyNative;
  *
  * @author Gregory Van den Borre
  */
-abstract class BulletBody implements Native, BaseBody {
+abstract class BulletBody extends AbstractMovableObject implements Native, BaseBody {
 
     /**
      * Associated id.
@@ -83,6 +85,12 @@ abstract class BulletBody implements Native, BaseBody {
     public final void delete() {
         this.nativeBody.delete(this.pointer.getPointerAddress(), this.world.getPointerAddress());
         this.pointer.delete();
+    }
+
+    @Override
+    public Point3D getPosition() {
+        float[] p = this.nativeBody.getPosition(this.pointer.getPointerAddress());
+        return Point3D.valueOf(p[0], p[1], p[2]);
     }
 
     /**

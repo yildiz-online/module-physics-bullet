@@ -61,4 +61,14 @@ final class BulletStaticBody extends BulletBody implements StaticBody {
     public Point3D getDirection() {
         return direction;
     }
+
+    @Override
+    public void setPosition(float posX, float posY, float posZ) {
+        //does nothing.
+    }
+
+    @Override
+    public void setDirection(float dirX, float dirY, float dirZ) {
+        //does nothing.
+    }
 }

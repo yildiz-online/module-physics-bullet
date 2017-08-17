@@ -61,10 +61,9 @@ final class BulletGhostObject extends AbstractMovableObject implements GhostObje
      * @param id             Unique identifier.
      * @param pointerAddress Native address.
      * @param world          World containing this object native address.
-     * @param position       Object position when created.
      */
-    BulletGhostObject(final EntityId id, final NativePointer pointerAddress, final NativePointer world, final Point3D position) {
-        super(position);
+    BulletGhostObject(final EntityId id, final NativePointer pointerAddress, final NativePointer world) {
+        super();
         this.id = id;
         this.pointer = pointerAddress;
         this.worldPointer = world;
@@ -82,12 +81,29 @@ final class BulletGhostObject extends AbstractMovableObject implements GhostObje
     }
 
     @Override
-    protected void setPositionImpl(final Point3D pos) {
-        this.ghostNative.setPosition(this.pointer.getPointerAddress(), pos.x, pos.y, pos.z);
+    public Point3D getPosition() {
+        float[] f = this.ghostNative.getPosition(this.pointer.getPointerAddress());
+        return Point3D.valueOf(f[0], f[1], f[2]);
+    }
+
+    @Override
+    public Point3D getDirection() {
+        return Point3D.BASE_DIRECTION;
+    }
+
+    @Override
+    public void setPosition(float x, float y, float z) {
+        this.ghostNative.setPosition(this.pointer.getPointerAddress(), x, y, z);
+    }
+
+    @Override
+    public void setDirection(float dirX, float dirY, float dirZ) {
+
     }
 
     @Override
     public EntityId getId() {
         return id;
     }
+
 }

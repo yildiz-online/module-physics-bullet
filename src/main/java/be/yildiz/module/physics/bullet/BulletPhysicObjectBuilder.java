@@ -65,7 +65,7 @@ public class BulletPhysicObjectBuilder extends PhysicObjectBuilder {
     @Override
     public GhostObject buildGhost() {
         final long ghostAddress = this.worldNative.createGhostObject(this.worldPointer.getPointerAddress(), this.getShapePointer().getPointerAddress(), id.value, position.x, position.y, position.z);
-        return new BulletGhostObject(id, NativePointer.create(ghostAddress), this.worldPointer, position);
+        return new BulletGhostObject(id, NativePointer.create(ghostAddress), this.worldPointer);
     }
 
 
