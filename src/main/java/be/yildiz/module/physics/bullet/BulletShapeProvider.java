@@ -25,6 +25,7 @@ package be.yildiz.module.physics.bullet;
 
 import be.yildiz.common.nativeresources.NativePointer;
 import be.yildiz.common.shape.Box;
+import be.yildiz.common.shape.Plane;
 import be.yildiz.common.shape.Sphere;
 import be.yildiz.module.physics.PhysicMesh;
 
@@ -48,6 +49,14 @@ public interface BulletShapeProvider {
      * @return The pointer to the physique shape matching the Sphere.
      */
     NativePointer getShape(Sphere sphere);
+
+    /**
+     * Get the pointer to the btshape associated with this plane.
+     *
+     * @param plane Shape representation.
+     * @return The pointer to the physique shape matching the Plane.
+     */
+    NativePointer getShape(Plane plane);
 
     /**
      * Get the pointer to the btshape associated with this mesh.

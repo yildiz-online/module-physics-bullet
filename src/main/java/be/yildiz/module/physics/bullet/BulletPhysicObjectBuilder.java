@@ -74,6 +74,8 @@ public class BulletPhysicObjectBuilder extends PhysicObjectBuilder {
             return this.provider.getShape(this.box);
         } else if(this.sphere != null) {
             return this.provider.getShape(sphere);
+        } else if(this.plane != null) {
+            return this.provider.getShape(plane);
         } else if (this.mesh != null) {
             return this.provider.getShape(this.mesh);
         }

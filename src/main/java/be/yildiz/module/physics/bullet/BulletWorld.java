@@ -32,6 +32,7 @@ import be.yildiz.common.log.Logger;
 import be.yildiz.common.nativeresources.Native;
 import be.yildiz.common.nativeresources.NativePointer;
 import be.yildiz.common.shape.Box;
+import be.yildiz.common.shape.Plane;
 import be.yildiz.common.shape.Sphere;
 import be.yildiz.common.util.Checker;
 import be.yildiz.common.util.Timer;
@@ -66,6 +67,12 @@ final class BulletWorld implements PhysicWorld, Native, BulletShapeProvider {
      * Contains The pointer for the btshape associated to Box object.
      */
     private final Map<Box, NativePointer> boxList = Maps.newMap();
+
+    /**
+     * Contains The pointer for the btshape associated to Plane object.
+     */
+    private final Map<Plane, NativePointer> planeList = Maps.newMap();
+
     /**
      * Contains The pointer for the btshape associated to Sphere object.
      */
@@ -219,6 +226,13 @@ final class BulletWorld implements PhysicWorld, Native, BulletShapeProvider {
         assert sphere != null;
         return this.sphereList.computeIfAbsent(sphere, s -> NativePointer.create(this.worldNative.createSphereShape(s.radius)));
     }
+
+    @Override
+    public NativePointer getShape(final Plane plane) {
+        assert plane != null;
+        return this.planeList.computeIfAbsent(plane, p -> NativePointer.create(this.worldNative.createPlaneShape(p.width, p.depth)));
+    }
+
 
     @Override
     public NativePointer getShape(final PhysicMesh mesh) {

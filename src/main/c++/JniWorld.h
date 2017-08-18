@@ -71,6 +71,8 @@ JNIEXPORT void JNICALL Java_jni_BulletWorldNative_removeBody(JNIEnv* env, jobjec
  */
 JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_createBoxShape(JNIEnv* env, jobject o, jfloat width, jfloat height, jfloat depth);
 
+JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_createPlaneShape(JNIEnv* env, jobject o, jfloat width, jfloat depth);
+
 /**
  * Build a sphere shape.
  * @param env

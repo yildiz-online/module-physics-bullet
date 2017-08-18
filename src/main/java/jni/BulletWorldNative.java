@@ -135,6 +135,8 @@ public class BulletWorldNative {
      */
     public native long createBoxShape(final float width, final float height, final float depth);
 
+    public native long createPlaneShape(int width, int depth);
+
     /**
      * Create a sphere btshape in native code.
      *
@@ -188,5 +190,4 @@ public class BulletWorldNative {
      * @param pointerAddress Pointer address of this associated yz::World.
      */
     public native void delete(final long pointerAddress);
-
 }

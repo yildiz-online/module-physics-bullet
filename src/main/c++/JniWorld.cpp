@@ -295,6 +295,22 @@ JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_createBoxShape(
     return -1L;
 }
 
+JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_createPlaneShape(
+    JNIEnv* env,
+    jobject o,
+    jfloat width,
+    jfloat depth) {
+    LOG_FUNCTION
+    try {
+        btCollisionShape* shape = new btBoxShape(
+                btVector3(width * 0.5F, 0.001F, depth * 0.5F));
+        return reinterpret_cast<jlong>(shape);
+    } catch (std::exception& e) {
+        throwException(env, e.what());
+    }
+    return -1L;
+}
+
 JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_createSphereShape(
     JNIEnv* env,
     jobject o,
