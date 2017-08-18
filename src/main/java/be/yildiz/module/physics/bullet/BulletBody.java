@@ -23,6 +23,7 @@
 
 package be.yildiz.module.physics.bullet;
 
+import be.yildiz.common.gameobject.Movable;
 import be.yildiz.common.id.EntityId;
 import be.yildiz.common.nativeresources.Native;
 import be.yildiz.common.nativeresources.NativePointer;
@@ -89,6 +90,7 @@ abstract class BulletBody extends AbstractMovableObject implements Native, BaseB
 
     @Override
     public Point3D getPosition() {
+        // Not final to be overidden by static body
         float[] p = this.nativeBody.getPosition(this.pointer.getPointerAddress());
         return Point3D.valueOf(p[0], p[1], p[2]);
     }
@@ -119,12 +121,17 @@ abstract class BulletBody extends AbstractMovableObject implements Native, BaseB
     }
 
     @Override
-    public EntityId getId() {
+    public final EntityId getId() {
         return id;
     }
 
     @Override
-    public NativePointer getPointer() {
+    public final NativePointer getPointer() {
         return pointer;
+    }
+
+    @Override
+    public final Movable getInternal() {
+        return this;
     }
 }

@@ -23,6 +23,7 @@
 
 package be.yildiz.module.physics.bullet;
 
+import be.yildiz.common.gameobject.Movable;
 import be.yildiz.common.id.EntityId;
 import be.yildiz.common.nativeresources.Native;
 import be.yildiz.common.nativeresources.NativePointer;
@@ -99,6 +100,11 @@ final class BulletGhostObject extends AbstractMovableObject implements GhostObje
     @Override
     public void setDirection(float dirX, float dirY, float dirZ) {
 
+    }
+
+    @Override
+    public Movable getInternal() {
+        return this;
     }
 
     @Override
