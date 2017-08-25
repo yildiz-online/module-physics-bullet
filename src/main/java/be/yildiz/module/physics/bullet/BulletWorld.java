@@ -28,7 +28,6 @@ import be.yildiz.common.collections.Maps;
 import be.yildiz.common.exeption.InvalidIdException;
 import be.yildiz.common.exeption.ResourceMissingException;
 import be.yildiz.common.id.EntityId;
-import be.yildiz.common.log.Logger;
 import be.yildiz.common.nativeresources.Native;
 import be.yildiz.common.nativeresources.NativePointer;
 import be.yildiz.common.shape.Box;
@@ -39,6 +38,8 @@ import be.yildiz.common.util.Timer;
 import be.yildiz.common.vector.Point3D;
 import be.yildiz.module.physics.*;
 import jni.BulletWorldNative;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.util.List;
@@ -50,6 +51,8 @@ import java.util.Map;
  * @author Grégory Van den Borre
  */
 final class BulletWorld implements PhysicWorld, Native, BulletShapeProvider {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(BulletWorld.class);
 
     /**
      * Contains all listeners to notify when a collision occurs or is lost.
@@ -180,7 +183,7 @@ final class BulletWorld implements PhysicWorld, Native, BulletShapeProvider {
                         foundCollisions.add(new CollisionResult(e1, e2));
                     }
                 } catch (InvalidIdException e) {
-                    Logger.error(e);
+                    LOGGER.error("Invalid id:", e);
                     // FIXME notify destruction instead
                 }
             }

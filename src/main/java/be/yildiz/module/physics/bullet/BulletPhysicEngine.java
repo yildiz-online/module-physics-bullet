@@ -23,10 +23,11 @@
 
 package be.yildiz.module.physics.bullet;
 
-import be.yildiz.common.log.Logger;
 import be.yildiz.common.nativeresources.NativeResourceLoader;
 import be.yildiz.module.physics.PhysicEngine;
 import be.yildiz.module.physics.PhysicWorld;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Bullet implementation for the physic engine.
@@ -35,16 +36,18 @@ import be.yildiz.module.physics.PhysicWorld;
  */
 public final class BulletPhysicEngine extends PhysicEngine {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(BulletPhysicEngine.class);
+
     /**
      * Simple constructor, load the native lib.
      * @param nativeResourceLoader Loader to be used to load natives.
      */
     public BulletPhysicEngine(NativeResourceLoader nativeResourceLoader) {
         super();
-        Logger.info("Initializing Bullet physic engine...");
+        LOGGER.info("Initializing Bullet physic engine...");
         nativeResourceLoader.loadBaseLibrary("libgcc_s_sjlj-1", "libstdc++-6");
         nativeResourceLoader.loadLibrary("libLinearMath","libBulletCollision", "libBulletDynamics", "libyildizbullet");
-        Logger.info("Bullet physic engine initialized.");
+        LOGGER.info("Bullet physic engine initialized.");
     }
 
     @Override
