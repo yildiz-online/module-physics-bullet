@@ -40,14 +40,26 @@ public final class BulletPhysicEngine extends PhysicEngine {
 
     /**
      * Simple constructor, load the native lib.
-     * @param nativeResourceLoader Loader to be used to load natives.
+     * @param loader Loader for the native libraries.
+     * @throws AssertionError if loader is null.
      */
-    public BulletPhysicEngine(NativeResourceLoader nativeResourceLoader) {
+    private BulletPhysicEngine(final NativeResourceLoader loader) {
         super();
+        assert loader != null;
         LOGGER.info("Initializing Bullet physic engine...");
-        nativeResourceLoader.loadBaseLibrary("libgcc_s_sjlj-1", "libstdc++-6");
-        nativeResourceLoader.loadLibrary("libLinearMath","libBulletCollision", "libBulletDynamics", "libyildizbullet");
+        loader.loadBaseLibrary("libgcc_s_sjlj-1", "libstdc++-6");
+        loader.loadLibrary("libLinearMath","libBulletCollision", "libBulletDynamics", "libyildizbullet");
         LOGGER.info("Bullet physic engine initialized.");
+    }
+
+    /**
+     * Create a new bullet physics engine.
+     * @param loader Loader for the native libraries.
+     * @return The created engine.
+     * @throws AssertionError if loader is null.
+     */
+    public static BulletPhysicEngine create(final NativeResourceLoader loader) {
+        return new BulletPhysicEngine(loader);
     }
 
     @Override

@@ -45,7 +45,7 @@ public class ManualTest {
                 new SystemLinux64(),
                 new SystemWin32()
         };
-        PhysicEngine engine = new BulletPhysicEngine(NativeResourceLoader.inJar(systems));
+        PhysicEngine engine = BulletPhysicEngine.create(NativeResourceLoader.inJar(systems));
 
         PhysicWorld world = engine.createWorld();
 
