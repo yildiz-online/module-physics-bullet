@@ -25,7 +25,7 @@
 #define DYNAMIC_MOTION_STATE_H
 
 #include "stdafx.h"
-#include "NativeMovable.hpp"
+#include "../includes/NativeMovable.hpp"
 
 namespace yz {
 

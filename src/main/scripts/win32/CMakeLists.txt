@@ -5,7 +5,6 @@ set(CMAKE_CXX_FLAGS "-O2 -std=gnu++11")
 
 include_directories(bullet/include)
 include_directories("java/include")
-include_directories(${CMAKE_SOURCE_DIR}/../common-native/include)
 include_directories("java/include/win32")
     
 set(CMAKE_SHARED_LINKER_FLAGS "-Xlinker --add-stdcall-alias")
@@ -14,8 +13,11 @@ set(CMAKE_SHARED_LINKER_FLAGS "-Xlinker --add-stdcall-alias")
 file(
         GLOB_RECURSE
         source_files
-        ${CMAKE_SOURCE_DIR}/../../c++/*.cpp
+        ${CMAKE_SOURCE_DIR}/../../c++/*.h
         ${CMAKE_SOURCE_DIR}/../../includes/*.h
+        ${CMAKE_SOURCE_DIR}/../../includes/*.hpp
+        ${CMAKE_SOURCE_DIR}/../../c++/*.cpp
+        ${CMAKE_SOURCE_DIR}/../../c++/*.c
 )
 
 #set dynamic lib as output, name is bullet and sources dem source_files variable are used.
