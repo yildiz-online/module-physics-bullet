@@ -13,14 +13,11 @@ set(CMAKE_SHARED_LINKER_FLAGS "-Xlinker --add-stdcall-alias")
 file(
         GLOB_RECURSE
         source_files
-        ${CMAKE_SOURCE_DIR}/../../c++/*.h
         ${CMAKE_SOURCE_DIR}/../../includes/*.h
         ${CMAKE_SOURCE_DIR}/../../includes/*.hpp
         ${CMAKE_SOURCE_DIR}/../../c++/*.cpp
-        ${CMAKE_SOURCE_DIR}/../../c++/*.c
 )
 
-#set dynamic lib as output, name is bullet and sources dem source_files variable are used.
 add_library(yildizbullet SHARED ${source_files})
 add_definitions(-O2)
 

@@ -21,11 +21,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE  SOFTWARE.
  */
 
-#include "stdafx.h"
-#include "JniBody.h"
-#include "World.h"
-#include "JniUtil.h"
-#include "DynamicMotionState.h"
+#include "../includes/stdafx.h"
+#include "../includes/JniBody.h"
+#include "../includes/World.hpp"
+#include "../includes/JniUtil.h"
+#include "../includes/DynamicMotionState.hpp"
 
 /**
 * @author Grégory Van den Borre

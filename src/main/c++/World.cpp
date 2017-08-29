@@ -21,9 +21,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE  SOFTWARE.
  */
 
-#include "World.h"
-#include "KinematicMotionState.h"
-#include "DynamicMotionState.h"
+#include "../includes/World.hpp"
+#include "../includes/KinematicMotionState.hpp"
+#include "../includes/DynamicMotionState.hpp"
 #include <algorithm>
 
 /**

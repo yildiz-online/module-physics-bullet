@@ -25,8 +25,8 @@
 #define BULLET_WORLD_H
 
 #include "stdafx.h"
-#include "KinematicMotionState.h"
-#include "RigidBody.h"
+#include "KinematicMotionState.hpp"
+#include "RigidBody.hpp"
 
 namespace yz {
 

@@ -25,7 +25,7 @@
 #define BULLET_RIGID_BODY_H
 
 #include "stdafx.h"
-#include "../includes/NativeMovable.hpp"
+#include "NativeMovable.hpp"
 
 namespace yz {
 

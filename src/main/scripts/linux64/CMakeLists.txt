@@ -15,11 +15,9 @@ include_directories(${JNI_INCLUDE_DIRS}/linux)
 file(
         GLOB_RECURSE
         source_files
-        ${CMAKE_SOURCE_DIR}/../../c++/*.h
         ${CMAKE_SOURCE_DIR}/../../includes/*.h
         ${CMAKE_SOURCE_DIR}/../../includes/*.hpp
         ${CMAKE_SOURCE_DIR}/../../c++/*.cpp
-        ${CMAKE_SOURCE_DIR}/../../c++/*.c
 
 )
 
