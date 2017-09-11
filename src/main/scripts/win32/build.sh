@@ -1,6 +1,7 @@
 cmake . -DCMAKE_BUILD_TYPE=Release -DLIBRARY_OUTPUT_PATH="../../../../target/classes/win32" -DCMAKE_TOOLCHAIN_FILE=mingw-toolchain.cmake
 
 make
+r1=$?
 
 cp bullet/bin/libBulletCollision.dll ../../../../target/classes/win32/libBulletCollision.dll
 cp bullet/bin/libBulletDynamics.dll ../../../../target/classes/win32/libBulletDynamics.dll
@@ -13,6 +14,8 @@ rm -R CMakeFiles
 rm CMakeCache.txt
 rm cmake_install.cmake
 rm Makefile
+
+return $r1
 
 
 
