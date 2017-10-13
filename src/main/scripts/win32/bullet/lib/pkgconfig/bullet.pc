@@ -1,6 +1,0 @@
-Name: bullet
-Description: Bullet Continuous Collision Detection and Physics Library
-Requires:
-Version: 2.83
-Libs: -L/home/moussa/dev/projects/module-physics-bullet/src/main/scripts/bullet-src/release/win32/ -lBulletSoftBody -lBulletDynamics -lBulletCollision -lLinearMath
-Cflags:  -I/home/moussa/dev/projects/module-physics-bullet/src/main/scripts/bullet-src/release/win32//home/moussa/dev/projects/module-physics-bullet/src/main/scripts/bullet-src/release/win32/include -I/home/moussa/dev/projects/module-physics-bullet/src/main/scripts/bullet-src/release/win32/include
