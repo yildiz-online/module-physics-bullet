@@ -3,7 +3,7 @@ project (yildiz_native_bullet)
 
 set(CMAKE_CXX_FLAGS "-O2 -std=gnu++11")
 
-include_directories("bullet/win32/include/bullet")
+include_directories("bullet/win64/include/bullet")
 include_directories("java/include")
 include_directories("java/include/win32")
 
@@ -26,6 +26,6 @@ file(
 add_library(yildizbullet SHARED ${source_files})
 add_definitions(-O2)
 
-target_link_libraries(yildizbullet ${CMAKE_SOURCE_DIR}/bullet/win32/lib/libBulletDynamics.dll.a)
-target_link_libraries(yildizbullet ${CMAKE_SOURCE_DIR}/bullet/win32/lib/libBulletCollision.dll.a)
-target_link_libraries(yildizbullet ${CMAKE_SOURCE_DIR}/bullet/win32/lib/libLinearMath.dll.a)
+target_link_libraries(yildizbullet ${CMAKE_SOURCE_DIR}/bullet/win64/lib/libBulletDynamics.dll.a)
+target_link_libraries(yildizbullet ${CMAKE_SOURCE_DIR}/bullet/win64/lib/libBulletCollision.dll.a)
+target_link_libraries(yildizbullet ${CMAKE_SOURCE_DIR}/bullet/win64/lib/libLinearMath.dll.a)

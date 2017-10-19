@@ -1,10 +1,22 @@
-cmake . -DBUILD_BULLET3=OFF -DBUILD_CPU_DEMOS=OFF -DBUILD_BULLET2_DEMOS=OFF -DBUILD_EXTRAS=ON -DBUILD_UNIT_TESTS=OFF -DCMAKE_BUILD_TYPE=Release -DCMAKE_COLOR_MAKEFILE=on -DINSTALL_EXTRA_LIBS=on -DINSTALL_LIBS=on -DINTERNAL_UPDATE_SERIALIZATION_STRUCTURES=off -DUSE_CUSTOM_VECTOR_MATH=off -DUSE_DOUBLE_PRECISION=off -DCMAKE_INSTALL_PREFIX="release/win32/" -DINCLUDE_INSTALL_DIR="release/win32/include" -DLIBRARY_OUTPUT_PATH="" -DLIB_DESTINATION="" -DCMAKE_TOOLCHAIN_FILE=../mingw-toolchain.cmake
+cmake . -DCMAKE_BUILD_TYPE=Release -DLIBRARY_OUTPUT_PATH="../../../../target/classes/win64" -DCMAKE_TOOLCHAIN_FILE=mingw-toolchain.cmake
 
-make install
+make
 r1=$?
 
-return $r1
+cp bullet/win64/bin/libBulletCollision.dll ../../../../target/classes/win64/libBulletCollision.dll
+cp bullet/win64/bin/libBulletDynamics.dll ../../../../target/classes/win64/libBulletDynamics.dll
+cp bullet/win64/bin/libBulletSoftBody.dll ../../../../target/classes/win64/libBulletSoftBody.dll
+cp bullet/win64/bin/libLinearMath.dll ../../../../target/classes/win64/libLinearMath.dll
+cp libstdc++-6.dll ../../../../target/classes/win64/libstdc++-6.dll
+cp libgcc_s_sjlj-1.dll ../../../../target/classes/win64/libgcc_s_sjlj-1.dll
 
+rm -R CMakeFiles
+rm CMakeCache.txt
+rm cmake_install.cmake
+rm Makefile
+rm -r bullet
+
+return $r1
 
 
 
