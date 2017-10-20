@@ -8,7 +8,7 @@ cp bullet/win64/bin/libBulletDynamics.dll ../../../../target/classes/win64/libBu
 cp bullet/win64/bin/libBulletSoftBody.dll ../../../../target/classes/win64/libBulletSoftBody.dll
 cp bullet/win64/bin/libLinearMath.dll ../../../../target/classes/win64/libLinearMath.dll
 cp libstdc++-6.dll ../../../../target/classes/win64/libstdc++-6.dll
-cp libgcc_s_sjlj-1.dll ../../../../target/classes/win64/libgcc_s_sjlj-1.dll
+cp libgcc_s_seh-1.dll ../../../../target/classes/win64/libgcc_s_seh-1.dll
 
 rm -R CMakeFiles
 rm CMakeCache.txt
