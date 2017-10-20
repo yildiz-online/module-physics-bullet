@@ -75,35 +75,6 @@
     </dependency>
   </dependencies>
 
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-dependency-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>common-bullet-file-unpack-include</id>
-            <phase>process-resources</phase>
-            <goals>
-              <goal>unpack</goal>
-            </goals>
-            <configuration>
-              <artifactItems>
-                <artifactItem>
-                  <groupId>be.yildiz-games</groupId>
-                  <artifactId>component-native-bullet</artifactId>
-                  <classifier>${nativeEnv}</classifier>
-                  <outputDirectory>src/main/scripts/${nativeEnv}/bullet</outputDirectory>
-                  <includes>${nativeEnv}/**/*.*</includes>
-                </artifactItem>
-              </artifactItems>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
-
   <profiles>
     <profile>
     <id>linux64</id>
@@ -151,6 +122,34 @@
           <classifier>${nativeEnv}</classifier>
         </dependency>
       </dependencies>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>common-bullet-file-unpack-include</id>
+                <phase>process-resources</phase>
+                <goals>
+                  <goal>unpack</goal>
+                </goals>
+                <configuration>
+                  <artifactItems>
+                    <artifactItem>
+                      <groupId>be.yildiz-games</groupId>
+                      <artifactId>component-native-bullet</artifactId>
+                      <classifier>${nativeEnv}</classifier>
+                      <outputDirectory>src/main/scripts/${nativeEnv}/bullet</outputDirectory>
+                      <includes>${nativeEnv}/**/*.*</includes>
+                    </artifactItem>
+                  </artifactItems>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
   </profiles>
 
