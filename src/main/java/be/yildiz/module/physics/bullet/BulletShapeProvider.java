@@ -23,11 +23,11 @@
 
 package be.yildiz.module.physics.bullet;
 
-import be.yildiz.common.nativeresources.NativePointer;
-import be.yildiz.common.shape.Box;
-import be.yildiz.common.shape.Plane;
-import be.yildiz.common.shape.Sphere;
 import be.yildiz.module.physics.PhysicMesh;
+import be.yildizgames.common.nativeresources.NativePointer;
+import be.yildizgames.common.shape.Box;
+import be.yildizgames.common.shape.Plane;
+import be.yildizgames.common.shape.Sphere;
 
 /**
  * @author Grégory Van den Borre

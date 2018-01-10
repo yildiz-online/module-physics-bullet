@@ -23,11 +23,11 @@
 
 package be.yildiz.module.physics.bullet;
 
-import be.yildiz.common.id.EntityId;
-import be.yildiz.common.nativeresources.NativePointer;
-import be.yildiz.common.vector.Point3D;
-import be.yildiz.common.vector.Quaternion;
 import be.yildiz.module.physics.DynamicBody;
+import be.yildizgames.common.geometry.Point3D;
+import be.yildizgames.common.geometry.Quaternion;
+import be.yildizgames.common.model.EntityId;
+import be.yildizgames.common.nativeresources.NativePointer;
 import jni.BulletBodyNative;
 import jni.BulletDynamicBodyNative;
 

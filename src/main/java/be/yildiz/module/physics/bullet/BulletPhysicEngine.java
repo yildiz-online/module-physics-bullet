@@ -23,9 +23,9 @@
 
 package be.yildiz.module.physics.bullet;
 
-import be.yildiz.common.nativeresources.NativeResourceLoader;
 import be.yildiz.module.physics.PhysicEngine;
 import be.yildiz.module.physics.PhysicWorld;
+import be.yildizgames.common.nativeresources.NativeResourceLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

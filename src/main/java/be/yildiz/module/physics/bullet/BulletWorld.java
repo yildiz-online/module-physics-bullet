@@ -23,20 +23,14 @@
 
 package be.yildiz.module.physics.bullet;
 
-import be.yildiz.common.collections.Lists;
-import be.yildiz.common.collections.Maps;
-import be.yildiz.common.exeption.InvalidIdException;
-import be.yildiz.common.exeption.ResourceMissingException;
-import be.yildiz.common.id.EntityId;
-import be.yildiz.common.nativeresources.Native;
-import be.yildiz.common.nativeresources.NativePointer;
-import be.yildiz.common.shape.Box;
-import be.yildiz.common.shape.Plane;
-import be.yildiz.common.shape.Sphere;
-import be.yildiz.common.util.Checker;
-import be.yildiz.common.util.Timer;
-import be.yildiz.common.vector.Point3D;
 import be.yildiz.module.physics.*;
+import be.yildizgames.common.geometry.Point3D;
+import be.yildizgames.common.model.EntityId;
+import be.yildizgames.common.nativeresources.Native;
+import be.yildizgames.common.nativeresources.NativePointer;
+import be.yildizgames.common.shape.Box;
+import be.yildizgames.common.shape.Plane;
+import be.yildizgames.common.shape.Sphere;
 import jni.BulletWorldNative;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

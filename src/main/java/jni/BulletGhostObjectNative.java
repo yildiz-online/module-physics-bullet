@@ -23,8 +23,6 @@
 
 package jni;
 
-import be.yildiz.common.vector.Point3D;
-
 /**
  * Native interface for the btghost.
  *

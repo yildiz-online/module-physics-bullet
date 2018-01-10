@@ -23,9 +23,9 @@
 
 package be.yildiz.module.physics.bullet;
 
-import be.yildiz.common.nativeresources.NativePointer;
 import be.yildiz.module.physics.GhostObject;
 import be.yildiz.module.physics.PhysicObjectBuilder;
+import be.yildizgames.common.nativeresources.NativePointer;
 import jni.BulletWorldNative;
 
 /**
