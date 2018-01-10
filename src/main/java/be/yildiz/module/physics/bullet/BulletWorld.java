@@ -24,6 +24,8 @@
 package be.yildiz.module.physics.bullet;
 
 import be.yildiz.module.physics.*;
+import be.yildizgames.common.exception.business.InvalidIdException;
+import be.yildizgames.common.exception.technical.ResourceMissingException;
 import be.yildizgames.common.geometry.Point3D;
 import be.yildizgames.common.model.EntityId;
 import be.yildizgames.common.nativeresources.Native;
@@ -36,6 +38,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -51,29 +55,29 @@ final class BulletWorld implements PhysicWorld, Native, BulletShapeProvider {
     /**
      * Contains all listeners to notify when a collision occurs or is lost.
      */
-    private final List<CollisionListener> collisionListeners = Lists.newList();
+    private final List<CollisionListener> collisionListeners = new ArrayList<>();
     /**
      * Contains all listeners to notify when a collision occurs or is lost with a ghost object.
      */
-    private final List<CollisionListener> ghostCollisionListeners = Lists.newList();
+    private final List<CollisionListener> ghostCollisionListeners = new ArrayList<>();
     /**
      * Contains The pointer for the btshape associated to PhysicMesh object.
      */
-    private final Map<String, NativePointer> shapeList = Maps.newMap();
+    private final Map<String, NativePointer> shapeList = new HashMap<>();
     /**
      * Contains The pointer for the btshape associated to Box object.
      */
-    private final Map<Box, NativePointer> boxList = Maps.newMap();
+    private final Map<Box, NativePointer> boxList = new HashMap<>();
 
     /**
      * Contains The pointer for the btshape associated to Plane object.
      */
-    private final Map<Plane, NativePointer> planeList = Maps.newMap();
+    private final Map<Plane, NativePointer> planeList = new HashMap<>();
 
     /**
      * Contains The pointer for the btshape associated to Sphere object.
      */
-    private final Map<Sphere, NativePointer> sphereList = Maps.newMap();
+    private final Map<Sphere, NativePointer> sphereList = new HashMap<>();
     /**
      * Contains the native calls.
      */
@@ -89,11 +93,11 @@ final class BulletWorld implements PhysicWorld, Native, BulletShapeProvider {
     /**
      * Contains all collisions between objects for the current physic state.
      */
-    private List<CollisionResult> collisions = Lists.newList();
+    private List<CollisionResult> collisions = new ArrayList<>();
     /**
      * Contains all collisions between objects and ghost objects for the current physic state.
      */
-    private List<CollisionResult> ghostCollisions = Lists.newList();
+    private List<CollisionResult> ghostCollisions = new ArrayList<>();
     /**
      * Current gravity applied on this world.
      */
@@ -146,7 +150,7 @@ final class BulletWorld implements PhysicWorld, Native, BulletShapeProvider {
 
     private List<CollisionResult> getCollisionList() {
         final long[] result = this.worldNative.update(this.pointer.getPointerAddress(), this.timer.getActionTime());
-        final List<CollisionResult> foundCollisions = Lists.newList(result.length);
+        final List<CollisionResult> foundCollisions = new ArrayList<>(result.length);
         for (int i = 0; i < result.length; i += 2) {
             long first = result[i];
             long second = result[i + 1];
@@ -163,7 +167,7 @@ final class BulletWorld implements PhysicWorld, Native, BulletShapeProvider {
 
     private List<CollisionResult> getGhostCollisionList() {
         final long[] result = this.worldNative.getGhostCollisionResult(this.pointer.getPointerAddress());
-        final List<CollisionResult> foundCollisions = Lists.newList();
+        final List<CollisionResult> foundCollisions = new ArrayList<>();
         for (int i = 0; i < result.length; i += 2) {
             if (result[i] != 0 && result[i + 1] != 0) {
                 try {
@@ -206,7 +210,7 @@ final class BulletWorld implements PhysicWorld, Native, BulletShapeProvider {
     public EntityId throwSimpleRay(final Point3D origin, final Point3D direction, final float distance) {
         assert origin != null;
         assert direction != null;
-        assert Checker.isPositive(distance);
+        assert distance >= 0;
         Point3D end = Point3D.normalizeAndMultiply(direction, distance);
         return this.throwSimpleRay(origin, end);
     }
