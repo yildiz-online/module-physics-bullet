@@ -1,4 +1,4 @@
-cmake . -DCMAKE_BUILD_TYPE=Release -DLIBRARY_OUTPUT_PATH="../../../../target/classes/linux64" -G "Unix Makefiles"
+cmake . -DCMAKE_BUILD_TYPE=Release -DBULLET_INCLUDE_DIR="bullet/linux64/include/bullet" -DBULLET_DYNAMICS_LIBRARY="bullet/linux64/lib/libBulletDynamics.so" -DBULLET_COLLISION_LIBRARY="bullet/linux64/lib/libBulletCollision.so" -DBULLET_MATH_LIBRARY="bullet/linux64/lib/libLinearMath.so" -DBULLET_SOFTBODY_LIBRARY="bullet/linux64/lib/libBulletSoftBody.so" -DLIBRARY_OUTPUT_PATH="../../../../target/classes/linux64" -G "Unix Makefiles"
 
 build-wrapper-linux-x86-64 --out-dir ../../../../target/sonar-cpp make
 r1=$?

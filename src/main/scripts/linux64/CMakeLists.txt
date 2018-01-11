@@ -8,7 +8,7 @@ find_package(Bullet REQUIRED)
 find_package(Java REQUIRED)
 find_package(JNI REQUIRED)
 
-include_directories(${BULLET_INCLUDE_DIRS})
+include_directories(${BULLET_INCLUDE_DIR})
 include_directories(${JNI_INCLUDE_DIRS})
 include_directories(${JNI_INCLUDE_DIRS}/linux)
 
