@@ -33,6 +33,7 @@ import be.yildizgames.common.nativeresources.NativePointer;
 import be.yildizgames.common.shape.Box;
 import be.yildizgames.common.shape.Plane;
 import be.yildizgames.common.shape.Sphere;
+import be.yildizgames.common.util.Timer;
 import jni.BulletWorldNative;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
