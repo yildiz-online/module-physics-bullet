@@ -25,7 +25,7 @@ package be.yildiz.module.physics.bullet;
 
 import be.yildiz.module.physics.AbstractMovableObject;
 import be.yildiz.module.physics.GhostObject;
-import be.yildizgames.common.geometry.Movable;
+import be.yildizgames.common.gameobject.Movable;
 import be.yildizgames.common.geometry.Point3D;
 import be.yildizgames.common.model.EntityId;
 import be.yildizgames.common.nativeresources.Native;
