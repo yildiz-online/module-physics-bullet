@@ -36,7 +36,12 @@ class RigidBody : public btRigidBody {
 
 public:
 
-    RigidBody(btScalar mass, btMotionState* state, btCollisionShape* shape, btVector3 inertia, NativeMovable* movable) :
+    RigidBody(
+      btScalar mass,
+      btMotionState* state,
+      btCollisionShape* shape,
+      btVector3 inertia,
+      NativeMovable* movable) :
     btRigidBody(mass, state, shape, inertia),
     movable(movable) {
     }
