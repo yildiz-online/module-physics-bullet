@@ -46,24 +46,36 @@ public class BulletPhysicObjectBuilder extends PhysicObjectBuilder {
 
     @Override
     public BulletStaticBody buildStatic() {
+        if(this.id == null) {
+            throw new IdNotProvidedException();
+        }
         final long bodyAddress = this.worldNative.createStaticBody(this.worldPointer.getPointerAddress(), this.getShapePointer().getPointerAddress(), id.value, position.x, position.y, position.z, direction.x, direction.y, direction.z);
         return new BulletStaticBody(NativePointer.create(bodyAddress), this.worldPointer, position, direction, id);
     }
 
     @Override
     public BulletKinematicBody buildKinematic() {
+        if(this.id == null) {
+            throw new IdNotProvidedException();
+        }
         final long bodyAddress = this.worldNative.createKinematicBody(this.worldPointer.getPointerAddress(), this.getShapePointer().getPointerAddress(), id.value, position.x, position.y, position.z);
         return new BulletKinematicBody(NativePointer.create(bodyAddress), this.worldPointer, id);
     }
 
     @Override
     public BulletDynamicBody buildDynamic() {
+        if(this.id == null) {
+            throw new IdNotProvidedException();
+        }
         final long bodyAddress = this.worldNative.createDynamicBody(this.worldPointer.getPointerAddress(), this.getShapePointer().getPointerAddress(), id.value, position.x, position.y, position.z, mass);
         return new BulletDynamicBody(NativePointer.create(bodyAddress), this.worldPointer, id, mass);
     }
 
     @Override
     public GhostObject buildGhost() {
+        if(this.id == null) {
+            throw new IdNotProvidedException();
+        }
         final long ghostAddress = this.worldNative.createGhostObject(this.worldPointer.getPointerAddress(), this.getShapePointer().getPointerAddress(), id.value, position.x, position.y, position.z);
         return new BulletGhostObject(id, NativePointer.create(ghostAddress), this.worldPointer);
     }
@@ -79,6 +91,6 @@ public class BulletPhysicObjectBuilder extends PhysicObjectBuilder {
         } else if (this.mesh != null) {
             return this.provider.getShape(this.mesh);
         }
-        throw new NullPointerException("No shape has been defined.");
+        throw new ShapeNotProvidedException();
     }
 }
