@@ -22,12 +22,12 @@
  *
  */
 
-package be.yildiz.module.physics.bullet;
+package be.yildizgames.module.physics.bullet;
 
-import be.yildiz.module.physics.StaticBody;
 import be.yildizgames.common.geometry.Point3D;
+import be.yildizgames.common.jni.NativePointer;
 import be.yildizgames.common.model.EntityId;
-import be.yildizgames.common.nativeresources.NativePointer;
+import be.yildizgames.module.physics.StaticBody;
 
 /**
  * A static body is intended to stay at its original position and will never move, it has a mass of 0 and is not affected by physic forces.

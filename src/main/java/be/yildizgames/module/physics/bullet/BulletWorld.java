@@ -22,27 +22,28 @@
  *
  */
 
-package be.yildiz.module.physics.bullet;
+package be.yildizgames.module.physics.bullet;
 
-import be.yildiz.module.physics.Gravity;
-import be.yildiz.module.physics.PhysicMesh;
-import be.yildiz.module.physics.PhysicWorld;
-import be.yildiz.module.physics.RaycastResult;
 import be.yildizgames.common.exception.business.InvalidIdException;
 import be.yildizgames.common.exception.technical.ResourceMissingException;
 import be.yildizgames.common.gameobject.CollisionListener;
 import be.yildizgames.common.gameobject.CollisionResult;
 import be.yildizgames.common.geometry.Point3D;
+import be.yildizgames.common.jni.Native;
+import be.yildizgames.common.jni.NativePointer;
+import be.yildizgames.common.logging.LogFactory;
 import be.yildizgames.common.model.EntityId;
-import be.yildizgames.common.nativeresources.Native;
-import be.yildizgames.common.nativeresources.NativePointer;
 import be.yildizgames.common.shape.Box;
 import be.yildizgames.common.shape.Plane;
 import be.yildizgames.common.shape.Sphere;
-import be.yildizgames.common.util.Timer;
+import be.yildizgames.common.time.Timer;
+import be.yildizgames.module.physics.Gravity;
+import be.yildizgames.module.physics.PhysicMesh;
+import be.yildizgames.module.physics.PhysicWorld;
+import be.yildizgames.module.physics.RaycastResult;
+import be.yildizgames.module.physics.bullet.shape.BulletShapeProvider;
 import jni.BulletWorldNative;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -57,7 +58,7 @@ import java.util.Map;
  */
 final class BulletWorld implements PhysicWorld, Native, BulletShapeProvider {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(BulletWorld.class);
+    private static final Logger LOGGER = LogFactory.getInstance().getLogger(BulletWorld.class);
 
     /**
      * Contains all listeners to notify when a collision occurs or is lost.

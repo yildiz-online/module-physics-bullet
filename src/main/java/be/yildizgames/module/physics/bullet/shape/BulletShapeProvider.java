@@ -22,13 +22,13 @@
  *
  */
 
-package be.yildiz.module.physics.bullet;
+package be.yildizgames.module.physics.bullet.shape;
 
-import be.yildiz.module.physics.PhysicMesh;
-import be.yildizgames.common.nativeresources.NativePointer;
+import be.yildizgames.common.jni.NativePointer;
 import be.yildizgames.common.shape.Box;
 import be.yildizgames.common.shape.Plane;
 import be.yildizgames.common.shape.Sphere;
+import be.yildizgames.module.physics.PhysicMesh;
 
 /**
  * @author Grégory Van den Borre

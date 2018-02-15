@@ -22,11 +22,11 @@
  *
  */
 
-package be.yildiz.module.physics.bullet;
+package be.yildizgames.module.physics.bullet.exception;
 
-public class IdNotProvidedException extends IllegalArgumentException {
+public class ShapeNotProvidedException extends IllegalArgumentException {
 
-    IdNotProvidedException() {
-        super("The id is mandatory to build a physic object, please use 'PhysicObjectBuilder.withId' method.");
+    public ShapeNotProvidedException() {
+        super("The shape is mandatory to build a physic object, please use 'PhysicObjectBuilder.withShape' method.");
     }
 }

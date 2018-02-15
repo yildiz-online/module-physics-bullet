@@ -22,10 +22,13 @@
  *
  */
 
-package be.yildiz.module.physics.bullet;
+package be.yildizgames.module.physics.bullet;
 
-import be.yildizgames.common.nativeresources.NativePointer;
+import be.yildizgames.common.jni.NativePointer;
 import be.yildizgames.common.shape.Box;
+import be.yildizgames.module.physics.bullet.exception.IdNotProvidedException;
+import be.yildizgames.module.physics.bullet.exception.ShapeNotProvidedException;
+import be.yildizgames.module.physics.bullet.shape.BulletShapeProvider;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

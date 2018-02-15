@@ -22,17 +22,20 @@
  *
  */
 
-package be.yildiz.module.physics.bullet;
+package be.yildizgames.module.physics.bullet;
 
-import be.yildiz.module.physics.GhostObject;
-import be.yildiz.module.physics.PhysicObjectBuilder;
-import be.yildizgames.common.nativeresources.NativePointer;
+import be.yildizgames.common.jni.NativePointer;
+import be.yildizgames.module.physics.GhostObject;
+import be.yildizgames.module.physics.PhysicObjectBuilder;
+import be.yildizgames.module.physics.bullet.exception.IdNotProvidedException;
+import be.yildizgames.module.physics.bullet.exception.ShapeNotProvidedException;
+import be.yildizgames.module.physics.bullet.shape.BulletShapeProvider;
 import jni.BulletWorldNative;
 
 /**
  * @author Grégory Van den Borre
  */
-public class BulletPhysicObjectBuilder extends PhysicObjectBuilder {
+class BulletPhysicObjectBuilder extends PhysicObjectBuilder {
 
     private final BulletShapeProvider provider;
 
@@ -40,7 +43,7 @@ public class BulletPhysicObjectBuilder extends PhysicObjectBuilder {
 
     private BulletWorldNative worldNative = new BulletWorldNative();
 
-    public BulletPhysicObjectBuilder(BulletShapeProvider provider, NativePointer worldPointer) {
+    BulletPhysicObjectBuilder(BulletShapeProvider provider, NativePointer worldPointer) {
         this.provider = provider;
         this.worldPointer = worldPointer;
     }

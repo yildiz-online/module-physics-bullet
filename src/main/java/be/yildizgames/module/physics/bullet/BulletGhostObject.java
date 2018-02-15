@@ -22,15 +22,15 @@
  *
  */
 
-package be.yildiz.module.physics.bullet;
+package be.yildizgames.module.physics.bullet;
 
-import be.yildiz.module.physics.AbstractMovableObject;
-import be.yildiz.module.physics.GhostObject;
 import be.yildizgames.common.gameobject.Movable;
 import be.yildizgames.common.geometry.Point3D;
+import be.yildizgames.common.jni.Native;
+import be.yildizgames.common.jni.NativePointer;
 import be.yildizgames.common.model.EntityId;
-import be.yildizgames.common.nativeresources.Native;
-import be.yildizgames.common.nativeresources.NativePointer;
+import be.yildizgames.module.physics.AbstractMovableObject;
+import be.yildizgames.module.physics.GhostObject;
 import jni.BulletGhostObjectNative;
 
 /**

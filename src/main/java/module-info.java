@@ -22,11 +22,19 @@
  *
  */
 
-package be.yildiz.module.physics.bullet;
+module be.yildizgames.module.physics.bullet {
 
-public class ShapeNotProvidedException extends IllegalArgumentException {
+    requires be.yildizgames.common.libloader;
+    requires be.yildizgames.module.physics;
+    requires be.yildizgames.common.model;
+    requires be.yildizgames.common.gameobject;
+    requires be.yildizgames.common.geometry;
+    requires be.yildizgames.common.logging;
+    requires be.yildizgames.common.shape;
+    requires be.yildizgames.common.exception;
+    requires be.yildizgames.common.time;
+    requires slf4j.api;
+    requires be.yildizgames.common.jni;
 
-    ShapeNotProvidedException() {
-        super("The shape is mandatory to build a physic object, please use 'PhysicObjectBuilder.withShape' method.");
-    }
+    exports be.yildizgames.module.physics.bullet;
 }

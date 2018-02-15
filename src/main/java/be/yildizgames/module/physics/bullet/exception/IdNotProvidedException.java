@@ -22,9 +22,11 @@
  *
  */
 
-/**
- * Package for the Bullet implementation of the physic engine.
- *
- * @author Grégory Van den Borre
- */
-package be.yildiz.module.physics.bullet;
+package be.yildizgames.module.physics.bullet.exception;
+
+public class IdNotProvidedException extends IllegalArgumentException {
+
+    public IdNotProvidedException() {
+        super("The id is mandatory to build a physic object, please use 'PhysicObjectBuilder.withId' method.");
+    }
+}

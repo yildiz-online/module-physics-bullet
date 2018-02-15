@@ -10,7 +10,7 @@ The bullet module is an implementation of the module-physics, it is based on the
 
 ## Requirements
 
-To build this module, you will need a java 8 JDK, Mingw64, and Maven 3.
+To build this module, you will need a java 9 JDK, Mingw64, and Maven 3.
 
 ## Coding Style and other information
 

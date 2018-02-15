@@ -22,39 +22,34 @@
  *
  */
 
-package be.yildiz.module.physics.bullet;
+package be.yildizgames.module.physics.bullet;
 
-import be.yildiz.module.physics.DynamicBody;
 import be.yildizgames.common.geometry.Point3D;
 import be.yildizgames.common.geometry.Quaternion;
+import be.yildizgames.common.jni.NativePointer;
 import be.yildizgames.common.model.EntityId;
-import be.yildizgames.common.nativeresources.NativePointer;
+import be.yildizgames.module.physics.KinematicBody;
 import jni.BulletBodyNative;
-import jni.BulletDynamicBodyNative;
+import jni.BulletKinematicBodyNative;
 
 /**
- * Bullet dynamic body.
+ * A kinematic body is intended to be moved manually, it has a mass of 0 and is not affected by physic forces.
  *
  * @author Grégory Van den Borre
  */
-final class BulletDynamicBody extends BulletBody implements DynamicBody {
+final class BulletKinematicBody extends BulletBody implements KinematicBody {
 
     /**
-     * Native pointer for the btbody.
+     * Pointer to the native object (btbody).
      */
     private final NativePointer pointer;
 
     /**
      * Contains the native calls.
      */
-    private final BulletDynamicBodyNative bodyNative = new BulletDynamicBodyNative();
+    private final BulletKinematicBodyNative bodyNative = new BulletKinematicBodyNative();
 
     private final BulletBodyNative bulletBodyNative = new BulletBodyNative();
-
-    /**
-     * Body current mass.
-     */
-    private final float mass;
 
     /**
      * Full constructor.
@@ -63,45 +58,47 @@ final class BulletDynamicBody extends BulletBody implements DynamicBody {
      * @param worldPointer Pointer of the associated btdiscreetworld object containing the body.
      * @param id           Body unique identifier.
      */
-    BulletDynamicBody(final NativePointer bodyPointer, final NativePointer worldPointer, final EntityId id, final float mass) {
+    BulletKinematicBody(final NativePointer bodyPointer, final NativePointer worldPointer, final EntityId id) {
         super(bodyPointer, worldPointer, id);
         this.pointer = bodyPointer;
-        this.mass = mass;
     }
 
+    @Override
+    public void setDirection(final float dirX, final float dirY, final float dirZ) {
+        this.bodyNative.setDirection(this.pointer.getPointerAddress(), dirX, dirY, dirZ);
+    }
+
+    @Override
+    public void setPosition(final float posX, final float posY, final float posZ) {
+        this.bodyNative.setPosition(this.pointer.getPointerAddress(), posX, posY, posZ);
+    }
+
+    @Override
+    public void setOrientation(final float x, final float y, final float z, final float w) {
+        this.bodyNative.rotate(this.pointer.getPointerAddress(), w, x, y, z);
+    }
+
+    @Override
+    public void setOrientation(final Quaternion q) {
+        this.bodyNative.rotate(this.pointer.getPointerAddress(), q.w, q.x, q.y, q.z);
+    }
+
+
+    /**
+     * @return The current position.
+     */
     @Override
     public Point3D getPosition() {
         float[] v = this.bulletBodyNative.getPosition(this.pointer.getPointerAddress());
         return Point3D.valueOf(v[0], v[1], v[2]);
     }
 
-    @Override
-    public void setPosition(final float x, final float y, final float z) {
-        this.bodyNative.setPosition(this.pointer.getPointerAddress(), x, y, z);
-    }
-
+    /**
+     * @return The current direction.
+     */
     @Override
     public Point3D getDirection() {
         float[] v = this.bulletBodyNative.getDirection(this.pointer.getPointerAddress());
         return Point3D.valueOf(v[0], v[1], v[2]);
-    }
-
-    @Override
-    public void setDirection(final float x, final float y, final float z) {
-        this.bodyNative.setDirection(this.pointer.getPointerAddress(), x, y, z);
-    }
-
-    @Override
-    public void setOrientation(final Quaternion q) {
-        this.bodyNative.setOrientation(this.pointer.getPointerAddress(), q.w, q.x, q.y, q.z);
-    }
-
-    @Override
-    public void setOrientation(final float x, final float y, final float z, final float w) {
-        this.bodyNative.setOrientation(this.pointer.getPointerAddress(), w, x, y, z);
-    }
-
-    public float getMass() {
-        return this.mass;
     }
 }
