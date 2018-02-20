@@ -41,6 +41,7 @@ import be.yildizgames.module.physics.Gravity;
 import be.yildizgames.module.physics.PhysicMesh;
 import be.yildizgames.module.physics.PhysicWorld;
 import be.yildizgames.module.physics.RaycastResult;
+import be.yildizgames.module.physics.World;
 import be.yildizgames.module.physics.bullet.shape.BulletShapeProvider;
 import jni.BulletWorldNative;
 import org.slf4j.Logger;
@@ -271,8 +272,9 @@ final class BulletWorld implements PhysicWorld, Native, BulletShapeProvider {
     }
 
     @Override
-    public void setGravity(final Gravity gravityValue) {
+    public World setGravity(final Gravity gravityValue) {
         this.setGravity(0, gravityValue.value, 0);
+        return this;
     }
 
     @Override
