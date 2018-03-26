@@ -10,7 +10,7 @@ The bullet module is an implementation of the module-physics, it is based on the
 
 ## Requirements
 
-To build this module, you will need a java 9 JDK, Mingw64, and Maven 3.
+To build this module, you will need a java 9 JDK, and Maven 3.
 
 ## Coding Style and other information
 
@@ -35,39 +35,19 @@ All source code files are licensed under the permissive MIT license
 
 Go to your root directory, where you POM file is located.
 
-for windows:
+	mvn clean install
 
-	mvn clean install -Denv=win32
-	
-for linux:
-
-	mvn clean install -Denv=linux64
-
-This will compile the source code, then run the unit tests, and finally build a jar file and DLL/SO for the environment you chose.
+This will compile the source code, then run the unit tests, and finally build a jar file.
 
 ## Usage
 
 In your maven project, add the dependency
 
-for windows:
-
 ```xml
 <dependency>
     <groupId>be.yildiz-games</groupId>
     <artifactId>module-physics-bullet</artifactId>
-    <version>1.0.5</version>
-	<classifier>win32</classifier>
-</dependency>
-```
-
-for linux:
-
-```xml
-<dependency>
-    <groupId>be.yildiz-games</groupId>
-    <artifactId>module-physics-bullet</artifactId>
-    <version>1.0.5</version>
-	<classifier>linux64</classifier>
+    <version>LATEST</version>
 </dependency>
 ```
 
