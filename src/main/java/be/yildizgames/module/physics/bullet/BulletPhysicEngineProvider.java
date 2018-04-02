@@ -24,6 +24,7 @@
 
 package be.yildizgames.module.physics.bullet;
 
+import be.yildizgames.common.libloader.GlobalNativeResourceLoader;
 import be.yildizgames.common.libloader.NativeResourceLoader;
 import be.yildizgames.module.physics.PhysicEngine;
 import be.yildizgames.module.physics.PhysicEngineProvider;
@@ -35,6 +36,6 @@ public class BulletPhysicEngineProvider implements PhysicEngineProvider {
 
     @Override
     public final PhysicEngine getPhysicEngine() {
-        return BulletPhysicEngine.create(NativeResourceLoader.inJar());
+        return BulletPhysicEngine.create(GlobalNativeResourceLoader.getInstance().getLoader());
     }
 }
