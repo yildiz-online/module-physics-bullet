@@ -49,7 +49,13 @@ public final class BulletPhysicEngine extends PhysicEngine {
         assert loader != null;
         LOGGER.info("Initializing Bullet physic engine...");
         loader.loadBaseLibrary();
-        loader.loadLibrary("libLinearMath","libBulletCollision", "libBulletDynamics", "libyildizbullet");
+        loader.loadLibrary(
+                "libBullet3Common",
+                "libLinearMath",
+                "libBulletCollision",
+                "libBulletDynamics",
+                "libBulletInverseDynamics",
+                "libyildizbullet");
         LOGGER.info("Bullet physic engine initialized.");
     }
 
