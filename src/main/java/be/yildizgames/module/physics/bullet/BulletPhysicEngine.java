@@ -26,7 +26,7 @@ package be.yildizgames.module.physics.bullet;
 
 import be.yildizgames.common.libloader.NativeResourceLoader;
 import be.yildizgames.common.logging.LogFactory;
-import be.yildizgames.module.physics.PhysicEngine;
+import be.yildizgames.module.physics.BasePhysicEngine;
 import be.yildizgames.module.physics.PhysicWorld;
 import org.slf4j.Logger;
 
@@ -35,7 +35,7 @@ import org.slf4j.Logger;
  *
  * @author Van den Borre Grégory
  */
-public final class BulletPhysicEngine extends PhysicEngine {
+public final class BulletPhysicEngine extends BasePhysicEngine {
 
     private static final Logger LOGGER = LogFactory.getInstance().getLogger(BulletPhysicEngine.class);
 
