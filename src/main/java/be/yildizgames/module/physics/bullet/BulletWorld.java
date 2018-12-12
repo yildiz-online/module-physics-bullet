@@ -25,7 +25,7 @@
 package be.yildizgames.module.physics.bullet;
 
 import be.yildizgames.common.exception.business.InvalidIdException;
-import be.yildizgames.common.exception.technical.ResourceMissingException;
+import be.yildizgames.common.file.exception.FileMissingException;
 import be.yildizgames.common.gameobject.CollisionListener;
 import be.yildizgames.common.gameobject.CollisionResult;
 import be.yildizgames.common.geometry.Point3D;
@@ -251,7 +251,7 @@ final class BulletWorld implements PhysicWorld, Native, BulletShapeProvider {
         if (shapePointer == null) {
             final File file = new File(mesh.file);
             if (!file.exists()) {
-                throw new ResourceMissingException("No physic trimesh for " + file.getAbsolutePath());
+                throw new FileMissingException("No physic trimesh for " + file.getAbsolutePath());
             }
             final long address = this.worldNative.deserializeMesh(this.pointer.getPointerAddress(), file.getAbsolutePath());
             shapePointer = NativePointer.create(address);

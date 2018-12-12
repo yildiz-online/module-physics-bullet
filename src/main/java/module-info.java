@@ -35,6 +35,7 @@ module be.yildizgames.module.physics.bullet {
     requires be.yildizgames.common.time;
     requires slf4j.api;
     requires be.yildizgames.common.jni;
+    requires be.yildizgames.common.file;
 
     exports be.yildizgames.module.physics.bullet;
 }
