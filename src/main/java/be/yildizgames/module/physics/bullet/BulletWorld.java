@@ -31,7 +31,6 @@ import be.yildizgames.common.gameobject.CollisionResult;
 import be.yildizgames.common.geometry.Point3D;
 import be.yildizgames.common.jni.Native;
 import be.yildizgames.common.jni.NativePointer;
-import be.yildizgames.common.logging.LogFactory;
 import be.yildizgames.common.model.EntityId;
 import be.yildizgames.common.shape.Box;
 import be.yildizgames.common.shape.Plane;
@@ -45,6 +44,7 @@ import be.yildizgames.module.physics.World;
 import be.yildizgames.module.physics.bullet.shape.BulletShapeProvider;
 import jni.BulletWorldNative;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -59,7 +59,7 @@ import java.util.Map;
  */
 final class BulletWorld implements PhysicWorld, Native, BulletShapeProvider {
 
-    private static final Logger LOGGER = LogFactory.getInstance().getLogger(BulletWorld.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(BulletWorld.class);
 
     /**
      * Contains all listeners to notify when a collision occurs or is lost.
