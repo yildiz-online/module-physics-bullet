@@ -25,10 +25,10 @@
 package be.yildizgames.module.physics.bullet;
 
 import be.yildizgames.common.libloader.NativeResourceLoader;
-import be.yildizgames.common.logging.LogFactory;
 import be.yildizgames.module.physics.BasePhysicEngine;
 import be.yildizgames.module.physics.PhysicWorld;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Bullet implementation for the physic engine.
@@ -37,7 +37,7 @@ import org.slf4j.Logger;
  */
 public final class BulletPhysicEngine extends BasePhysicEngine {
 
-    private static final Logger LOGGER = LogFactory.getInstance().getLogger(BulletPhysicEngine.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(BulletPhysicEngine.class);
 
     /**
      * Simple constructor, load the native lib.
