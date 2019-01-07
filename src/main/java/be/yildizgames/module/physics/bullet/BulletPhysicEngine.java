@@ -24,6 +24,7 @@
 
 package be.yildizgames.module.physics.bullet;
 
+import be.yildizgames.common.exception.implementation.ImplementationException;
 import be.yildizgames.common.libloader.NativeResourceLoader;
 import be.yildizgames.module.physics.BasePhysicEngine;
 import be.yildizgames.module.physics.PhysicWorld;
@@ -46,7 +47,7 @@ public final class BulletPhysicEngine extends BasePhysicEngine {
      */
     private BulletPhysicEngine(final NativeResourceLoader loader) {
         super();
-        assert loader != null;
+        ImplementationException.throwForNull(loader);
         LOGGER.info("Initializing Bullet physic engine...");
         loader.loadBaseLibrary();
         loader.loadLibrary(
