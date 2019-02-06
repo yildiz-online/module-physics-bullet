@@ -34,67 +34,67 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-class BulletPhysicObjectBuilderTest {
+public class BulletPhysicObjectBuilderTest {
 
     @Nested
-    class BuildStatic {
+    public class BuildStatic {
 
         @Test
-        void noId(){
+        public void noId(){
             BulletPhysicObjectBuilder builder = givenABuilder();
             Assertions.assertThrows(IdNotProvidedException.class, builder::buildStatic);
         }
 
         @Test
-        void noShape(){
+        public void noShape(){
             BulletPhysicObjectBuilder builder = givenABuilder();
             Assertions.assertThrows(ShapeNotProvidedException.class, () -> builder.withId(1).buildStatic());
         }
     }
 
     @Nested
-    class BuildKinematic {
+    public class BuildKinematic {
 
         @Test
-        void noId(){
+        public void noId(){
             BulletPhysicObjectBuilder builder = givenABuilder();
             Assertions.assertThrows(IdNotProvidedException.class, builder::buildKinematic);
         }
 
         @Test
-        void noShape(){
+        public void noShape(){
             BulletPhysicObjectBuilder builder = givenABuilder();
             Assertions.assertThrows(ShapeNotProvidedException.class, () -> builder.withId(1).buildKinematic());
         }
     }
 
     @Nested
-    class BuildDynamic {
+    public class BuildDynamic {
 
         @Test
-        void noId(){
+        public void noId(){
             BulletPhysicObjectBuilder builder = givenABuilder();
             Assertions.assertThrows(IdNotProvidedException.class, builder::buildDynamic);
         }
 
         @Test
-        void noShape(){
+        public void noShape(){
             BulletPhysicObjectBuilder builder = givenABuilder();
             Assertions.assertThrows(ShapeNotProvidedException.class, () -> builder.withId(1).buildDynamic());
         }
     }
 
     @Nested
-    class BuildGhost {
+    public class BuildGhost {
 
         @Test
-        void noId(){
+        public void noId(){
             BulletPhysicObjectBuilder builder = givenABuilder();
             Assertions.assertThrows(IdNotProvidedException.class, builder::buildGhost);
         }
 
         @Test
-        void noShape(){
+        public void noShape(){
             BulletPhysicObjectBuilder builder = givenABuilder();
             Assertions.assertThrows(ShapeNotProvidedException.class, () -> builder.withId(1).buildGhost());
         }
