@@ -26,13 +26,15 @@ package be.yildizgames.module.physics.bullet;
 
 import be.yildizgames.common.jni.NativePointer;
 import be.yildizgames.common.shape.Box;
+import be.yildizgames.common.shape.Plane;
+import be.yildizgames.common.shape.Sphere;
+import be.yildizgames.module.physics.PhysicMesh;
 import be.yildizgames.module.physics.bullet.exception.IdNotProvidedException;
 import be.yildizgames.module.physics.bullet.exception.ShapeNotProvidedException;
 import be.yildizgames.module.physics.bullet.shape.BulletShapeProvider;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 public class BulletPhysicObjectBuilderTest {
 
@@ -102,9 +104,34 @@ public class BulletPhysicObjectBuilderTest {
 
     private static BulletPhysicObjectBuilder givenABuilder() {
         NativePointer p = NativePointer.create(5);
-        BulletShapeProvider provider = Mockito.mock(BulletShapeProvider.class);
-        Mockito.when(provider.getShape(Box.cube(3))).thenReturn(NativePointer.create(3));
+        BulletShapeProvider provider = new DummyBulletShapeProvider();
         return new BulletPhysicObjectBuilder(provider, p);
+    }
+
+    private static class DummyBulletShapeProvider implements BulletShapeProvider {
+
+        @Override
+        public NativePointer getShape(Box box) {
+            if(box.depth == 3 && box.height == 3 && box.width == 3) {
+                return NativePointer.create(3);
+            }
+            return NativePointer.create(10);
+        }
+
+        @Override
+        public NativePointer getShape(Sphere sphere) {
+            return null;
+        }
+
+        @Override
+        public NativePointer getShape(Plane plane) {
+            return null;
+        }
+
+        @Override
+        public NativePointer getShape(PhysicMesh mesh) {
+            return null;
+        }
     }
 
 }
