@@ -87,3 +87,4 @@ JNIEXPORT void JNICALL Java_jni_BulletDynamicBodyNative_applyForce(JNIEnv* env, 
 }
 #endif
 #endif
+

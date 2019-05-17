@@ -194,4 +194,3 @@ JNIEXPORT void JNICALL Java_jni_BulletBodyNative_delete(
         throwException(env, e.what());
     }
 }
-
