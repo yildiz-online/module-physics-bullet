@@ -229,4 +229,5 @@ void yz::World::rayCastPoint(
         resultArray[2] = contact.getY();
         resultArray[3] = contact.getZ();
     }
+
 }
