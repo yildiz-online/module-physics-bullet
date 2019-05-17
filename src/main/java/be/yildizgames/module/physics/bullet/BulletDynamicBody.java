@@ -92,16 +92,16 @@ final class BulletDynamicBody extends BulletBody implements DynamicBody {
     }
 
     @Override
-    public void setOrientation(final Quaternion q) {
+    public final void setOrientation(final Quaternion q) {
         this.bodyNative.setOrientation(this.pointer.getPointerAddress(), q.w, q.x, q.y, q.z);
     }
 
     @Override
-    public void setOrientation(final float x, final float y, final float z, final float w) {
+    public final void setOrientation(final float x, final float y, final float z, final float w) {
         this.bodyNative.setOrientation(this.pointer.getPointerAddress(), w, x, y, z);
     }
 
-    public float getMass() {
+    public final float getMass() {
         return this.mass;
     }
 }

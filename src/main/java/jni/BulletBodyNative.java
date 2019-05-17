@@ -73,4 +73,5 @@ public class BulletBodyNative {
      * @return An Array with X, Y, Z direction coordinates [ensure result.size == 3].
      */
     public native float[] getDirection(final long pointerAddress);
+
 }

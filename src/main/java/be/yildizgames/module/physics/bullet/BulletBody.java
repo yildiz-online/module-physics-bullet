@@ -123,12 +123,12 @@ abstract class BulletBody extends AbstractMovableObject implements Native, BaseB
 
     @Override
     public final EntityId getId() {
-        return id;
+        return this.id;
     }
 
     @Override
     public final NativePointer getPointer() {
-        return pointer;
+        return this.pointer;
     }
 
     @Override
