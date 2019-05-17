@@ -159,3 +159,4 @@ JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_createGhostObject(JNIEnv* env
 }
 #endif
 #endif
+

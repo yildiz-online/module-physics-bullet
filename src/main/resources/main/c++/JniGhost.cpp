@@ -103,3 +103,4 @@ JNIEXPORT void JNICALL Java_jni_BulletGhostObjectNative_delete(
         throwException(env, e.what());
     }
 }
+

@@ -345,3 +345,4 @@ JNIEXPORT jlong JNICALL Java_jni_BulletWorldNative_createGhostObject(
     }
     return -1L;
 }
+
