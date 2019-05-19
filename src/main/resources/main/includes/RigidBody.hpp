@@ -53,6 +53,7 @@ public:
 private:
 
   NativeMovable* movable;
+
 };
 }
 

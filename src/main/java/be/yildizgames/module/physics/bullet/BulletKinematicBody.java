@@ -39,6 +39,7 @@ import jni.BulletKinematicBodyNative;
  */
 final class BulletKinematicBody extends BulletBody implements KinematicBody {
 
+
     /**
      * Pointer to the native object (btbody).
      */

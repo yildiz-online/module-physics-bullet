@@ -92,6 +92,7 @@ private:
 	* Offset to have the real position of the center of mass.
 	*/
 	btTransform	centerOfMassOffset;
+
 	btTransform startWorldTrans;
 
 };

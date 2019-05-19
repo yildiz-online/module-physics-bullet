@@ -35,6 +35,7 @@ import be.yildizgames.module.physics.PhysicMesh;
  */
 public interface BulletShapeProvider {
 
+
     /**
      * Get the pointer to the btshape associated with this box.
      *

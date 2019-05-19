@@ -59,6 +59,7 @@ import java.util.Map;
  */
 final class BulletWorld implements PhysicWorld, Native, BulletShapeProvider {
 
+
     private static final Logger LOGGER = LoggerFactory.getLogger(BulletWorld.class);
 
     /**

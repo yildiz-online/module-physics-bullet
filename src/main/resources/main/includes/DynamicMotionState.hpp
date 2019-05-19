@@ -88,7 +88,6 @@ private:
 
     NativeMovable* movable = new NativeMovable();
 };
-
 }
 
 #endif

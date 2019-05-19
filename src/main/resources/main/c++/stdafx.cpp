@@ -24,5 +24,4 @@
 /**
 * @author Grégory Van den Borre
 */
-
 #include "../includes/stdafx.h"

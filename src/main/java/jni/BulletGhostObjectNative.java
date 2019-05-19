@@ -31,6 +31,7 @@ package jni;
  */
 public class BulletGhostObjectNative {
 
+
     /**
      * Delete the object in native code and remove it from the world.
      *

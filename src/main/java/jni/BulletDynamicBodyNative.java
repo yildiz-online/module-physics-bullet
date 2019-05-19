@@ -31,6 +31,7 @@ package jni;
  */
 public class BulletDynamicBodyNative {
 
+
     /**
      * Set the btbody position in native code.
      *
@@ -71,5 +72,4 @@ public class BulletDynamicBodyNative {
      * @param z              Direction Z value.
      */
     public native void applyForce(final long pointerAddress, final float x, final float y, final float z);
-
 }

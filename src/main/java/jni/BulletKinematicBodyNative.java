@@ -31,6 +31,7 @@ package jni;
  */
 public class BulletKinematicBodyNative {
 
+
     /**
      * Set the position in native code.
      *

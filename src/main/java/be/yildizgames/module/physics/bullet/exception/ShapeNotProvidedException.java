@@ -24,6 +24,9 @@
 
 package be.yildizgames.module.physics.bullet.exception;
 
+/**
+ * @author Grégory Van den Borre
+ */
 public class ShapeNotProvidedException extends IllegalArgumentException {
 
     public ShapeNotProvidedException() {

@@ -37,6 +37,7 @@ import jni.BulletWorldNative;
  */
 class BulletPhysicObjectBuilder extends PhysicObjectBuilder {
 
+
     private final BulletShapeProvider provider;
 
     private final NativePointer worldPointer;

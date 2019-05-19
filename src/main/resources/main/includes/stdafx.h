@@ -39,7 +39,6 @@
 #include <vector>
 #include <set>
 #include <iostream>
-
 #include <jni.h>
 
 #endif

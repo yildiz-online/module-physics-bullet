@@ -36,6 +36,7 @@ import be.yildizgames.module.physics.StaticBody;
  */
 final class BulletStaticBody extends BulletBody implements StaticBody {
 
+
     private final Point3D position;
 
     private final Point3D direction;

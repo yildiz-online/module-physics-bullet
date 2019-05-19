@@ -40,6 +40,7 @@ import jni.BulletGhostObjectNative;
  */
 final class BulletGhostObject extends AbstractMovableObject implements GhostObject, Native {
 
+
     /**
      * Pointer address to the associated native object.
      */
@@ -104,12 +105,12 @@ final class BulletGhostObject extends AbstractMovableObject implements GhostObje
     }
 
     @Override
-    public Movable getInternal() {
+    public final Movable getInternal() {
         return this;
     }
 
     @Override
-    public EntityId getId() {
+    public final EntityId getId() {
         return id;
     }
 
