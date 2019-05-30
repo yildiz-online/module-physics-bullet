@@ -1,3 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
 <!--
   ~ This file is part of the Yildiz-Engine project, licenced under the MIT License  (MIT)
   ~
@@ -22,27 +24,32 @@
   ~
   -->
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
   <modelVersion>4.0.0</modelVersion>
-  <name>Yildiz Module Physics Bullet</name>
+
+  <name>Yildiz-Engine Module Physics Bullet</name>
   <description>Bullet implementation for the physics module.</description>
-  <url>https://bitbucket.org/yildiz-engine-team/module-physics-bullet</url>
+  <inceptionYear>2014</inceptionYear>
+  <url>https://engine.yildiz-games.be</url>
 
   <artifactId>module-physics-bullet</artifactId>
   <version>2.0.8-SNAPSHOT</version>
 
-  <packaging>jar</packaging>
-  <inceptionYear>2014</inceptionYear>
-  <scm>
-    <connection>scm:git:https://bitbucket.org/yildiz-engine-team/module-physics-bullet</connection>
-    <developerConnection>scm:git:https://bitbucket.org/yildiz-engine-team/module-physics-bullet</developerConnection>
-    <url>https://bitbucket.org/yildiz-engine-team/module-physics-bullet</url>
-  </scm>
   <parent>
     <groupId>be.yildiz-games</groupId>
     <artifactId>parent</artifactId>
     <version>3.0.5</version>
   </parent>
+
+  <packaging>jar</packaging>
+
+  <scm>
+    <connection>scm:git:https://github.com/yildiz-online/module-physics-bullet</connection>
+    <developerConnection>scm:git:https://github.com/yildiz-online/module-physics-bullet</developerConnection>
+    <url>https://github.com/yildiz-online/module-physics-bullet</url>
+  </scm>
 
   <dependencies>
     <dependency>
@@ -76,5 +83,4 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
-
 </project>
