@@ -28,8 +28,6 @@ import be.yildizgames.common.exception.implementation.ImplementationException;
 import be.yildizgames.common.libloader.NativeResourceLoader;
 import be.yildizgames.module.physics.BasePhysicEngine;
 import be.yildizgames.module.physics.PhysicWorld;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Bullet implementation for the physic engine.
@@ -39,7 +37,7 @@ import org.slf4j.LoggerFactory;
 public final class BulletPhysicEngine extends BasePhysicEngine {
 
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(BulletPhysicEngine.class);
+    private static final System.Logger LOGGER = System.getLogger(BulletPhysicEngine.class.getName());
 
     /**
      * Simple constructor, load the native lib.
@@ -49,7 +47,7 @@ public final class BulletPhysicEngine extends BasePhysicEngine {
     private BulletPhysicEngine(final NativeResourceLoader loader) {
         super();
         ImplementationException.throwForNull(loader);
-        LOGGER.info("Initializing Bullet physic engine...");
+        LOGGER.log(System.Logger.Level.INFO, "Initializing Bullet physic engine...");
         loader.loadBaseLibrary();
         loader.loadLibrary(
                 "libBullet3Common",
@@ -58,7 +56,7 @@ public final class BulletPhysicEngine extends BasePhysicEngine {
                 "libBulletDynamics",
                 "libBulletInverseDynamics",
                 "libyildizbullet");
-        LOGGER.info("Bullet physic engine initialized.");
+        LOGGER.log(System.Logger.Level.INFO, "Initializing Bullet physic engine complete.");
     }
 
     /**

@@ -43,8 +43,6 @@ import be.yildizgames.module.physics.RaycastResult;
 import be.yildizgames.module.physics.World;
 import be.yildizgames.module.physics.bullet.shape.BulletShapeProvider;
 import jni.BulletWorldNative;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -60,7 +58,7 @@ import java.util.Map;
 final class BulletWorld implements PhysicWorld, Native, BulletShapeProvider {
 
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(BulletWorld.class);
+    private static final System.Logger LOGGER = System.getLogger(BulletWorld.class.getName());
 
     /**
      * Contains all listeners to notify when a collision occurs or is lost.
@@ -191,7 +189,7 @@ final class BulletWorld implements PhysicWorld, Native, BulletShapeProvider {
                         foundCollisions.add(new CollisionResult(e1, e2));
                     }
                 } catch (InvalidIdException e) {
-                    LOGGER.error("Invalid id:", e);
+                    LOGGER.log(System.Logger.Level.ERROR,"Invalid id:", e);
                     // FIXME notify destruction instead
                 }
             }
