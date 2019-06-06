@@ -24,8 +24,6 @@
 
 package be.yildizgames.module.physics.bullet;
 
-import be.yildizgames.common.exception.business.InvalidIdException;
-import be.yildizgames.common.file.exception.FileMissingException;
 import be.yildizgames.common.gameobject.CollisionListener;
 import be.yildizgames.common.gameobject.CollisionResult;
 import be.yildizgames.common.geometry.Point3D;
@@ -178,7 +176,6 @@ final class BulletWorld implements PhysicWorld, Native, BulletShapeProvider {
         final List<CollisionResult> foundCollisions = new ArrayList<>();
         for (int i = 0; i < result.length; i += 2) {
             if (result[i] != 0 && result[i + 1] != 0) {
-                try {
                     EntityId e1 = EntityId.valueOf(result[i]);
                     EntityId e2 = EntityId.valueOf(result[i + 1]);
                     // FIXME in native code, do not return already existing
@@ -188,10 +185,7 @@ final class BulletWorld implements PhysicWorld, Native, BulletShapeProvider {
                     if (!e1.equals(e2)) {
                         foundCollisions.add(new CollisionResult(e1, e2));
                     }
-                } catch (InvalidIdException e) {
-                    LOGGER.log(System.Logger.Level.ERROR,"Invalid id:", e);
-                    // FIXME notify destruction instead
-                }
+
             }
         }
         return foundCollisions;
@@ -250,7 +244,7 @@ final class BulletWorld implements PhysicWorld, Native, BulletShapeProvider {
         if (shapePointer == null) {
             final File file = new File(mesh.file);
             if (!file.exists()) {
-                throw new FileMissingException("No physic trimesh for " + file.getAbsolutePath());
+                throw new IllegalStateException("No physic trimesh for " + file.getAbsolutePath());
             }
             final long address = this.worldNative.deserializeMesh(this.pointer.getPointerAddress(), file.getAbsolutePath());
             shapePointer = NativePointer.create(address);
