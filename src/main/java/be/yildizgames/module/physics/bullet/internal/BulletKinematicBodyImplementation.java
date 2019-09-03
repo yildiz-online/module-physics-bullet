@@ -21,31 +21,38 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE  SOFTWARE.
  *
  */
+package be.yildizgames.module.physics.bullet.internal;
 
-package jni;
+public interface BulletKinematicBodyImplementation extends BulletBodyImplementation {
 
-import be.yildizgames.module.physics.bullet.internal.BulletBodyImplementation;
+    /**
+     * Set the position in native code.
+     *
+     * @param pointerAddress Pointer address for the btbody.
+     * @param x              Position X value.
+     * @param y              Position Y value.
+     * @param z              Position Z value.
+     */
+    void setPosition(long pointerAddress, float x, float y, float z);
 
-/**
- * Native interface for the btbody.
- *
- * @author Grégory Van den Borre
- */
-public class BulletBodyNative implements BulletBodyImplementation {
+    /**
+     * Set the direction in native code.
+     *
+     * @param pointerAddress Pointer address for the btbody.
+     * @param x              Direction X value.
+     * @param y              Direction Y value.
+     * @param z              Direction Z value.
+     */
+    void setDirection(long pointerAddress, float x, float y, float z);
 
-    @Override
-    public native void setActivate(final long pointerAddress, final boolean activate);
-
-    @Override
-    public native void delete(final long pointerAddress, final long worldPointer);
-
-    @Override
-    public native void scale(long pointerAddress, float x, float y, float z);
-
-    @Override
-    public native float[] getPosition(final long pointerAddress);
-
-    @Override
-    public native float[] getDirection(final long pointerAddress);
-
+    /**
+     * Make a rotation in native code.
+     *
+     * @param pointerAddress Pointer address for the btbody.
+     * @param w              Rotation W value.
+     * @param x              Rotation X value.
+     * @param y              Rotation Y value.
+     * @param z              Rotation Z value.
+     */
+    void rotate(long pointerAddress, float w, float x, float y, float z);
 }

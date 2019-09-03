@@ -24,31 +24,21 @@
 
 package jni;
 
+import be.yildizgames.module.physics.bullet.internal.BulletGhostObjectImplementation;
+
 /**
  * Native interface for the btghost.
  *
  * @author Grégory Van den Borre
  */
-public class BulletGhostObjectNative {
+public class BulletGhostObjectNative implements BulletGhostObjectImplementation {
 
-
-    /**
-     * Delete the object in native code and remove it from the world.
-     *
-     * @param pointerAddress Native btghost pointer address.
-     * @param worldPointer   Native pointer address of the btdiscreetworld containing the ghost object.
-     */
+    @Override
     public native void delete(final long pointerAddress, final long worldPointer);
 
-    /**
-     * Set the btghost position in native code.
-     *
-     * @param pointerAddress Native btbody pointer address.
-     * @param x              Position X value to set to the btghost.
-     * @param y              Position Y value to set to the btghost.
-     * @param z              Position Z value to set to the btghost.
-     */
+    @Override
     public native void setPosition(final long pointerAddress, final float x, final float y, final float z);
 
+    @Override
     public native float[] getPosition(long pointerAddress);
 }

@@ -29,6 +29,7 @@ import be.yildizgames.common.geometry.Quaternion;
 import be.yildizgames.common.jni.NativePointer;
 import be.yildizgames.common.model.EntityId;
 import be.yildizgames.module.physics.DynamicBody;
+import be.yildizgames.module.physics.bullet.internal.BulletDynamicBodyImplementation;
 import jni.BulletBodyNative;
 import jni.BulletDynamicBodyNative;
 
@@ -63,15 +64,15 @@ final class BulletDynamicBody extends BulletBody implements DynamicBody {
      * @param worldPointer Pointer of the associated btdiscreetworld object containing the body.
      * @param id           Body unique identifier.
      */
-    BulletDynamicBody(final NativePointer bodyPointer, final NativePointer worldPointer, final EntityId id, final float mass) {
-        super(bodyPointer, worldPointer, id);
+    BulletDynamicBody(final BulletDynamicBodyImplementation implementation, final NativePointer bodyPointer, final NativePointer worldPointer, final EntityId id, final float mass) {
+        super(implementation, bodyPointer, worldPointer, id);
         this.pointer = bodyPointer;
         this.mass = mass;
     }
 
     @Override
     public Point3D getPosition() {
-        float[] v = this.bulletBodyNative.getPosition(this.pointer.getPointerAddress());
+        var v = this.bulletBodyNative.getPosition(this.pointer.getPointerAddress());
         return Point3D.valueOf(v[0], v[1], v[2]);
     }
 
@@ -82,7 +83,7 @@ final class BulletDynamicBody extends BulletBody implements DynamicBody {
 
     @Override
     public Point3D getDirection() {
-        float[] v = this.bulletBodyNative.getDirection(this.pointer.getPointerAddress());
+        var v = this.bulletBodyNative.getDirection(this.pointer.getPointerAddress());
         return Point3D.valueOf(v[0], v[1], v[2]);
     }
 

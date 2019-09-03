@@ -27,6 +27,7 @@ package be.yildizgames.module.physics.bullet;
 import be.yildizgames.common.libloader.NativeResourceLoader;
 import be.yildizgames.module.physics.BasePhysicEngine;
 import be.yildizgames.module.physics.PhysicWorld;
+import jni.BulletWorldNative;
 
 /**
  * Bullet implementation for the physic engine.
@@ -69,6 +70,6 @@ public final class BulletPhysicEngine extends BasePhysicEngine {
 
     @Override
     protected PhysicWorld createPhysicWorldImpl() {
-        return new BulletWorld();
+        return new BulletWorld(new BulletWorldNative());
     }
 }

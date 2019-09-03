@@ -39,14 +39,12 @@ import be.yildizgames.module.physics.PhysicMesh;
 import be.yildizgames.module.physics.PhysicWorld;
 import be.yildizgames.module.physics.RaycastResult;
 import be.yildizgames.module.physics.World;
+import be.yildizgames.module.physics.bullet.internal.BulletWorldImplementation;
 import be.yildizgames.module.physics.bullet.shape.BulletShapeProvider;
 import jni.BulletWorldNative;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Bullet implementation for an abstract world, provide basic facilities to create and manage bullet objects.
@@ -87,11 +85,11 @@ final class BulletWorld implements PhysicWorld, Native, BulletShapeProvider {
     /**
      * Contains the native calls.
      */
-    private final BulletWorldNative worldNative = new BulletWorldNative();
+    private final BulletWorldImplementation worldNative;
     /**
      * Pointer address to the native associated yz::World.
      */
-    private final NativePointer pointer = NativePointer.create(this.worldNative.constructor());
+    private final NativePointer pointer;
     /**
      * Timer to compute time between 2 updates.
      */
@@ -112,15 +110,17 @@ final class BulletWorld implements PhysicWorld, Native, BulletShapeProvider {
     /**
      * Create the world and update it to initiate the inner timer.
      */
-    BulletWorld() {
+    BulletWorld(BulletWorldImplementation implementation) {
         super();
+        this.worldNative = implementation;
+        this.pointer = NativePointer.create(this.worldNative.constructor());
         this.update();
     }
 
     @Override
     public void update() {
-        final List<CollisionResult> newCollisions = this.getCollisionList();
-        final List<CollisionResult> oldCollisions = this.collisions;
+        final var newCollisions = this.getCollisionList();
+        final var oldCollisions = this.collisions;
         for (final CollisionResult pair : newCollisions) {
             if (!oldCollisions.contains(pair)) {
                 this.collisionListeners.forEach(l -> l.newCollision(pair));
@@ -136,8 +136,8 @@ final class BulletWorld implements PhysicWorld, Native, BulletShapeProvider {
         this.collisions = newCollisions;
 
         // Ghost objects
-        final List<CollisionResult> newGhostCollisions = this.getGhostCollisionList();
-        final List<CollisionResult> oldGhostCollisions = this.ghostCollisions;
+        final var newGhostCollisions = this.getGhostCollisionList();
+        final var oldGhostCollisions = this.ghostCollisions;
 
         for (final CollisionResult pair : newGhostCollisions) {
             if (!oldGhostCollisions.contains(pair)) {
@@ -176,8 +176,8 @@ final class BulletWorld implements PhysicWorld, Native, BulletShapeProvider {
         final List<CollisionResult> foundCollisions = new ArrayList<>();
         for (int i = 0; i < result.length; i += 2) {
             if (result[i] != 0 && result[i + 1] != 0) {
-                    EntityId e1 = EntityId.valueOf(result[i]);
-                    EntityId e2 = EntityId.valueOf(result[i + 1]);
+                    var e1 = EntityId.valueOf(result[i]);
+                    var e2 = EntityId.valueOf(result[i + 1]);
                     // FIXME in native code, do not return already existing
                     // collision, use event instead(collision event will
                     // populate a list, clean it once retrieved, collision lost
@@ -203,43 +203,37 @@ final class BulletWorld implements PhysicWorld, Native, BulletShapeProvider {
 
     @Override
     public EntityId throwSimpleRay(final Point3D origin, final Point3D destination) {
-        assert origin != null;
-        assert destination != null;
         return EntityId.valueOf(this.worldNative.simpleRaycast(this.pointer.getPointerAddress(), origin.x, origin.y, origin.z, destination.x, destination.y, destination.z));
     }
 
     @Override
     public EntityId throwSimpleRay(final Point3D origin, final Point3D direction, final float distance) {
-        assert origin != null;
-        assert direction != null;
-        assert distance >= 0;
+        if(distance <=0) {
+            throw new IllegalArgumentException("Distance is negative");
+        }
         Point3D end = Point3D.normalizeAndMultiply(direction, distance);
         return this.throwSimpleRay(origin, end);
     }
 
     @Override
     public NativePointer getShape(final Box box) {
-        assert box != null;
         return this.boxList.computeIfAbsent(box, b ->
             NativePointer.create(this.worldNative.createBoxShape(b.width, b.height, b.depth)));
     }
 
     @Override
     public NativePointer getShape(final Sphere sphere) {
-        assert sphere != null;
         return this.sphereList.computeIfAbsent(sphere, s -> NativePointer.create(this.worldNative.createSphereShape(s.radius)));
     }
 
     @Override
     public NativePointer getShape(final Plane plane) {
-        assert plane != null;
         return this.planeList.computeIfAbsent(plane, p -> NativePointer.create(this.worldNative.createPlaneShape(p.width, p.depth)));
     }
 
 
     @Override
     public NativePointer getShape(final PhysicMesh mesh) {
-        assert mesh != null;
         NativePointer shapePointer = this.shapeList.get(mesh.file);
         if (shapePointer == null) {
             final File file = new File(mesh.file);
@@ -278,13 +272,13 @@ final class BulletWorld implements PhysicWorld, Native, BulletShapeProvider {
 
     @Override
     public final void addCollisionListener(final CollisionListener listener) {
-        assert listener != null;
+        Objects.requireNonNull(listener);
         this.collisionListeners.add(listener);
     }
 
     @Override
     public final void addGhostCollisionListener(final CollisionListener listener) {
-        assert listener != null;
+        Objects.requireNonNull(listener);
         this.ghostCollisionListeners.add(listener);
     }
 

@@ -29,7 +29,11 @@ import be.yildizgames.module.physics.GhostObject;
 import be.yildizgames.module.physics.PhysicObjectBuilder;
 import be.yildizgames.module.physics.bullet.exception.IdNotProvidedException;
 import be.yildizgames.module.physics.bullet.exception.ShapeNotProvidedException;
+import be.yildizgames.module.physics.bullet.internal.BulletDynamicBodyImplementation;
+import be.yildizgames.module.physics.bullet.internal.BulletKinematicBodyImplementation;
 import be.yildizgames.module.physics.bullet.shape.BulletShapeProvider;
+import jni.BulletDynamicBodyNative;
+import jni.BulletKinematicBodyNative;
 import jni.BulletWorldNative;
 
 /**
@@ -42,6 +46,10 @@ class BulletPhysicObjectBuilder extends PhysicObjectBuilder {
     private final NativePointer worldPointer;
 
     private final BulletWorldNative worldNative = new BulletWorldNative();
+
+    private final BulletDynamicBodyImplementation dynamicBodyImplementation = new BulletDynamicBodyNative();
+
+    private final BulletKinematicBodyImplementation kinematicBodyImplementation = new BulletKinematicBodyNative();
 
     BulletPhysicObjectBuilder(BulletShapeProvider provider, NativePointer worldPointer) {
         this.provider = provider;
@@ -63,7 +71,7 @@ class BulletPhysicObjectBuilder extends PhysicObjectBuilder {
             throw new IdNotProvidedException();
         }
         final long bodyAddress = this.worldNative.createKinematicBody(this.worldPointer.getPointerAddress(), this.getShapePointer().getPointerAddress(), id.value, position.x, position.y, position.z);
-        return new BulletKinematicBody(NativePointer.create(bodyAddress), this.worldPointer, id);
+        return new BulletKinematicBody(this.kinematicBodyImplementation, NativePointer.create(bodyAddress), this.worldPointer, id);
     }
 
     @Override
@@ -72,7 +80,7 @@ class BulletPhysicObjectBuilder extends PhysicObjectBuilder {
             throw new IdNotProvidedException();
         }
         final long bodyAddress = this.worldNative.createDynamicBody(this.worldPointer.getPointerAddress(), this.getShapePointer().getPointerAddress(), id.value, position.x, position.y, position.z, mass);
-        return new BulletDynamicBody(NativePointer.create(bodyAddress), this.worldPointer, id, mass);
+        return new BulletDynamicBody(dynamicBodyImplementation, NativePointer.create(bodyAddress), this.worldPointer, id, mass);
     }
 
     @Override

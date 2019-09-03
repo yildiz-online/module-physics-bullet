@@ -31,6 +31,8 @@ import be.yildizgames.common.jni.NativePointer;
 import be.yildizgames.common.model.EntityId;
 import be.yildizgames.module.physics.AbstractMovableObject;
 import be.yildizgames.module.physics.BaseBody;
+import be.yildizgames.module.physics.bullet.internal.BulletBodyImplementation;
+import be.yildizgames.module.physics.bullet.internal.BulletWorldImplementation;
 import jni.BulletBodyNative;
 
 /**
@@ -48,7 +50,7 @@ abstract class BulletBody extends AbstractMovableObject implements Native, BaseB
     /**
      * Contains the native calls.
      */
-    private final BulletBodyNative nativeBody = new BulletBodyNative();
+    private final BulletBodyImplementation nativeBody;
 
     /**
      * Pointer to the native object (btbody).
@@ -72,12 +74,13 @@ abstract class BulletBody extends AbstractMovableObject implements Native, BaseB
      * @param worldPointer   Pointer of the associated world.
      * @param id             Object unique Id.
      */
-    BulletBody(final NativePointer pointerAddress, final NativePointer worldPointer, final EntityId id) {
+    BulletBody(BulletBodyImplementation implementation, final NativePointer pointerAddress, final NativePointer worldPointer, final EntityId id) {
         super();
         this.pointer = pointerAddress;
         this.world = worldPointer;
         this.sleeping = false;
         this.id = id;
+        this.nativeBody = implementation;
     }
 
     /**

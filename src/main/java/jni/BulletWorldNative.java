@@ -24,172 +24,59 @@
 
 package jni;
 
+import be.yildizgames.module.physics.bullet.internal.BulletWorldImplementation;
+
 /**
  * @author Grégory Van den Borre
  */
-public class BulletWorldNative {
+public class BulletWorldNative implements BulletWorldImplementation {
 
-
-    /**
-     * Create a new yz::World in native code.
-     *
-     * @return The pointer value of the created object.
-     */
+    @Override
     public native long constructor();
 
-    /**
-     * Throw a ray and retrieve its collision point and collided object.
-     *
-     * @param pointerAddress Pointer address of this associated yz::World.
-     * @param beginX         Ray origin X value.
-     * @param beginY         Ray origin Y value.
-     * @param beginZ         Ray origin Z value.
-     * @param endX           Ray end X value.
-     * @param endY           Ray end Y value.
-     * @param endZ           Ray end Z value.
-     * @return an array containing the id of the intersected object, the x, y and z values of the intersection point.
-     */
+    @Override
     public native long[] raycast(final long pointerAddress, final float beginX, final float beginY, final float beginZ, final float endX, final float endY, final float endZ);
 
-    /**
-     * Throw a ray and retrieve its collided object, faster than raycast.
-     *
-     * @param pointerAddress Pointer address of this associated yz::World.
-     * @param beginX         Ray origin X value.
-     * @param beginY         Ray origin Y value.
-     * @param beginZ         Ray origin Z value.
-     * @param endX           Ray end X value.
-     * @param endY           Ray end Y value.
-     * @param endZ           Ray end Z value.
-     * @return an array containing the id of the intersected object, the x, y and z values of the intersection point.
-     */
+    @Override
     public native long simpleRaycast(final long pointerAddress, final float beginX, final float beginY, final float beginZ, final float endX, final float endY, final float endZ);
 
-    /**
-     * Create a btshape from a serialized file.
-     *
-     * @param pointerAddress Pointer address of this associated yz::World.
-     * @param file           File to deserialize.
-     * @return A pointer to the btshape retrieved from the serialized file.
-     */
+    @Override
     public native long deserializeMesh(final long pointerAddress, final String file);
 
-    /**
-     * Set the gravity in native code.
-     *
-     * @param pointerAddress Pointer address of this associated yz::World.
-     * @param gravityX       Gravity X value.
-     * @param gravityY       Gravity Y value.
-     * @param gravityZ       Gravity Z value.
-     */
+    @Override
     public native void setGravity(final long pointerAddress, final float gravityX, final float gravityY, final float gravityZ);
 
-    /**
-     * Create a static btrigidbody in native code.
-     *
-     * @param pointerAddress Pointer address of this associated btworld.
-     * @param shape          btshape pointer to build the body.
-     * @param id             Id to associate with the body.
-     * @param x              Body position X value.
-     * @param y              Body position Y value.
-     * @param z              Body position Z value.
-     * @param dX             Body direction X value.
-     * @param dY             Body direction Y value.
-     * @param dZ             Body direction Z value.
-     * @return A pointer to the newly created btrigidbody.
-     */
+    @Override
     public native long createStaticBody(final long pointerAddress, final long shape, final long id, final float x, final float y, final float z, final float dX, final float dY, final float dZ);
 
-    /**
-     * Create a kinematic btrigidbody in native code.
-     *
-     * @param pointerAddress Pointer address of this associated btworld.
-     * @param shape          btshape pointer to build the body.
-     * @param id             Id to associate with the body.
-     * @param x              Initial X position.
-     * @param y              Initial Y position.
-     * @param z              Initial Z position.
-     * @return A pointer to the newly created btrigidbody.
-     */
+    @Override
     public native long createKinematicBody(final long pointerAddress, final long shape, final long id, final float x, final float y, final float z);
 
-    /**
-     * Create a kinematic btrigidbody in native code.
-     *
-     * @param pointerAddress Pointer address of this associated btworld.
-     * @param shape          btshape pointer to build the body.
-     * @param id             Id to associate with the body.
-     * @param x              Initial X position.
-     * @param y              Initial Y position.
-     * @param z              Initial Z position.
-     * @param mass           Initial mass.
-     * @return A pointer to the newly created btrigidbody.
-     */
+    @Override
     public native long createDynamicBody(final long pointerAddress, final long shape, final long id, final float x, final float y, final float z, final float mass);
 
-    /**
-     * Create a box btshape in native code.
-     *
-     * @param width  Box width size.
-     * @param height Box height size.
-     * @param depth  Box depth size.
-     * @return A pointer to the newly create btshape.
-     */
+    @Override
     public native long createBoxShape(final float width, final float height, final float depth);
 
+    @Override
     public native long createPlaneShape(int width, int depth);
 
-    /**
-     * Create a sphere btshape in native code.
-     *
-     * @param radius Sphere radius size.
-     * @return A pointer to the newly create btshape.
-     */
+    @Override
     public native long createSphereShape(final float radius);
 
-    /**
-     * Update the world in native code.
-     *
-     * @param pointerAddress Pointer address to the associated yz::World.
-     * @param time           Time since the last call.
-     * @return An array containing all the collision occurred during the execution.
-     */
+    @Override
     public native long[] update(final long pointerAddress, final long time);
 
-    /**
-     * Remove the body from the world but does not delete it.
-     *
-     * @param pointerAddress Pointer address of this associated yz::World.
-     * @param bodyPointer    Pointer address of btbody to remove from the world.
-     */
+    @Override
     // FIXME check if unused, delete here and in native code.
-    private native void removeBody(final long pointerAddress, final long bodyPointer);
+    public native void removeBody(final long pointerAddress, final long bodyPointer);
 
-    /**
-     * Create a ghost object in native code.
-     *
-     * @param pointerAddress Pointer address of this associated yz::World.
-     * @param shape          btshape pointer to build the ghost.
-     * @param id             Id to associate with the ghost.
-     * @param x              Initial X position.
-     * @param y              Initial Y position.
-     * @param z              Initial Z position.
-     * @return A pointer to the newly created btGhostObject*.
-     */
+    @Override
     public native long createGhostObject(final long pointerAddress, final long shape, final long id, final float x, final float y, final float z);
 
-    /**
-     * Retrieve collision with ghost objects in native code.
-     *
-     * @param pointerAddress Pointer address of this associated btworld.
-     * @return An array containing the Id values of collided objects going by pair(i.e:result[0] is colliding with result[1], and so on...).
-     */
+    @Override
     public native long[] getGhostCollisionResult(final long pointerAddress);
 
-    /**
-     * Delete this world in native code.
-     *
-     * @param pointerAddress Pointer address of this associated yz::World.
-     */
+    @Override
     public native void delete(final long pointerAddress);
 }

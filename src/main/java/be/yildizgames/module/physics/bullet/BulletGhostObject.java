@@ -85,7 +85,7 @@ final class BulletGhostObject extends AbstractMovableObject implements GhostObje
 
     @Override
     public Point3D getPosition() {
-        float[] f = this.ghostNative.getPosition(this.pointer.getPointerAddress());
+        var f = this.ghostNative.getPosition(this.pointer.getPointerAddress());
         return Point3D.valueOf(f[0], f[1], f[2]);
     }
 
@@ -101,7 +101,7 @@ final class BulletGhostObject extends AbstractMovableObject implements GhostObje
 
     @Override
     public void setDirection(float dirX, float dirY, float dirZ) {
-
+        //does nothing
     }
 
     @Override

@@ -21,31 +21,27 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE  SOFTWARE.
  *
  */
+package be.yildizgames.module.physics.bullet.internal;
 
-package jni;
+public interface BulletGhostObjectImplementation {
 
-import be.yildizgames.module.physics.bullet.internal.BulletBodyImplementation;
+    /**
+     * Delete the object in native code and remove it from the world.
+     *
+     * @param pointerAddress Native btghost pointer address.
+     * @param worldPointer   Native pointer address of the btdiscreetworld containing the ghost object.
+     */
+    void delete(long pointerAddress, long worldPointer);
 
-/**
- * Native interface for the btbody.
- *
- * @author Grégory Van den Borre
- */
-public class BulletBodyNative implements BulletBodyImplementation {
+    /**
+     * Set the btghost position in native code.
+     *
+     * @param pointerAddress Native btbody pointer address.
+     * @param x              Position X value to set to the btghost.
+     * @param y              Position Y value to set to the btghost.
+     * @param z              Position Z value to set to the btghost.
+     */
+    void setPosition(long pointerAddress, float x, float y, float z);
 
-    @Override
-    public native void setActivate(final long pointerAddress, final boolean activate);
-
-    @Override
-    public native void delete(final long pointerAddress, final long worldPointer);
-
-    @Override
-    public native void scale(long pointerAddress, float x, float y, float z);
-
-    @Override
-    public native float[] getPosition(final long pointerAddress);
-
-    @Override
-    public native float[] getDirection(final long pointerAddress);
-
+    float[] getPosition(long pointerAddress);
 }

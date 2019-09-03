@@ -24,52 +24,24 @@
 
 package jni;
 
+import be.yildizgames.module.physics.bullet.internal.BulletDynamicBodyImplementation;
+
 /**
  * Native interface for the btbody with dynamic behavior.
  *
  * @author Grégory Van den Borre
  */
-public class BulletDynamicBodyNative {
+public class BulletDynamicBodyNative extends BulletBodyNative implements BulletDynamicBodyImplementation {
 
-
-    /**
-     * Set the btbody position in native code.
-     *
-     * @param pointerAddress Native btbody pointer address.
-     * @param x              Position X value to set to the btbody.
-     * @param y              Position Y value to set to the btbody.
-     * @param z              Position Z value to set to the btbody.
-     */
+    @Override
     public native void setPosition(final long pointerAddress, final float x, final float y, final float z);
 
-    /**
-     * Set the body direction.
-     *
-     * @param pointerAddress Native btbody pointer address.
-     * @param x              Direction X value.
-     * @param y              Direction Y value.
-     * @param z              Direction Z value.
-     */
+    @Override
     public native void setDirection(final long pointerAddress, final float x, final float y, final float z);
 
-    /**
-     * Set the orientation in native code.
-     *
-     * @param pointerAddress Native btbody pointer address.
-     * @param w              Orientation quaternion W value.
-     * @param x              Orientation quaternion X value.
-     * @param y              Orientation quaternion Y value.
-     * @param z              Orientation quaternion Z value.
-     */
+    @Override
     public native void setOrientation(final long pointerAddress, final float w, final float x, final float y, final float z);
 
-    /**
-     * Apply a force to the body.
-     *
-     * @param pointerAddress Native btbody pointer address.
-     * @param x              Direction X value.
-     * @param y              Direction Y value.
-     * @param z              Direction Z value.
-     */
+    @Override
     public native void applyForce(final long pointerAddress, final float x, final float y, final float z);
 }

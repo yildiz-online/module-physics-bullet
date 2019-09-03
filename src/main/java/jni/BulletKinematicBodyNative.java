@@ -24,42 +24,21 @@
 
 package jni;
 
+import be.yildizgames.module.physics.bullet.internal.BulletKinematicBodyImplementation;
+
 /**
  * Native interface for the btbody with kinematic behavior.
  *
  * @author Grégory Van den Borre
  */
-public class BulletKinematicBodyNative {
+public class BulletKinematicBodyNative extends BulletBodyNative implements BulletKinematicBodyImplementation {
 
-
-    /**
-     * Set the position in native code.
-     *
-     * @param pointerAddress Pointer address for the btbody.
-     * @param x              Position X value.
-     * @param y              Position Y value.
-     * @param z              Position Z value.
-     */
+    @Override
     public native void setPosition(final long pointerAddress, final float x, final float y, final float z);
 
-    /**
-     * Set the direction in native code.
-     *
-     * @param pointerAddress Pointer address for the btbody.
-     * @param x              Direction X value.
-     * @param y              Direction Y value.
-     * @param z              Direction Z value.
-     */
+    @Override
     public native void setDirection(final long pointerAddress, final float x, final float y, final float z);
 
-    /**
-     * Make a rotation in native code.
-     *
-     * @param pointerAddress Pointer address for the btbody.
-     * @param w              Rotation W value.
-     * @param x              Rotation X value.
-     * @param y              Rotation Y value.
-     * @param z              Rotation Z value.
-     */
+    @Override
     public native void rotate(final long pointerAddress, final float w, final float x, final float y, final float z);
 }
