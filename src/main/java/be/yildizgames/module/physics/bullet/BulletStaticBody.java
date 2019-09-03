@@ -28,6 +28,7 @@ import be.yildizgames.common.geometry.Point3D;
 import be.yildizgames.common.jni.NativePointer;
 import be.yildizgames.common.model.EntityId;
 import be.yildizgames.module.physics.StaticBody;
+import be.yildizgames.module.physics.bullet.internal.BulletBodyImplementation;
 
 /**
  * A static body is intended to stay at its original position and will never move, it has a mass of 0 and is not affected by physic forces.
@@ -48,8 +49,8 @@ final class BulletStaticBody extends BulletBody implements StaticBody {
      * @param worldPointer   World pointer address.
      * @param id             Associated id.
      */
-    BulletStaticBody(final NativePointer pointerAddress, final NativePointer worldPointer, final Point3D position, final Point3D direction, final EntityId id) {
-        super(pointerAddress, worldPointer, id);
+    BulletStaticBody(BulletBodyImplementation implementation, final NativePointer pointerAddress, final NativePointer worldPointer, final Point3D position, final Point3D direction, final EntityId id) {
+        super(implementation, pointerAddress, worldPointer, id);
         this.position = position;
         this.direction = direction;
     }
