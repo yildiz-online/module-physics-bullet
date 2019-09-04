@@ -24,6 +24,7 @@
 package be.yildizgames.module.physics.bullet;
 
 import be.yildizgames.module.physics.bullet.dummy.DummyBulletWorldImplementation;
+import be.yildizgames.common.geometry.Point3D;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
