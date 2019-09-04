@@ -34,8 +34,7 @@ public class DummyBulletWorldImplementation implements BulletWorldImplementation
 
     @Override
     public long[] raycast(long pointerAddress, float beginX, float beginY, float beginZ, float endX, float endY, float endZ) {
-        long[] result = {1,2,3,4};
-        return result;
+        return new long[]{1,2,3,4};
     }
 
     @Override
