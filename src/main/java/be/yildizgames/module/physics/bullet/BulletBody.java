@@ -32,8 +32,6 @@ import be.yildizgames.common.model.EntityId;
 import be.yildizgames.module.physics.AbstractMovableObject;
 import be.yildizgames.module.physics.BaseBody;
 import be.yildizgames.module.physics.bullet.internal.BulletBodyImplementation;
-import be.yildizgames.module.physics.bullet.internal.BulletWorldImplementation;
-import jni.BulletBodyNative;
 
 /**
  * Common class for kinematic, static and dynamic bodies.

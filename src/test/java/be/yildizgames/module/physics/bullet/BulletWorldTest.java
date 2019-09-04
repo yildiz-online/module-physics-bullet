@@ -70,7 +70,7 @@ public class BulletWorldTest {
         @Test
         public void nullDestination() {
             var world = givenABulletWorld();
-            Assertions.assertThrows(NullPointerException.class, () -> world.throwRay(Point3D.valueOf(1,2,3), Point3D.valueOf(4,5,6)));
+            Assertions.assertThrows(NullPointerException.class, () -> world.throwRay(Point3D.valueOf(1,2,3), null));
         }
 
     }

@@ -34,14 +34,9 @@ import be.yildizgames.common.shape.Box;
 import be.yildizgames.common.shape.Plane;
 import be.yildizgames.common.shape.Sphere;
 import be.yildizgames.common.time.Timer;
-import be.yildizgames.module.physics.Gravity;
-import be.yildizgames.module.physics.PhysicMesh;
-import be.yildizgames.module.physics.PhysicWorld;
-import be.yildizgames.module.physics.RaycastResult;
-import be.yildizgames.module.physics.World;
+import be.yildizgames.module.physics.*;
 import be.yildizgames.module.physics.bullet.internal.BulletWorldImplementation;
 import be.yildizgames.module.physics.bullet.shape.BulletShapeProvider;
-import jni.BulletWorldNative;
 
 import java.io.File;
 import java.util.*;
@@ -272,14 +267,12 @@ final class BulletWorld implements PhysicWorld, Native, BulletShapeProvider {
 
     @Override
     public final void addCollisionListener(final CollisionListener listener) {
-        Objects.requireNonNull(listener);
-        this.collisionListeners.add(listener);
+        this.collisionListeners.add(Objects.requireNonNull(listener));
     }
 
     @Override
     public final void addGhostCollisionListener(final CollisionListener listener) {
-        Objects.requireNonNull(listener);
-        this.ghostCollisionListeners.add(listener);
+        this.ghostCollisionListeners.add(Objects.requireNonNull(listener));
     }
 
     @Override
