@@ -31,7 +31,6 @@ import be.yildizgames.common.model.EntityId;
 import be.yildizgames.module.physics.KinematicBody;
 import be.yildizgames.module.physics.bullet.internal.BulletKinematicBodyImplementation;
 import jni.BulletBodyNative;
-import jni.BulletKinematicBodyNative;
 
 /**
  * A kinematic body is intended to be moved manually, it has a mass of 0 and is not affected by physic forces.

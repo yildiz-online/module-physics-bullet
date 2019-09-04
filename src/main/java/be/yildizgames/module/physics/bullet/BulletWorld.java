@@ -48,9 +48,6 @@ import java.util.*;
  */
 final class BulletWorld implements PhysicWorld, Native, BulletShapeProvider {
 
-
-    private static final System.Logger LOGGER = System.getLogger(BulletWorld.class.getName());
-
     /**
      * Contains all listeners to notify when a collision occurs or is lost.
      */
