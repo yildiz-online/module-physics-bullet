@@ -29,9 +29,11 @@ import be.yildizgames.module.physics.GhostObject;
 import be.yildizgames.module.physics.PhysicObjectBuilder;
 import be.yildizgames.module.physics.bullet.exception.IdNotProvidedException;
 import be.yildizgames.module.physics.bullet.exception.ShapeNotProvidedException;
+import be.yildizgames.module.physics.bullet.internal.BulletBodyImplementation;
 import be.yildizgames.module.physics.bullet.internal.BulletDynamicBodyImplementation;
 import be.yildizgames.module.physics.bullet.internal.BulletKinematicBodyImplementation;
 import be.yildizgames.module.physics.bullet.shape.BulletShapeProvider;
+import jni.BulletBodyNative;
 import jni.BulletDynamicBodyNative;
 import jni.BulletKinematicBodyNative;
 import jni.BulletWorldNative;
@@ -46,6 +48,8 @@ class BulletPhysicObjectBuilder extends PhysicObjectBuilder {
     private final NativePointer worldPointer;
 
     private final BulletWorldNative worldNative = new BulletWorldNative();
+
+    private final BulletBodyImplementation bodyImplementation = new BulletBodyNative();
 
     private final BulletDynamicBodyImplementation dynamicBodyImplementation = new BulletDynamicBodyNative();
 
@@ -62,7 +66,7 @@ class BulletPhysicObjectBuilder extends PhysicObjectBuilder {
             throw new IdNotProvidedException();
         }
         final long bodyAddress = this.worldNative.createStaticBody(this.worldPointer.getPointerAddress(), this.getShapePointer().getPointerAddress(), id.value, position.x, position.y, position.z, direction.x, direction.y, direction.z);
-        return new BulletStaticBody(NativePointer.create(bodyAddress), this.worldPointer, position, direction, id);
+        return new BulletStaticBody(this.bodyImplementation, NativePointer.create(bodyAddress), this.worldPointer, position, direction, id);
     }
 
     @Override
