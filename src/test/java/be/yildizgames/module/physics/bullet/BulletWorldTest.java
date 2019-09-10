@@ -29,46 +29,46 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-public class BulletWorldTest {
+class BulletWorldTest {
 
     @Nested
-    public class Constructor {
+    class Constructor {
 
         @Test
-        public void happyFlow() {
+        void happyFlow() {
             var world = givenABulletWorld();
             Assertions.assertNotNull(world);
         }
     }
 
     @Nested
-    public class CreateObject {
+    class CreateObject {
 
         @Test
-        public void happyFlow() {
+        void happyFlow() {
             var world = givenABulletWorld();
             Assertions.assertNotNull(world.createObject());
         }
     }
 
     @Nested
-    public class ThrowRay {
+    class ThrowRay {
 
         @Test
-        public void happyFlow() {
+        void happyFlow() {
             var world = givenABulletWorld();
             var result = world.throwRay(Point3D.valueOf(1,2,3), Point3D.valueOf(4,5,6));
             Assertions.assertNotNull(result);
         }
 
         @Test
-        public void nullOrigin() {
+        void nullOrigin() {
             var world = givenABulletWorld();
             Assertions.assertThrows(NullPointerException.class, () -> world.throwRay(null, Point3D.valueOf(4,5,6)));
         }
 
         @Test
-        public void nullDestination() {
+        void nullDestination() {
             var world = givenABulletWorld();
             Assertions.assertThrows(NullPointerException.class, () -> world.throwRay(Point3D.valueOf(1,2,3), null));
         }

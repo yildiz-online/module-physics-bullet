@@ -22,7 +22,7 @@
  *
  */
 
-module be.yildizgames.module.physics.bullet {
+open module be.yildizgames.module.physics.bullet {
 
     requires be.yildizgames.common.libloader;
     requires be.yildizgames.module.physics;
