@@ -185,12 +185,12 @@ final class BulletWorld implements PhysicWorld, Native, BulletShapeProvider {
 
     @Override
     public RaycastResult throwRay(final Point3D origin, final Point3D destination) {
-        final int raycastId = 0;
-        final int raycastX = 1;
-        final int raycastY = 2;
-        final int raycastZ = 3;
+        final int rayCastId = 0;
+        final int rayCastX = 1;
+        final int rayCastY = 2;
+        final int rayCastZ = 3;
         final long[] values = this.worldNative.raycast(this.pointer.getPointerAddress(), origin.x, origin.y, origin.z, destination.x, destination.y, destination.z);
-        return new RaycastResult(values[raycastX], values[raycastY], values[raycastZ], values[raycastId]);
+        return new RaycastResult(values[rayCastX], values[rayCastY], values[rayCastZ], values[rayCastId]);
     }
 
     @Override

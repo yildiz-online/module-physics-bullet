@@ -32,7 +32,6 @@ open module be.yildizgames.module.physics.bullet {
     requires be.yildizgames.common.shape;
     requires be.yildizgames.common.time;
     requires be.yildizgames.common.jni;
-    requires be.yildizgames.common.file;
 
     exports be.yildizgames.module.physics.bullet;
 }
