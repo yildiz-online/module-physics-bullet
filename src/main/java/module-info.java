@@ -33,5 +33,8 @@ open module be.yildizgames.module.physics.bullet {
     requires be.yildizgames.common.time;
     requires be.yildizgames.common.jni;
 
+    provides be.yildizgames.module.physics.PhysicEngineProvider
+            with be.yildizgames.module.physics.bullet.BulletPhysicEngineProvider;
+
     exports be.yildizgames.module.physics.bullet;
 }
